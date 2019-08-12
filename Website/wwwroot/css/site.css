@@ -1,56 +1,99 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+﻿html, body {
+    color: #FFF; 
+    background-color: #212121;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    font-family: "Nunito Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px
 }
+
+.intro {
+    color: #ccc;
+    font-weight: 400;
+    font-size: 1.5em;
+    margin-top: 0.2em;
+    margin-bottom: 0em;
+}
+
+.large-spacing li {
+    margin-bottom: 2.5em;
+}
+
+a {
+    font-weight: 700;
+    color: #999;
+    transition: color 150ms ease-in-out;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #574b90;
+    }
+
+    a:focus {
+        color: #574b90; 
+        outline: none;
+    }
+
+h1 {
+    font-weight: 900; 
+    font-size: 4em; 
+    margin-top: 1.5em;
+    margin-bottom: 0em;
+}
+
+    h1 a {
+        color: #FFF;
+        font-weight: 900;
+    }
+
+        h1 a:hover {
+            color: #AAA;
+        }
+
+        h1 a:focus {
+            color: #AAA;
+            outline: none;
+        }
+
+        h1 a .left {
+            margin-right: 0.4em;
+        }
+
+        h1 a.right {
+            margin-left: 1.2em;
+        }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 1.2em;
+}
+
+    ul li {
+        margin-top: 0.2em;
+    }
+
+        ul li a {
+            color: #666;
+            font-weight: 700;
+            font-size: 3.4em;
+        }
+
+            ul li a:hover {
+                color: #574b90;
+            }
+
+            ul li a:focus {
+                color: #574b90;
+                outline: none;
+            }
