@@ -23,6 +23,11 @@ body {
     margin-bottom: 0em;
 }
 
+.footer-text {
+    opacity:0.4;
+    margin-top:1.8em;
+}
+
 .large-spacing li {
     margin-bottom: 2.5em;
 }
@@ -41,6 +46,24 @@ a {
     a:focus {
         color: #574b90; 
         outline: none;
+    }
+
+h2 {
+    margin-top: 1.2em;
+    font-size: 1.8em;
+    margin-bottom: 0em;
+}
+
+p {
+    margin-top: 0.2em;
+    color: #ccc;
+    font-weight: 400;
+    font-size: 1.2em;
+    margin-bottom: 0.8em;
+}
+
+    p b {
+        color: #fff;
     }
 
 h1 {
