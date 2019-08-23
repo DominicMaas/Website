@@ -1,0 +1,27 @@
+﻿@page "{id}"
+@model Website.Pages.FwModel
+@{
+    ViewData["Title"] = "Redirecting...";
+}
+
+@{
+    if (Model.IsSuccess == true)
+    {
+        <!-- Page Hero Text -->
+        <h1>Please wait, redirecting...</h1>
+        <p class="intro">If nothing happens in 5 seconds, click <a href="@Model.RequestedUri">here</a>.</p>
+
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                window.location.href = "@Model.RequestedUri";
+            }, false);
+        </script>
+    }
+    else
+    {
+        <!-- Page Hero Text -->
+        <h1>@Model.Message</h1>
+        <p class="intro">Click <a href="/contact">here</a> to report this broken link.</p>
+    }
+}
+
