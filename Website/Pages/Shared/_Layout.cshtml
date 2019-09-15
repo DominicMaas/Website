@@ -16,11 +16,18 @@
 </head>
 <body>
     <div class="container">
+        <nav>
+            <ul>
+                <li><a href="/about">about</a></li>
+                <li><a href="/">blog</a></li>
+                <li><a href="/cv">curriculum vitae</a></li>
+                <li><a href="/style">style guide</a></li>
+            </ul>
+        </nav>
+      
         @RenderBody()
 
-        <p class="footer-text">
-            © @DateTime.Now.Year - Dominic Maas - <a href="/privacy">Privacy</a>
-        </p>
+        <br />
     </div>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
