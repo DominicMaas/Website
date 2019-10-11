@@ -1,9 +1,6 @@
-using CodingBlast;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Website.Common;
@@ -21,20 +18,18 @@ namespace Website
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer()));
-                });
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer()));
+            });
 
             // Google Analytics
-            services.AddSingleton<ITagHelperComponent>(new GoogleAnalyticsTagHelperComponent("UA-37972059-9"));
+            // services.AddSingleton<ITagHelperComponent>(new GoogleAnalyticsTagHelperComponent("UA-37972059-9"));
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName == "Development")
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -47,7 +42,12 @@ namespace Website
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
         }
     }
 }
