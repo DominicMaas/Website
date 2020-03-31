@@ -1,59 +1,55 @@
 ﻿html, body {
-    color: #FFF;
+    color: #FEFEFE;
     background-color: #121212;
+    font-family: "Open Sans", sans-serif;
 }
 
 body {
-    font-family: "Nunito Sans", sans-serif;
+    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px
+/* Top of page */
+
+.header {
+    border-bottom: 2px solid #666;
+    padding-bottom: 16px;
+    border-radius: 1.5px;
+    font-family: "Nunito Sans", sans-serif;
 }
 
-.intro {
-    color: #ccc;
-    font-weight: 400;
-    font-size: 1.5em;
-    margin-top: 0.2em;
-    margin-bottom: 0em;
+.page-title {
+    font-size: 3.5em;
+    font-weight: 900;
+    color: #DDD;
+    padding-top: 0.6em;
+    margin-bottom: 0.2em;
 }
 
-.footer-text {
-    opacity: 0.4;
-    margin-top: 1.8em;
-}
-
-.large-spacing li {
-    margin-bottom: 2.5em;
-}
 
 nav ul {
     list-style-type: none;
+    margin: 0;
 }
 
     nav ul li {
-        margin-top: 3.5em;
         display: inline-block;
-        margin-right: 2em;
+        margin: 0;
+        margin-right: 1.6em;
     }
 
         nav ul li a {
-            color: #444;
+            color: #666;
             font-weight: 800;
             font-size: 2.0em;
+            text-decoration: none;
         }
 
 a {
-    font-weight: 700;
-    font-size: 1.2em;
-    color: #999;
+    font-weight: 600;
+    color: #FFF;
     transition: color 150ms ease-in-out;
-    text-decoration: none;
 }
 
     a:hover {
@@ -65,106 +61,90 @@ a {
         outline: none;
     }
 
+/* Content */
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px
+}
+
 section {
     margin-top: 2.6em;
 }
 
 p {
-    color: #ccc;
+    color: #ddd;
     font-weight: 400;
     font-size: 1.2em;
     margin-bottom: 0.8em;
+    margin-top: 0;
 }
 
     p b {
         color: #fff;
     }
 
+
+/* HEADERS */
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+}
+
 h1 {
-    font-weight: 900;
-    font-size: 4em;
-    margin-top: 0.1em;
-    margin-bottom: 0em;
+    font-weight: 800;
+    font-size: 3.25em;
+    color: #EEE;
 }
 
 h2 {
-    margin-top: 0.3em;
-    font-size: 3.0em;
+    font-size: 2.75em;
     font-weight: 800;
-    color: #DDD;
-    margin-bottom: 0em;
+    color: #EEE;
 }
 
 h3 {
-    margin-top: 0.3em;
-    color: #BBB;
-    font-size: 2.75em;
-    font-weight: 700;
-    margin-bottom: 0em;
+    color: #EEE;
+    font-size: 2.5em;
+    font-weight: 800;
 }
 
 h4 {
-    margin-top: 0.3em;
-    color: #999;
-    font-size: 2.5em;
-    font-weight: 600;
-    margin-bottom: 0em;
+    color: #DDD;
+    font-size: 2.25em;
+    font-weight: 700;
 }
 
 h5 {
-    margin-top: 0.3em;
-    color: #777;
-    font-size: 2.25em;
-    font-weight: 500;
-    margin-bottom: 0em;
+    color: #DDD;
+    font-size: 2.0em;
+    font-weight: 700;
 }
 
 h6 {
-    margin-top: 0.3em;
-    font-size: 2em;
-    font-weight: 400;
-    color: #555;
-    margin-bottom: 0em;
+    font-size: 1.75em;
+    font-weight: 700;
+    color: #DDD;
 }
 
-h1 a {
-    color: #FFF;
-    font-weight: 900;
-}
 
-    h1 a:hover {
-        color: #AAA;
+  
+    ul {
+        margin: 0;
+        padding: 0;
+        margin-left: 18px;
     }
 
-    h1 a:focus {
-        color: #AAA;
-        outline: none;
-    }
+     
 
-    h1 a .left {
-        margin-right: 0.4em;
-    }
+            ul li p {
+                margin: 0em;
+                margin-bottom: 0.2em;
+            }
 
-    h1 a.right {
-        margin-left: 1.2em;
-    }
-
-ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-    ul li {
-        margin-top: 1em;
-    }
-
-        ul li p {
-            margin: 0em;
-            margin-bottom: 0.2em;
-        }
-
-/*ul li a {
+    /*ul li a {
             color: #666;
             font-weight: 700;
             font-size: 3.4em;
@@ -179,69 +159,69 @@ ul {
                 outline: none;
             }*/
 
-@media only screen and (max-width: 1030px) {
-    .container {
-        width: calc(100% - 1em);
-        margin-left: 0.5em;
-        margin-right: 0.5em;
+    @media only screen and (max-width: 1030px) {
+        .container {
+            width: calc(100% - 1em);
+            margin-left: 0.5em;
+            margin-right: 0.5em;
+        }
+
+        .intro {
+            font-size: 1.2em;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 0.5em;
+            margin-bottom: 0em;
+        }
+
+        ul li a {
+            font-size: 2.4em;
+        }
     }
 
-    .intro {
-        font-size: 1.2em;
+    .pure-table {
+        margin-top: 0.6em !important;
     }
 
-    h1 {
-        font-size: 3em;
-        margin-top: 0.5em;
-        margin-bottom: 0em;
+    .pure-table-horizontal td, .pure-table-horizontal th {
+        border-bottom: 1px solid #1A1A1A !important;
     }
 
-    ul li a {
-        font-size: 2.4em;
+    .pure-table td, .pure-table th {
+        border-left: 1px solid #1A1A1A !important;
     }
-}
 
-.pure-table {
-    margin-top: 0.6em !important;
-}
+    .pure-table thead {
+        background-color: #101010 !important;
+        color: #FFF !important;
+    }
 
-.pure-table-horizontal td, .pure-table-horizontal th {
-    border-bottom: 1px solid #1A1A1A !important;
-}
+    .pure-table {
+        border: 1px solid #1A1A1A !important;
+    }
 
-.pure-table td, .pure-table th {
-    border-left: 1px solid #1A1A1A !important;
-}
+    .pure-table-striped tr:nth-child(2n-1) td {
+        background-color: #151515 !important;
+    }
 
-.pure-table thead {
-    background-color: #101010 !important;
-    color: #FFF !important;
-}
+    .date {
+        color: #bbc3c8;
+        background: #292929;
+        display: inline-block;
+        font-family: 'Georgia', serif;
+        font-style: italic;
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0 0 20px 18px;
+        padding: 10px 12px 8px;
+        position: absolute;
+        bottom: -36px;
+    }
 
-.pure-table {
-    border: 1px solid #1A1A1A !important;
-}
-
-.pure-table-striped tr:nth-child(2n-1) td {
-    background-color: #151515 !important;
-}
-
-.date {
-    color: #bbc3c8;
-    background: #292929;
-    display: inline-block;
-    font-family: 'Georgia', serif;
-    font-style: italic;
-    font-size: 18px;
-    line-height: 22px;
-    margin: 0 0 20px 18px;
-    padding: 10px 12px 8px;
-    position: absolute;
-    bottom: -36px;
-}
-
-.small {
-    font-size: 1em;
-    color: #666;
-    font-weight: 800;
-}
+    .small {
+        font-size: 1em;
+        color: #666;
+        font-weight: 800;
+    }

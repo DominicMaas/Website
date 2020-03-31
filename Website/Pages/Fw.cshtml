@@ -1,15 +1,15 @@
 ﻿@page "{id}"
 @model Website.Pages.FwModel
-@{
-    ViewData["Title"] = "Redirecting...";
-}
 
 @{
-    if (Model.IsSuccess == true)
+    if (Model.IsSuccess)
     {
-        <!-- Page Hero Text -->
-        <h1>Please wait, redirecting...</h1>
-        <p class="intro">If nothing happens in 5 seconds, click <a href="@Model.RequestedUri">here</a>.</p>
+        ViewData["Title"] = "Redirecting...";
+
+        <section>
+            <h1>Please wait, redirecting...</h1>
+            <p>If nothing happens in 5 seconds, click <a href="@Model.RequestedUri">here</a>.</p>
+        </section>    
 
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', function() {
@@ -19,8 +19,12 @@
     }
     else
     {
-        <!-- Page Hero Text -->
-        <h1>@Model.Message</h1>
-        <p class="intro">Click <a href="/about">here</a> to report this broken link.</p>
+        ViewData["Title"] = "Dominic Maas";
+
+        <section>
+            <!-- Page Hero Text -->
+            <h1>@Model.Message</h1>
+            <p>Click <a href="/contact">here</a> to report this broken link.</p>
+        </section>
     }
 }
