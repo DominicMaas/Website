@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>@ViewData["Title"]</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" 
-          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" 
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
           crossorigin="anonymous">
-    
+
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700,800&display=swap" rel="stylesheet">
-    
+
     <!-- Custom Styles -->
     <environment include="Development">
         <link rel="stylesheet" href="~/css/site.css" />
@@ -24,7 +24,7 @@
 
     <!-- Custom Icon Fonts -->
     <script src="https://kit.fontawesome.com/eb19a1bea8.js"></script>
-    
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37972059-9"></script>
     <script>
@@ -45,12 +45,12 @@
                 <li><a href="/style">style guide</a></li>
             </ul>
         </nav>
-      
+
         @RenderBody()
 
         <br />
     </div>
-    
+
     <environment include="Development">
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
@@ -59,6 +59,6 @@
         <script src="~/js/site-min.js" asp-append-version="true"></script>
     </environment>
 
-@RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
