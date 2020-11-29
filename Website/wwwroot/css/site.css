@@ -1,11 +1,10 @@
 ﻿html, body {
     color: #FEFEFE;
-    background-color: #121212;
+    background-color: #131313;
     font-family: "Open Sans", sans-serif;
 }
 
 body {
-    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -13,54 +12,63 @@ body {
 /* Top of page */
 
 .header {
-    border-bottom: 2px solid #666;
-    padding-bottom: 16px;
-    border-radius: 1.5px;
     font-family: "Nunito Sans", sans-serif;
+    margin-bottom: 2em;
 }
 
 .page-title {
     font-size: 3.5em;
     font-weight: 900;
     color: #DDD;
-    padding-top: 0.6em;
+    padding-top: 0.8em;
     margin-bottom: 0.2em;
 }
-
 
 nav ul {
     list-style-type: none;
     margin: 0;
 }
 
-    nav ul li {
-        display: inline-block;
-        margin: 0;
-        margin-right: 1.6em;
-    }
+nav ul li {
+    display: inline-block;
+    margin: 0;
+    margin-right: 1.6em;
+}
 
-        nav ul li a {
-            color: #666;
-            font-weight: 800;
-            font-size: 2.0em;
-            text-decoration: none;
-        }
+nav ul li a {
+    color: #666;
+    font-weight: 800;
+    font-size: 2.0em;
+}
+
+nav ul li .active {
+    color: #c44569;
+}
+
+nav ul li .active:hover {
+    color: #f8a5c2;
+}
+
+nav ul li .active:focus {
+    color: #f8a5c2;
+}
 
 a {
     font-weight: 600;
-    color: #FFF;
+    color: #c44569;
     transition: color 150ms ease-in-out;
+    text-decoration: none;
 }
 
-    a:hover {
-        color: #574b90;
-    }
+a:hover {
+    color: #f8a5c2;
+}
 
-    a:focus {
-        color: #574b90;
-        outline: none;
-    }
-
+a:focus {
+    color: #f8a5c2;
+    outline: none;
+}
+    
 /* Content */
 
 .container {
@@ -70,7 +78,7 @@ a {
 }
 
 section {
-    margin-top: 2.6em;
+    margin-bottom: 2.6em;
 }
 
 p {
@@ -79,11 +87,12 @@ p {
     font-size: 1.2em;
     margin-bottom: 0.8em;
     margin-top: 0;
+    line-height: 1.5;
 }
 
-    p b {
-        color: #fff;
-    }
+p b {
+    color: #fff;
+}
 
 
 /* HEADERS */
@@ -91,6 +100,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
     font-family: "Nunito Sans", sans-serif;
+    margin-bottom: 0.2em;
 }
 
 h1 {
@@ -127,15 +137,14 @@ h6 {
     font-size: 1.75em;
     font-weight: 700;
     color: #DDD;
+    margin-bottom: 5px;
 }
 
-
-  
-    ul {
-        margin: 0;
-        padding: 0;
-        margin-left: 18px;
-    }
+ul {
+    margin: 0;
+    padding: 0;
+    margin-left: 18px;
+}
 
      
 

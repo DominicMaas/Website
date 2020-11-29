@@ -1,13 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http.Extensions
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>@ViewData["Title"]</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
-          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" 
+          integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" 
           crossorigin="anonymous">
 
     <!-- Custom Fonts -->
@@ -39,22 +44,20 @@
     <!-- Page header -->
     <div class="header">
         <!-- Page title -->
-        <p class="page-title">@ViewData["Title"]</p>
+        <p class="page-title">Dominic Maas</p>
         
         <!-- Navigation Links -->
         <nav>
             <ul>
-                <li><a href="/">about</a></li>
-                <li><a href="/cv">curriculum vitae</a></li>
-                <li><a href="/style">style guide</a></li>
+                <li><a class="@(Context.Request.Path == "/" ? "active" : "")" href="/">about</a></li>
+                <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv">curriculum vitae</a></li>
+                <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style">style guide</a></li>
             </ul>
         </nav>
     </div>
     
     <!-- Page content -->
     @RenderBody()
-
-    <br/><br /><br /><br />
 </div>
 
     <environment include="Development">
