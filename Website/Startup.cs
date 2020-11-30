@@ -42,6 +42,8 @@ namespace Website
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -28,7 +28,7 @@
 
     <!-- Custom Icon Fonts -->
     <script src="https://kit.fontawesome.com/eb19a1bea8.js"></script>
-
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37972059-9"></script>
     <script>
@@ -49,15 +49,25 @@
         <!-- Navigation Links -->
         <nav>
             <ul>
-                <li><a class="@(Context.Request.Path == "/" ? "active" : "")" href="/">about</a></li>
-                <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv">curriculum vitae</a></li>
-                <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style">style guide</a></li>
+                <li><a class="@(Context.Request.Path == "/" ? "active" : "")" href="/"><span class="i-holder"><i class="fal fa-fw fa-home"></i></span>home</a></li>
+                <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv"><span class="i-holder"><i class="fal fa-fw fa-book"></i></span>curriculum vitae</a></li>
+                <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style"><span class="i-holder"><i class="fal fa-fw fa-palette"></i></span>style guide</a></li>
             </ul>
         </nav>
     </div>
     
     <!-- Page content -->
     @RenderBody()
+    
+    <footer>
+        <ul>
+            <li><a class="twitter" href="https://twitter.com/dominicjmaas"><i class="fab fa-fw fa-twitter"></i> @@dominicjmaas</a></li>
+            <li><a class="github" href="https://github.com/DominicMaas"><i class="fab fa-fw fa-github"></i> @@DominicMaas</a></li>
+            <li><a class="instagram" href="https://www.instagram.com/iamdermernerc/"><i class="fab fa-fw fa-instagram"></i> @@iamdermernerc</a></li>
+            <li><a href="/contact"><i class="fal fa-fw fa-paper-plane"></i> contact me</a></li>
+            <li><a href="/neat-stuff"><i class="fal fa-fw fa-link"></i> neat stuff</a></li>
+        </ul>
+    </footer>
 </div>
 
     <environment include="Development">
@@ -68,6 +78,6 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
-    @RenderSection("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
