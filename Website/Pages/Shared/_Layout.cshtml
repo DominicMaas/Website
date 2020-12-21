@@ -10,7 +10,8 @@
     
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
+    
+    <!-- CSS Library -->
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" 
           integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" 
           crossorigin="anonymous">
@@ -38,6 +39,8 @@
 
         gtag('config', 'UA-37972059-9');
     </script>
+    
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
 <div class="container">
@@ -51,7 +54,7 @@
             <ul>
                 <li><a class="@(Context.Request.Path == "/" ? "active" : "")" href="/"><span class="i-holder"><i class="fal fa-fw fa-home"></i></span>home</a></li>
                 <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv"><span class="i-holder"><i class="fal fa-fw fa-book"></i></span>curriculum vitae</a></li>
-                <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style"><span class="i-holder"><i class="fal fa-fw fa-palette"></i></span>style guide</a></li>
+                <li><a class="@(Context.Request.Path == "/photos" ? "active" : "")" href="/photos"><span class="i-holder"><i class="fal fa-fw fa-camera-alt"></i></span>photography</a></li>
             </ul>
         </nav>
     </div>
@@ -64,8 +67,7 @@
             <li><a class="twitter" href="https://twitter.com/dominicjmaas"><i class="fab fa-fw fa-twitter"></i> @@dominicjmaas</a></li>
             <li><a class="github" href="https://github.com/DominicMaas"><i class="fab fa-fw fa-github"></i> @@DominicMaas</a></li>
             <li><a class="instagram" href="https://www.instagram.com/iamdermernerc/"><i class="fab fa-fw fa-instagram"></i> @@iamdermernerc</a></li>
-            <li><a href="/contact"><i class="fal fa-fw fa-paper-plane"></i> contact me</a></li>
-            <li><a href="/neat-stuff"><i class="fal fa-fw fa-link"></i> neat stuff</a></li>
+            <li><a href="/style"><i class="fal fa-fw fa-palette"></i> style guide</a></li>
         </ul>
     </footer>
 </div>

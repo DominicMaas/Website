@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages
 {
-    public class NeatStuff : PageModel
+    public class Photos : PageModel
     {
         public void OnGet()
         {
