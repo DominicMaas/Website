@@ -11,13 +11,12 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
-    <!-- CSS Library -->
-    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" 
-          integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" 
-          crossorigin="anonymous">
-
+    <!-- Pure CSS Library -->
+    <link rel="stylesheet" href="~/dist/purecss/pure-min.css">
+    
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Nunito+Sans:wght@700;800&display=swap" rel="stylesheet">
+    
     <!-- Custom Styles -->
     <environment include="Development">
         <link rel="stylesheet" href="~/css/site.css" />
@@ -26,21 +25,11 @@
     <environment include="Production">
         <link rel="stylesheet" href="~/css/site.min.css" />
     </environment>
-
-    <!-- Custom Icon Fonts -->
-    <script src="https://kit.fontawesome.com/eb19a1bea8.js"></script>
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37972059-9"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-37972059-9');
-    </script>
     
     @await RenderSectionAsync("Styles", required: false)
+    
+    <!-- Icon Fonts -->
+    <script defer src="~/dist/fontawesome/js/all.min.js"></script>
 </head>
 <body>
 <div class="container">
