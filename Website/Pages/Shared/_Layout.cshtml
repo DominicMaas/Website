@@ -25,8 +25,9 @@
     @await RenderSectionAsync("Styles", required: false)
     
     <!-- Custom Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Nunito+Sans:wght@700;800&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
     <!-- Icon Fonts -->
     <script defer src="~/dist/fontawesome/js/all.min.js"></script>
 </head>
@@ -40,9 +41,10 @@
             <!-- Navigation Links -->
             <nav>
                 <ul>
-                    <li><a class="@(Context.Request.Path == "/" ? "active" : "")" href="/"><span class="i-holder"><i class="fal fa-fw fa-home"></i></span>home</a></li>
-                    <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv"><span class="i-holder"><i class="fal fa-fw fa-book"></i></span>curriculum vitae</a></li>
-                    <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style"><span class="i-holder"><i class="fal fa-fw fa-palette"></i></span>style guide</a></li>
+                    <li><a class="@(Context.Request.Path == "/" ? "active" : "")" href="/"><span class="i-holder"><i class="fad fa-fw fa-home"></i></span>about</a></li>
+                    <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv"><span class="i-holder"><i class="fad fa-fw fa-book"></i></span>curriculum vitae</a></li>
+                    <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style"><span class="i-holder"><i class="fad fa-fw fa-palette"></i></span>style guide</a></li>
+                    <li><a class="@(Context.Request.Path == "/contact" ? "active" : "")" href="/contact"><span class="i-holder"><i class="fad fa-fw fa-paper-plane"></i></span>contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -51,11 +53,10 @@
         @RenderBody()
         
         <footer>
+            <small>Copyright © @DateTime.Now.Year Dominic Maas</small>
             <ul>
-                <li><a class="twitter" href="https://twitter.com/dominicjmaas"><i class="fab fa-fw fa-twitter"></i> @@dominicjmaas</a></li>
-                <li><a class="github" href="https://github.com/DominicMaas"><i class="fab fa-fw fa-github"></i> @@DominicMaas</a></li>
-                <li><a href="/contact"><i class="fal fa-fw fa-paper-plane"></i> contact</a></li>
-                <li><a href="/photos"><i class="fal fa-fw fa-camera-alt"></i> photography</a></li>
+                <li><a class="twitter" href="https://twitter.com/dominicjmaas"><i class="fab fa-fw fa-twitter"></i></a></li>
+                <li><a class="github" href="https://github.com/DominicMaas"><i class="fab fa-fw fa-github"></i></a></li>
             </ul>
         </footer>
     </div>
