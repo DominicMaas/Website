@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: '951231a1-bf21-49ef-9a47-20bb9241bfa1'
   imageRepository: 'personal-website'
   containerRegistry: 'gridentertainment.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Website/Dockerfile'
+  dockerfilePath: 'web/Dockerfile'
   tag: 'latest'
 
   # Agent VM image name
