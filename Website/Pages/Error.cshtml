@@ -1,11 +1,13 @@
-﻿@page
-@model ErrorModel
+﻿@page "{code}"
+@model Website.Pages.Error
+
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Error " + ViewData.Model.Code;
 }
 
 <section>
-    <h3>An error occurred while processing your request</h3>
+    <h2>Error @Model.Code</h2>
+    <p>Something went wrong <i class="fal fa-frown"></i></p>
     
     @if (Model.ShowRequestId)
     {
