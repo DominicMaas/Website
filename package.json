@@ -1,0 +1,23 @@
+{
+  "name": "personal-websote",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "scripts": {
+    "build": "rollup --config"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DominicMaas/Website.git"
+  },
+  "keywords": [],
+  "author": "Dominic Maas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DominicMaas/Website/issues"
+  },
+  "homepage": "https://dominicmaas.co.nz",
+  "devDependencies": {
+    "@wasm-tool/rollup-plugin-rust": "^1.0.5",
+    "rollup": "^2.39.0"
+  }
+}

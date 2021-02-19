@@ -2,18 +2,16 @@
 @model Website.Pages.WebAssembly
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Web Assembly";
 }
 
-<!DOCTYPE html>
+@section Scripts
+{
+    <script async defer src="wasm/testing.js"></script>
+}
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
-</div>
-</body>
-</html>
+<section>
+    <h2>Web Assembly</h2>
+    <p>This page is to test if the web assembly build and load system is working correctly.</p>
+    <p id="wasm-interop">If you see an alert message, it means the WASM system is working!</p>
+</section>
