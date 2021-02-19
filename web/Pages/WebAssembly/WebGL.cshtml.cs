@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Website.Pages
+namespace Website.Pages.WebAssembly
 {
-    public class WebAssembly : PageModel
+    public class WebGL : PageModel
     {
         public void OnGet()
         {

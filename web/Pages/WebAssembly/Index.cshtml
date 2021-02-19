@@ -1,0 +1,23 @@
+@page
+@model Website.Pages.Index
+
+@{
+    ViewData["Title"] = "Web Assembly";
+}
+
+@section Scripts
+{
+    <script async defer src="/wasm/testing.js"></script>
+}
+
+<section>
+    <h2>Web Assembly</h2>
+    <p>This page is to test if the web assembly build and load system is working correctly.</p>
+    <p>If you see an alert message, it means the WASM system is working!</p>
+</section>
+
+<section>
+    <ul>
+        <li><a href="/web-assembly/web-gl">WebGL</a></li>
+    </ul>
+</section>
