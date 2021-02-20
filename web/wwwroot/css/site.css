@@ -1,5 +1,6 @@
 ﻿:root {
     --color-background: #131318;
+    --color-card: #232323;
     --color-text: #DDDDDD;
     --color-body-text: var(--color-text);
     --color-heading-lg-text: #EEEEEE;
@@ -34,6 +35,7 @@
 @media (prefers-color-scheme: light) {
     :root {
         --color-background: #fafaf6;
+        --color-card: #ffffff;
         
         --color-text: #131313;
         --color-heading-lg-text: #333333;
@@ -143,6 +145,13 @@ a:focus {
 
 section {
     margin-bottom: 2.6em;
+}
+
+.card {
+    background-color: var(--color-card);
+    padding: 1.2em 1em;
+    border-radius: 0.3em;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 p {

@@ -1,0 +1,21 @@
+@page "/blog"
+@model Website.Pages.BlogList
+
+@{
+    ViewData["Title"] = "Blog";
+}
+
+<h2>Blog</h2>
+<p>My thoughts &amp; ideas...</p>
+
+@foreach (var post in Model.BlogPostsMeta)
+{
+    <a href="/blog/@post.LinkPath">
+        <div class="card">
+            <h6>@post.Title</h6>
+            <small>@post.Date.ToString("D")</small>
+            <p style="font-size: 1em; margin: 0; margin-top: 0.4em;">@post.Description</p>
+        </div>
+    </a>
+   
+}

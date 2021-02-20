@@ -1,0 +1,12 @@
+@page "/blog/{path}"
+@model Website.Pages.BlogDetail
+
+@{
+    ViewData["Title"] = @Model.FrontMatter.Title;
+}
+
+<section>
+    <h2>@Model.FrontMatter.Title</h2>
+    <p>@Model.FrontMatter.Date.ToString("D")</p>
+    @Html.Raw(Model.Text)
+</section>
