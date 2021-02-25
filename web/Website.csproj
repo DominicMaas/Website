@@ -9,26 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
-    <PackageReference Include="Markdig" Version="0.23.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" Condition="'$(Configuration)' == 'Debug'" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0" />
-    <PackageReference Include="YamlDotNet" Version="9.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\dist\fontawesome" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\default-skin\default-skin.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\default-skin\default-skin.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\default-skin\default-skin.svg" />
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\default-skin\preloader.gif" />
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\photoswipe-ui-default.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\photoswipe-ui-default.min.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\photoswipe.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\photoswipe.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\dist\photoswipe\photoswipe.min.js" />
   </ItemGroup>
 </Project>
