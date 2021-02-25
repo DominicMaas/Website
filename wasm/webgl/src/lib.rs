@@ -2,9 +2,17 @@ use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 use web_sys::{WebGlProgram, WebGlRenderingContext, WebGlShader};
 
+// A macro to provide `println!(..)`-style syntax for `console.log` logging.
+macro_rules! log {
+    ( $( $t:tt )* ) => {
+        web_sys::console::log_1(&format!( $( $t )* ).into());
+    }
+}
+
 #[wasm_bindgen(start)]
 pub fn run() -> Result<(), JsValue> {
-    let document = web_sys::window().unwrap().document().unwrap();
+    let window = web_sys::window().unwrap();
+    let document = window.document().unwrap();
     let canvas = document.get_element_by_id("canvas").unwrap();
     let canvas: web_sys::HtmlCanvasElement = canvas.dyn_into::<web_sys::HtmlCanvasElement>()?;
 
@@ -17,9 +25,15 @@ pub fn run() -> Result<(), JsValue> {
         &context,
         WebGlRenderingContext::VERTEX_SHADER,
         r#"
-        attribute vec4 position;
+        attribute vec3 position;
+        uniform mat4 Pmatrix;
+        uniform mat4 Vmatrix;
+        uniform mat4 Mmatrix;
+        attribute vec3 color;
+        varying vec3 vColor;
         void main() {
-            gl_Position = position;
+            gl_Position = Pmatrix*Vmatrix*Mmatrix*vec4(position, 1.);
+            vColor = color;
         }
     "#,
     )?;
@@ -27,18 +41,41 @@ pub fn run() -> Result<(), JsValue> {
         &context,
         WebGlRenderingContext::FRAGMENT_SHADER,
         r#"
+        precision mediump float;
+        varying vec3 vColor;
         void main() {
-            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+            gl_FragColor = vec4(vColor, 1.);
         }
     "#,
     )?;
     let program = link_program(&context, &vert_shader, &frag_shader)?;
     context.use_program(Some(&program));
 
-    let vertices: [f32; 9] = [-0.7, -0.7, 0.0, 0.7, -0.7, 0.0, 0.0, 0.7, 0.0];
+    log!("Linked Program!");
 
-    let buffer = context.create_buffer().ok_or("failed to create buffer")?;
-    context.bind_buffer(WebGlRenderingContext::ARRAY_BUFFER, Some(&buffer));
+    let vertices: [f32; 72] = [
+        -1.0 , -1.0 , -1.0 ,  1.0 , -1.0 , -1.0 ,  1.0 ,  1.0 , -1.0 , -1.0 ,  1.0 , -1.0,
+        -1.0 , -1.0 ,  1.0 ,  1.0 , -1.0 ,  1.0 ,  1.0 ,  1.0 ,  1.0 , -1.0 ,  1.0 ,  1.0,
+        -1.0 , -1.0 , -1.0 , -1.0 ,  1.0 , -1.0 , -1.0 ,  1.0 ,  1.0 , -1.0 , -1.0 ,  1.0,
+         1.0 , -1.0 , -1.0 ,  1.0 ,  1.0 , -1.0 ,  1.0 ,  1.0 ,  1.0 ,  1.0 , -1.0 ,  1.0,
+        -1.0 , -1.0 , -1.0 , -1.0 , -1.0 ,  1.0 ,  1.0 , -1.0 ,  1.0 ,  1.0 , -1.0 , -1.0,
+        -1.0 ,  1.0 , -1.0 , -1.0 ,  1.0 ,  1.0 ,  1.0 ,  1.0 ,  1.0 ,  1.0 ,  1.0 , -1.0,
+    ];
+
+    let colors: [f32; 72] = [
+        5.0,3.0,7.0, 5.0,3.0,7.0, 5.0,3.0,7.0, 5.0,3.0,7.0,
+        1.0,1.0,3.0, 1.0,1.0,3.0, 1.0,1.0,3.0, 1.0,1.0,3.0,
+        0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+        1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0,
+        1.0,1.0,0.0, 1.0,1.0,0.0, 1.0,1.0,0.0, 1.0,1.0,0.0,
+        0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0
+    ];
+
+    let indices: [u16; 36] = [
+        0,1,2, 0,2,3, 4,5,6, 4,6,7,
+        8,9,10, 8,10,11, 12,13,14, 12,14,15,
+        16,17,18, 16,18,19, 20,21,22, 20,22,23
+    ];
 
     // Note that `Float32Array::view` is somewhat dangerous (hence the
     // `unsafe`!). This is creating a raw view into our module's
@@ -48,6 +85,12 @@ pub fn run() -> Result<(), JsValue> {
     //
     // As a result, after `Float32Array::view` we have to be very careful not to
     // do any memory allocations before it's dropped.
+
+    // Bind vertex buffer and place in data
+    log!("Creating vertex buffer...");
+    let vertex_buffer = context.create_buffer().ok_or("failed to create vertex buffer")?;
+    context.bind_buffer(WebGlRenderingContext::ARRAY_BUFFER, Some(&vertex_buffer));
+
     unsafe {
         let vert_array = js_sys::Float32Array::view(&vertices);
 
@@ -57,18 +100,134 @@ pub fn run() -> Result<(), JsValue> {
             WebGlRenderingContext::STATIC_DRAW,
         );
     }
+    log!("Done!");
 
-    context.vertex_attrib_pointer_with_i32(0, 3, WebGlRenderingContext::FLOAT, false, 0, 0);
-    context.enable_vertex_attrib_array(0);
+    // Bind color buffer and place in data
+    log!("Creating color buffer...");
+    let color_buffer = context.create_buffer().ok_or("failed to create color buffer")?;
+    context.bind_buffer(WebGlRenderingContext::ARRAY_BUFFER, Some(&color_buffer));
 
-    context.clear_color(0.0, 0.0, 0.0, 1.0);
-    context.clear(WebGlRenderingContext::COLOR_BUFFER_BIT);
+    unsafe {
+        let color_array = js_sys::Float32Array::view(&colors);
 
-    context.draw_arrays(
-        WebGlRenderingContext::TRIANGLES,
-        0,
-        (vertices.len() / 3) as i32,
-    );
+        context.buffer_data_with_array_buffer_view(
+            WebGlRenderingContext::ARRAY_BUFFER,
+            &color_array,
+            WebGlRenderingContext::STATIC_DRAW,
+        );
+    }
+    log!("Done!");
+
+    // Bind index buffer and place in data
+    log!("Creating index buffer...");
+    let index_buffer = context.create_buffer().ok_or("failed to create index buffer")?;
+    context.bind_buffer(WebGlRenderingContext::ELEMENT_ARRAY_BUFFER, Some(&index_buffer));
+
+    unsafe {
+        let index_array = js_sys::Uint16Array::view(&indices);
+        context.buffer_data_with_array_buffer_view(
+            WebGlRenderingContext::ELEMENT_ARRAY_BUFFER,
+            &index_array,
+            WebGlRenderingContext::STATIC_DRAW,
+        );
+    }
+    log!("Done!");
+
+    // Associating attributes to vertex shader
+    log!("Associating attributes to vertex shader");
+    let p_matrix = context.get_uniform_location(&program, "Pmatrix").ok_or("failed to find p_matrix uniform location")?;
+    let v_matrix = context.get_uniform_location(&program, "Vmatrix").ok_or("failed to find v_matrix uniform location")?;
+    let m_matrix = context.get_uniform_location(&program, "Mmatrix").ok_or("failed to find m_matrix uniform location")?;
+
+    // position buffer
+    log!("Binding Position Buffer...");
+    context.bind_buffer(WebGlRenderingContext::ARRAY_BUFFER, Some(&vertex_buffer));
+    let _position = context.get_attrib_location(&program, "position") as u32;
+
+    context.vertex_attrib_pointer_with_i32(_position, 3, WebGlRenderingContext::FLOAT, false, 0, 0);
+    context.enable_vertex_attrib_array(_position);
+
+    // color buffer
+    log!("Binding Color Buffer...");
+    context.bind_buffer(WebGlRenderingContext::ARRAY_BUFFER, Some(&color_buffer));
+    let _color = context.get_attrib_location(&program, "color") as u32;
+
+    context.vertex_attrib_pointer_with_i32(_color, 3, WebGlRenderingContext::FLOAT, false, 0, 0);
+    context.enable_vertex_attrib_array(_color);
+
+    // Matrices
+    log!("Matrices");
+    let mut proj_matrix: [f32; 16] = get_projection_matrix(40.0, canvas.width() as f32 / canvas.height() as f32, 1.0, 10.0);
+    let mut mo_matrix: [f32; 16] = [ 1.0,0.0,0.0,0.0, 0.0,1.0,0.0,0.0, 0.0,0.0,1.0,0.0, 0.0,0.0,0.0,1.0 ];
+    let mut view_matrix: [f32; 16] = [ 1.0,0.0,0.0,0.0, 0.0,1.0,0.0,0.0, 0.0,0.0,1.0,0.0, 0.0,0.0,0.0,1.0 ];
+
+    view_matrix[14] = view_matrix[14] - 6.0;
+
+    // Mouse events
+    let amortization: f32 = 0.95;
+    let drag = false;
+    let old_x: f32;
+    let old_y: f32;
+    let mut d_x: f32 = 0.0;
+    let mut d_y: f32 = 0.0;
+
+
+
+    // Drawing
+    let mut theta: f32 = 0.0;
+    let mut phi: f32 = 0.0;
+    let mut time_old: f32 = 0.0;
+
+    let mut animate = | time: f32 | {
+        let dt = time - time_old;
+
+        if !drag {
+            d_x *= amortization;
+            d_y *= amortization;
+
+            theta += d_x;
+            phi += d_y;
+        }
+
+        //set model matrix to I4
+
+        mo_matrix[0] = 1.0; mo_matrix[1] = 0.0; mo_matrix[2] = 0.0;
+        mo_matrix[3] = 0.0;
+
+        mo_matrix[4] = 0.0; mo_matrix[5] = 1.0; mo_matrix[6] = 0.0;
+        mo_matrix[7] = 0.0;
+
+        mo_matrix[8] = 0.0; mo_matrix[9] = 0.0; mo_matrix[10] = 1.0;
+        mo_matrix[11] = 0.0;
+
+        mo_matrix[12] = 0.0; mo_matrix[13] = 0.0; mo_matrix[14] = 0.0;
+        mo_matrix[15] = 1.0;
+
+        rotate_y(mo_matrix, theta);
+        rotate_x(mo_matrix, phi);
+
+        time_old = time;
+
+        context.enable(WebGlRenderingContext::DEPTH_TEST);
+
+        context.clear_color(0.5, 0.5, 0.5, 0.9);
+        context.clear_depth(1.0);
+
+        context.viewport(0, 0, canvas.width() as i32, canvas.height() as i32);
+        context.clear(WebGlRenderingContext::COLOR_BUFFER_BIT | WebGlRenderingContext::DEPTH_BUFFER_BIT);
+
+        context.uniform_matrix4fv_with_f32_array(Some(&p_matrix), false, &proj_matrix);
+        context.uniform_matrix4fv_with_f32_array(Some(&v_matrix), false, &view_matrix);
+        context.uniform_matrix4fv_with_f32_array(Some(&m_matrix), false, &mo_matrix);
+
+        context.bind_buffer(WebGlRenderingContext::ELEMENT_ARRAY_BUFFER, Some(&index_buffer));
+        context.draw_elements_with_i32(WebGlRenderingContext::TRIANGLES, indices.len() as i32, WebGlRenderingContext::UNSIGNED_SHORT, 0);
+
+        //animate(0.0);
+    };
+
+    animate(0.0);
+
     Ok(())
 }
 
@@ -120,4 +279,48 @@ pub fn link_program(
             .get_program_info_log(&program)
             .unwrap_or_else(|| String::from("Unknown error creating program object")))
     }
+}
+
+fn get_projection_matrix(angle: f32, a: f32, z_min: f32, z_max: f32) -> [f32; 16] {
+    let ang = ((angle * 0.5) * std::f32::consts::PI/180.0).tan();
+
+    return [
+        0.5 / ang , 0.0           , 0.0                                      ,  0.0,
+        0.0       , 0.5 * a / ang , 0.0                                      ,  0.0,
+        0.0       , 0.0           , -(z_max + z_min) / (z_max - z_min)       , -1.0,
+        0.0       , 0.0           , (-2.0 * z_max * z_min) / (z_max - z_min) ,  0.0
+    ];
+}
+
+fn rotate_x(mut m: [f32; 16], angle: f32) {
+    let c = angle.cos();
+    let s = angle.sin();
+    let mv1 = m[1];
+    let mv5 = m[5];
+    let mv9 = m[9];
+
+    m[1] = m[1]   * c - m[2]  * s;
+    m[5] = m[5]   * c - m[6]  * s;
+    m[9] = m[9]   * c - m[10] * s;
+
+    m[2] = m[2]   * c + mv1   * s;
+    m[6] = m[6]   * c + mv5   * s;
+    m[10] = m[10] * c + mv9   * s;
+}
+
+fn rotate_y(mut m: [f32; 16], angle: f32)
+{
+    let c = angle.cos();
+    let s = angle.sin();
+    let mv0 = m[0];
+    let mv4 = m[4];
+    let mv8 = m[8];
+
+    m[0] = c  * m[0]  + s * m[2];
+    m[4] = c  * m[4]  + s * m[6];
+    m[8] = c  * m[8]  + s * m[10];
+
+    m[2] = c  * m[2]  - s * mv0;
+    m[6] = c  * m[6]  - s * mv4;
+    m[10] = c * m[10] - s * mv8;
 }
