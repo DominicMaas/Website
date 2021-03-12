@@ -1,3 +1,5 @@
+use std::cell::RefCell;
+use std::rc::Rc;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 use web_sys::{WebGlProgram, WebGlRenderingContext, WebGlShader};
@@ -7,6 +9,19 @@ macro_rules! log {
     ( $( $t:tt )* ) => {
         web_sys::console::log_1(&format!( $( $t )* ).into());
     }
+}
+
+fn get_canvas() -> web_sys::HtmlCanvasElement {
+    let window = web_sys::window().unwrap();
+    let document = window.document().unwrap();
+    let canvas = document.get_element_by_id("canvas").unwrap();
+    return canvas.dyn_into::<web_sys::HtmlCanvasElement>().unwrap();
+}
+
+fn request_animation_frame(f: &Closure<dyn FnMut(f32)>) {
+    let window = web_sys::window().unwrap();
+    window.request_animation_frame(f.as_ref().unchecked_ref())
+        .expect("should register `requestAnimationFrame` OK");
 }
 
 #[wasm_bindgen(start)]
@@ -165,20 +180,71 @@ pub fn run() -> Result<(), JsValue> {
 
     // Mouse events
     let amortization: f32 = 0.95;
-    let drag = false;
-    let old_x: f32;
-    let old_y: f32;
+    let mut drag = false;
+    let mut old_x: f32 = 0.0;
+    let mut old_y: f32 = 0.0;
     let mut d_x: f32 = 0.0;
     let mut d_y: f32 = 0.0;
 
-
-
-    // Drawing
     let mut theta: f32 = 0.0;
     let mut phi: f32 = 0.0;
     let mut time_old: f32 = 0.0;
 
-    let mut animate = | time: f32 | {
+    let mouse_down = Closure::wrap(Box::new(move |event: web_sys::MouseEvent| {
+        drag = true;
+
+        old_x = event.page_x() as f32;
+        old_y = event.page_y() as f32;
+
+        event.prevent_default();
+
+        log!("Mouse DOWN");
+        return false;
+    }) as Box<dyn FnMut(_) -> bool>);
+
+    let mouse_up = Closure::wrap(Box::new(move |event: web_sys::MouseEvent| {
+        drag = false;
+    }) as Box<dyn FnMut(_)>);
+
+    let mouse_move = Closure::wrap(Box::new(move |event: web_sys::MouseEvent| {
+        if drag == false { return false; }
+
+        let c = get_canvas();
+        let canvas_width = c.width();
+        let canvas_height = c.height();
+
+        d_x = (event.page_x() as f32 - old_x) * 2.0 * std::f32::consts::PI / canvas_width as f32;
+        d_y = (event.page_y() as f32 - old_y) * 2.0 * std::f32::consts::PI  / canvas_height as f32;
+
+        theta += d_x;
+        phi += d_y;
+
+        old_x = event.page_x() as f32;
+        old_y = event.page_y() as f32;
+
+        event.prevent_default();
+
+        return false;
+    }) as Box<dyn FnMut(_) -> bool>);
+
+    // Bind out actual events
+    canvas.add_event_listener_with_callback("mousedown", mouse_down.as_ref().unchecked_ref());
+    canvas.add_event_listener_with_callback("mouseup", mouse_up.as_ref().unchecked_ref());
+    canvas.add_event_listener_with_callback("mouseout", mouse_up.as_ref().unchecked_ref());
+    canvas.add_event_listener_with_callback("mousemove", mouse_move.as_ref().unchecked_ref());
+
+    // Forget these closures, this treats these closures as global, technically
+    // leaks memory, but we don't really care
+    mouse_down.forget();
+    mouse_up.forget();
+    mouse_move.forget();
+
+    // Drawing
+
+    let f = Rc::new(RefCell::new(None));
+    let g = f.clone();
+
+    *g.borrow_mut()  = Some(Closure::wrap(Box::new(move |time: f32| {
         let dt = time - time_old;
 
         if !drag {
@@ -210,10 +276,11 @@ pub fn run() -> Result<(), JsValue> {
 
         context.enable(WebGlRenderingContext::DEPTH_TEST);
 
-        context.clear_color(0.5, 0.5, 0.5, 0.9);
+        context.clear_color(0.0, 0.0, 0.0, 0.0);
         context.clear_depth(1.0);
 
-        context.viewport(0, 0, canvas.width() as i32, canvas.height() as i32);
+        let c = get_canvas();
+        context.viewport(0, 0, c.width() as i32, c.height() as i32);
         context.clear(WebGlRenderingContext::COLOR_BUFFER_BIT | WebGlRenderingContext::DEPTH_BUFFER_BIT);
 
         context.uniform_matrix4fv_with_f32_array(Some(&p_matrix), false, &proj_matrix);
@@ -223,10 +290,12 @@ pub fn run() -> Result<(), JsValue> {
         context.bind_buffer(WebGlRenderingContext::ELEMENT_ARRAY_BUFFER, Some(&index_buffer));
         context.draw_elements_with_i32(WebGlRenderingContext::TRIANGLES, indices.len() as i32, WebGlRenderingContext::UNSIGNED_SHORT, 0);
 
-        //animate(0.0);
-    };
+        request_animation_frame(f.borrow().as_ref().unwrap());
+    }) as Box<dyn FnMut(f32)>));
 
-    animate(0.0);
+    request_animation_frame(g.borrow().as_ref().unwrap());
+
+    //request_animation_frame(&animate);
 
     Ok(())
 }
