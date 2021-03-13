@@ -34,7 +34,7 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build web/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/personal-website:latest
+            docker build ./web/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/personal-website:latest
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/personal-website:latest
 
         #- name: 'Deploy to Azure Container Instances'
