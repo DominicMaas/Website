@@ -27,14 +27,16 @@ jobs:
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-        - name: 'Build and push image'
+        - name: 'Login to container registry'
           uses: azure/docker-login@v1
           with:
             login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
-        - run: |
-            docker build ./web/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/personal-website:latest
+        - name: 'Build and Push Image'
+          working-directory: web
+          run: |
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/personal-website:latest
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/personal-website:latest
 
         #- name: 'Deploy to Azure Container Instances'
