@@ -122,15 +122,16 @@ nav ul li a > .i-holder {
 a {
     font-weight: 700;
     color: var(--color-link);
-    transition: color 150ms ease-in-out;
     text-decoration: none;
 }
 
 a:hover {
+    transition: color 150ms ease-in-out;
     color: var(--color-link-2);
 }
 
 a:focus {
+    transition: color 150ms ease-in-out;
     color: var(--color-link-2);
     outline: none;
 }
