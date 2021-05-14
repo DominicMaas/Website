@@ -21,7 +21,6 @@
 
     async function load(module, imports) {
         if (typeof Response === 'function' && module instanceof Response) {
-
             if (typeof WebAssembly.instantiateStreaming === 'function') {
                 try {
                     return await WebAssembly.instantiateStreaming(module, imports);
@@ -40,7 +39,6 @@
             return await WebAssembly.instantiate(bytes, imports);
 
         } else {
-
             const instance = await WebAssembly.instantiate(module, imports);
 
             if (instance instanceof WebAssembly.Instance) {
@@ -54,7 +52,7 @@
 
     async function init(input) {
         if (typeof input === 'undefined') {
-            input = (document.currentScript && document.currentScript.src || new URL('testing.js', document.baseURI).href).replace(/\.js$/, '_bg.wasm');
+            input = new URL('index_bg.wasm', (document.currentScript && document.currentScript.src || new URL('testing.js', document.baseURI).href));
         }
         const imports = {};
         imports.wbg = {};
@@ -66,6 +64,8 @@
             input = fetch(input);
         }
 
+
+
         const { instance, module } = await load(await input, imports);
 
         wasm = instance.exports;
@@ -74,6 +74,6 @@
         return wasm;
     }
 
-    init("/wasm/assets/testing-8fafb39a.wasm").catch(console.error);
+    init("/wasm/assets/testing-6b4b805e.wasm").catch(console.error);
 
 }());

@@ -17,8 +17,8 @@
   },
   "homepage": "https://dominicmaas.co.nz",
   "devDependencies": {
-    "@wasm-tool/rollup-plugin-rust": "^1.0.5",
-    "rollup": "^2.41.1",
+    "@wasm-tool/rollup-plugin-rust": "^1.0.6",
+    "rollup": "^2.47.0",
     "rollup-plugin-delete": "^2.0.0"
   }
 }
