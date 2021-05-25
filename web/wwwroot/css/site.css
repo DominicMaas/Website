@@ -224,25 +224,67 @@ ul li p {
     margin-bottom: 0.2em;
 }
 
-@media only screen and (max-width: 1030px) {
+@media screen and (max-width: 64em) {
     .container {
-        width: calc(100% - 1em);
-        margin-left: 0.5em;
-        margin-right: 0.5em;
+        width: calc(100% - 5em);
+        margin-left: 2.5em;
+        margin-right: 2.5em;
     }
 
-    .intro {
-        font-size: 1.2em;
+    nav ul li {
+        margin-bottom: 0.9em;
+    }
+
+    .header {
+        margin-bottom: 1.1em;
+    }
+
+    .page-title {
+        font-size: 2.25em;
     }
 
     h1 {
-        font-size: 3em;
-        margin-top: 0.5em;
-        margin-bottom: 0em;
+        font-size: 2.75em;
     }
 
-    ul li a {
-        font-size: 2.4em;
+    h2 {
+        font-size: 2.5em;
+    }
+
+    h3 {
+        font-size: 2.25em;
+    }
+
+    h4 {
+        font-size: 2.0em;
+    }
+
+    h5 {
+        font-size: 1.75em;
+    }
+
+    h6 {
+        font-size: 1.5em;
+    }
+
+    footer ul li  {
+        margin: 0 0.8em;
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 35.5em){
+    body {
+        font-size: 0.9em;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 0 0 0.9em 0;
+    }
+
+    .profile-image {
+        margin: 0 0 1.2em;
     }
 }
 
@@ -320,7 +362,7 @@ footer ul li {
     border-radius: 50%;
     border: 3px solid var(--color-profile-border);
     margin-right:12px;
-    transition: border 150ms ease-in-out;
+    transition: border-color 150ms ease-in-out;
 }
 
 .profile-image:hover {
@@ -355,7 +397,7 @@ footer ul li {
     filter: brightness(0.6);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 35.5em) {
     /* 3 columns for larger screens */
     .image-sizer,
     .image-item { width: calc(33.333% - 30px); }
