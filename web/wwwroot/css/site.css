@@ -267,7 +267,7 @@ ul li p {
         font-size: 1.5em;
     }
 
-    footer ul li  {
+    footer > #footer_icons li  {
         margin: 0 0.8em;
         font-size: 1.5em;
     }
@@ -330,9 +330,29 @@ footer {
     text-align: center;
 }
 
+footer > #footer_links {
+    margin-top: 2em;
+}
+
+footer > #footer_links li a {
+    color: var(--color-nav-link);
+}
+
+footer > #footer_links li a:hover {
+    color: var(--color-link-2);
+}
+
+footer > #footer_links li .a:focus {
+    color: var(--color-link-2);
+}
+
+footer > #footer_links li .active {
+    color: var(--color-link);
+}
+
 footer > small {
     display: block;
-    margin-top: 2em;
+    margin-top: 1em;
     margin-bottom: 1em;
     opacity: 0.6;
 }
