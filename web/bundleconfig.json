@@ -2,8 +2,8 @@
   {
     "outputFileName": "wwwroot/css/site.min.css",
     "inputFiles": [
-      "wwwroot/dist/purecss/grids-responsive-min.css",
       "wwwroot/dist/purecss/pure-min.css",
+      "wwwroot/dist/purecss/grids-responsive-min.css",
       "wwwroot/css/site.css"
     ],
     "minify": {
