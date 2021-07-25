@@ -7,12 +7,6 @@
 
 <h1>Projects</h1>
 <br>
-<section>
-    <h6><a href="/web-assembly">Web Assembly</a></h6>
-    <p>
-        Miscellaneous pages dedicated to messing around with rust compiled web assembly.
-    </p>
-</section>
 
 <section>
     <h6>SoundByte</h6>
@@ -20,31 +14,31 @@
     <p>Originally built as a UWP 3rd party SoundCloud client for Windows Phone in 2016. Later extended to desktop and Xbox One in 2017, and then further extended in 2018 to support other music services such as YouTube and Fanburst</p>
 
     <p>
-        SoundByte could be described as a test platform where I put my skills and new ideas to use. 
+        SoundByte could be described as a test platform where I put my skills and new ideas to use.
         The application is split into two parts, the front end application and the backend server.
     </p>
-    
+
     <p>
-        The front-end application is a standard <strong>UWP</strong> app that can run on Windows 10 devices 
+        The front-end application is a standard <strong>UWP</strong> app that can run on Windows 10 devices
         and Xbox. The user experience is adjusted according to the platform the app is running on.
     </p>
-    
+
     <p>
-        The back-end server runs on a dedicated VPS running <strong>docker</strong>. One container is 
+        The back-end server runs on a dedicated VPS running <strong>docker</strong>. One container is
         for the <strong>ASP.NET Core</strong> website and another for <strong>SQL Server</strong>. The website makes
         use of <strong>ASP.NET Core Identity</strong> to handle user accounts and <strong>Identity Server</strong> for
         OAuth support for the front-end application. It both provides a front end website
         for users to visit and an API for the application to use.
     </p>
-    
+
     <p>
-        Both the back-end and app use Azure DevOps (<strong>Azure Pipelines</strong>) for continuous 
+        Both the back-end and app use Azure DevOps (<strong>Azure Pipelines</strong>) for continuous
         integration (CI) to ensure changes made to the applications don’t break anything.
     </p>
-    
-    <p>During the end of 2019 I started work on overhauling this application using 
+
+    <p>During the end of 2019 I started work on overhauling this application using
         <strong>MVVM Cross</strong> and <strong>Xamarin Native</strong>.</p>
-    
+
     <ul>
         <li><p>Windows 10 + Xbox Once app written in C# and XAML using the UWP framework</p></li>
         <li><p>iOS app written in C# using Xamarin Native (and the native iOS UI libraries)</p></li>
