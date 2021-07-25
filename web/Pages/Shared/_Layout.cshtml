@@ -8,30 +8,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="description" content="Hello, my name is Dominic. I'm primarily a .NET developer focusing on UWP &amp; WPF, and a Computer Science Student.">
     <title>@ViewData["Title"]</title>
-    
+
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    
+
     <!-- Custom Styles -->
     <environment include="Development">
         <link rel="stylesheet" href="~/dist/purecss/pure-min.css" />
         <link rel="stylesheet" href="~/dist/purecss/grids-responsive-min.css" />
-        <link rel="stylesheet" href="~/css/site.css"/>
+        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
 
     <environment include="Production">
         <link rel="stylesheet" href="~/css/site.min.css" />
     </environment>
-    
+
     @await RenderSectionAsync("Styles", required: false)
-    
+
     <!-- Custom Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Fonts -->
     <script defer src="~/dist/fontawesome/js/all.min.js"></script>
-    
+
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9a83dde51566447ca826481a7d3ffc6f"}'></script>
     <!-- End Cloudflare Web Analytics -->
@@ -42,7 +42,7 @@
         <div class="header">
             <!-- Page title -->
             <p class="page-title">Dominic Maas</p>
-            
+
             <!-- Navigation Links -->
             <nav>
                 <ul>
@@ -52,13 +52,13 @@
                 </ul>
             </nav>
         </div>
-        
+
         <!-- Page content -->
         @RenderBody()
-        
-        <footer>    
+
+        <footer>
             <ul id="footer_links">
-                <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style">style guide</a></li> 
+                <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style">style guide</a></li>
                 <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv">curriculum vitae</a></li>
                 <li><a class="@(Context.Request.Path == "/privacy" ? "active" : "")" href="/privacy">privacy</a></li>
             </ul>

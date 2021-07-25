@@ -7,7 +7,7 @@ namespace Website.Pages
         public void OnGet(bool show = false)
         {
             ViewData["IsLookingForWork"] = false;
-            
+
             // Just override this variable
             if (show == true)
                 ViewData["IsLookingForWork"] = true;

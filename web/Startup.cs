@@ -22,7 +22,7 @@ namespace Website
             {
                 options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer()));
             });
-            
+
 #if DEBUG
             if (Environment.IsDevelopment())
             {
@@ -42,7 +42,7 @@ namespace Website
                 app.UseExceptionHandler("/error/500");
                 app.UseHsts();
             }
-            
+
             app.UseStatusCodePagesWithReExecute("/error/{0}");
 
             app.UseHttpsRedirection();
