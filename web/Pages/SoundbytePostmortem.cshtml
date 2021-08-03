@@ -5,7 +5,42 @@
     ViewData["Title"] = "SoundByte Postmortem";
 }
 
-<section>
-    <h1>SoundByte</h1>
-    <p>I'm still writing this up, stay tuned. You can see a twitter thread <a href="https://twitter.com/dominicjmaas/status/1393086984831127553">here</a>.</p>
-</section>
+
+<h1>SoundByte</h1>
+<p>I still need to write up an actual post-mortem, in the meantime, you can see a twitter thread <a href="https://twitter.com/dominicjmaas/status/1393086984831127553">here</a>. I've also copied (and cleaned) the linked thread below:</p>
+
+<br />
+<hr />
+<br />
+
+<p>
+    I was hoping to get a version of SoundByte working again, but changes made to the SoundCloud API
+    (an API allows SoundByte to access the SoundCloud service), has made retrieving a logged in users stream (and
+    trending music) very difficult without workarounds, which I don't have the time to invest in.
+</p>
+
+<p>
+    With YouTube, I might be able to get support working again, but I need to figure out
+    why the new login client id is not working (and then get the new client id approved by YouTube
+    which might not happen).
+</p>
+
+<p>
+    SoundByte account functionality is read-only as of May 21, 2021 (this also disables registering new accounts).
+    If you login with your SoundByte account, you can also export all of your data (history, likes, and most played).
+</p>
+
+<p>
+    <a href="https://github.com/DominicMaas/SoundByteOSS">The app is open source</a> if you want to build your own version / mess around with it, and the server (stripped down) will also be published when I have some time.
+</p>
+
+<p>
+    It was a good ride! I'll write up a post-mortem of likes soon. The opportunities that I have gained by creating this little app have changed my life! The app will stay in the Microsoft
+    Store + I'll publish a new version that strips out SoundByte Account functionality + hopefully
+    enables YouTube support.
+</p>
+
+<p>
+    And as a final tip, relying on 3rd party APIs <strong>really... fucking... sucks</strong>!! My quality of life
+    has definitely improved ever since I stopped paying close attention to SoundByte last year!
+</p>

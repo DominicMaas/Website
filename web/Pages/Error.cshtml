@@ -2,17 +2,16 @@
 @model Website.Pages.Error
 
 @{
-    ViewData["Title"] = "Error " + ViewData.Model.Code;
+    ViewData["Title"] = "Error " + Model.Code;
 }
 
-<section>
-    <h2>Error @Model.Code</h2>
-    <p>Something went wrong <i class="fal fa-frown"></i></p>
+<h1>@ViewData["Title"]</h1>
 
-    @if (Model.ShowRequestId)
-    {
-        <p>
-            <strong>Request ID:</strong> <code>@Model.RequestId</code>
-        </p>
-    }
-</section>
+<p>Something went wrong <i class="fal fa-frown"></i></p>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}

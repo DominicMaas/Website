@@ -4,12 +4,11 @@
     ViewData["Title"] = "Style guide";
 }
 
-<section>
-    <h1>Headings</h1>
-    <p>This section shows the weight of all the headings with text underneath</p>
+<h1>@ViewData["Title"]</h1>
 
+<section>
     <h2>Heading 2</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus velit metus, sit amet ultricies tortor fermentum vitae. Donec nec lacus in dui tempor tincidunt.</p>
+    <p>This section shows the weight of all the headings with text underneath</p>
 
     <h3>Heading 3</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus velit metus, sit amet ultricies tortor fermentum vitae. Donec nec lacus in dui tempor tincidunt.</p>
@@ -25,6 +24,53 @@
 </section>
 
 <section>
+    <h2>Cards</h2>
+    <p>Different styled cards that are used on this site</p>
+
+    <div class="card">
+        <small>CSS Class: card</small>
+        <p class="card-title">Basic card</p>
+        <p class="card-text">This card has no background or hover features. It appears like normal text.</p>
+    </div>
+
+    <div class="card card-hoverable">
+        <small>CSS Classes: card card-hoverable</small>
+        <p class="card-title">Basic card with hover effect</p>
+        <p class="card-text">Place your mouse pointer over this card to see a neat hover effect!</p>
+    </div>
+
+    <div class="card card-background">
+        <small>CSS Classes: card card-background</small>
+        <p class="card-title">Card with background</p>
+        <p class="card-text">This card has a nice background! Notice how the text is aligned, but the card overflows into the margin.</p>
+    </div>
+
+    <div class="card card-background card-hoverable">
+        <small>CSS Classes: card card-background card-hoverable</small>
+        <p class="card-title">Card with background and hover effect</p>
+        <p class="card-text">Apply the previous hover effect to cards with backgrounds!</p>
+    </div>
+
+    <div class="card card-background card-hoverable">
+        <p class="card-title">Card with no metadata</p>
+        <p class="card-text">This is the card text</p>
+    </div>
+
+    <div class="card card-background card-hoverable">
+        <p class="card-text">Card with no title</p>
+    </div>
+</section>
+
+<section>
+    <h2>Link Interaction</h2>
+    <p>
+        Links must be contains within <a href="#">paragraph</a> tags to have applied styling. Links
+        contain a special hover effect that includes the background within the animation.
+        Hover over any of the <a href="#">links in this paragraph to test</a>. Links should be <a href="#">aligned</a> with the
+        surrounding text. Links used the some hover animations as cards.</p>
+</section>
+
+<section>
     <h1>Tables</h1>
     <p>This section shows what a table looks like on this website</p>
 
@@ -34,6 +80,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Day</th>
                 <th scope="col">Week</th>
+                <th scope="col">Year</th>
             </tr>
         </thead>
         <tbody>
@@ -41,11 +88,19 @@
                 <th scope="row">1</th>
                 <td>Monday</td>
                 <td>3</td>
+                <td>2019</td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td>Tuesday</td>
                 <td>3</td>
+                <td>2019</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Wednesday</td>
+                <td>3</td>
+                <td>2019</td>
             </tr>
         </tbody>
     </table>

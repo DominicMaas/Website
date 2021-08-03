@@ -1,6 +1,9 @@
 ﻿:root {
     --color-background: #131318;
-    --color-card: #232323;
+    --color-card: rgba(0, 0, 0, 0.15);
+    --color-card-border: rgba(0, 0, 0, 0.35);
+    --color-card-hover: rgba(0, 0, 0, 0.25);
+    --color-card-border-hover: rgba(0, 0, 0, 0.65);
     --color-text: #DDDDDD;
     --color-body-text: var(--color-text);
     --color-heading-lg-text: #EEEEEE;
@@ -16,18 +19,23 @@
     --color-link-2-twitter: #8ED0F8;
     --color-link-github: #F4CBB2;
     --color-link-2-github: #F9E4D8;
-    --color-table-border: #343434;
-    --color-table-header-background: #101010;
+    --color-table-border: var(--color-card-border);
+    --color-table-header-background: var(--color-card-hover);
     --color-table-header-text: var(--color-bold);
     --color-table-background: var(--color-background);
-    --color-table-alt-background: #151515;
+    --color-table-alt-background: var(--color-card);
     --color-footer-border: #2a2a2f;
+    --font-body: 'Inter', sans-serif;
+    --font-headings: 'Raleway', serif;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
         --color-background: #fafaf6;
-        --color-card: #ffffff;
+        --color-card: rgba(255, 255, 255, 0.5);
+        --color-card-border: rgba(0, 0, 0, 0.15);
+        --color-card-hover: rgba(255, 255, 255, 1.0);
+        --color-card-border-hover: rgba(0, 0, 0, 0.3);
         --color-text: #131313;
         --color-heading-lg-text: #333333;
         --color-heading-sm-text: #444444;
@@ -41,11 +49,15 @@
     }
 }
 
+html {
+    overflow-y: scroll;
+}
+
 html, body {
     color: var(--color-text);
     background-color: var(--color-background);
-    font-family: 'PT Sans', sans-serif;
-    font-weight: 400;
+    font-family: var(--font-body);
+    font-weight: 500;
 }
 
 body {
@@ -56,7 +68,7 @@ body {
 /* Top of page */
 
 .header {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-headings);
     margin-bottom: 2em;
     font-weight: 700;
 }
@@ -83,20 +95,29 @@ nav ul {
         nav ul li a {
             color: var(--color-nav-link);
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-body);
             font-size: 1.35em;
+            padding: 0.2em 0.3em;
+            margin: -0.2em -0.3em;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: background ease-out 50ms;
         }
 
             nav ul li a:hover {
-                color: var(--color-link-2);
+                background-color: var(--color-card-hover);
+                border-color: var(--color-card-border-hover);
             }
 
         nav ul li .a:focus {
-            color: var(--color-link-2);
+            background-color: var(--color-card-hover);
+            border-color: var(--color-card-border-hover);
         }
 
         nav ul li .active {
             color: var(--color-link);
+            background-color: var(--color-card-hover);
+            border-color: var(--color-card-border-hover);
         }
 
         nav ul li a > .i-holder {
@@ -106,22 +127,7 @@ nav ul {
             font-size: 0.9em;
         }
 
-a {
-    font-weight: 700;
-    color: var(--color-link);
-    text-decoration: none;
-}
 
-    a:hover {
-        transition: color 150ms ease-in-out;
-        color: var(--color-link-2);
-    }
-
-    a:focus {
-        transition: color 150ms ease-in-out;
-        color: var(--color-link-2);
-        outline: none;
-    }
 
 /* Content */
 
@@ -136,15 +142,54 @@ section {
 }
 
 .card {
-    background-color: var(--color-card);
-    padding: 1.2em 1em;
-    border-radius: 0.3em;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    margin-left: -1.2em;
+    margin-right: -1.2em;
+    padding: 1.2em;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background ease-out 50ms;
+
+}
+
+    .card-background {
+        background-color: var(--color-card);
+        border-color: var(--color-card-border);
+    }
+
+    .card-hoverable:hover {
+        background-color: var(--color-card-hover);
+        border-color: var(--color-card-border-hover);
+    }
+
+    .card > small {
+        opacity: 0.6;
+        margin-bottom: 0.1em;
+    }
+
+    .card > .card-title {
+        margin:0;
+        opacity: 1.0;
+        font-weight: 700;
+        font-size: 1.6em;
+    }
+
+    .card p {
+        margin: 0;
+        margin-top: 0.1em;
+        opacity: 0.8;
+        font-size: 1.1em;
+    }
+
+a {
+    text-decoration: none;
+    color: var(--color-body-text);
 }
 
 p {
     color: var(--color-body-text);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.2em;
     margin-bottom: 0.8em;
     margin-top: 0;
@@ -155,15 +200,38 @@ p {
         color: var(--color-bold);
     }
 
+    p a {
+        font-weight: 700;
+        color: var(--color-link);
+        text-decoration: none;
+        padding: 0.1em 0.2em;
+        margin: -0.1em -0.2em;
+        border-radius: 8px;
+    }
+
+        p a:hover {
+            transition: color, background-color 150ms ease-in-out;
+            color: var(--color-link-2);
+            background-color: var(--color-card-hover);
+        }
+
+        p a:focus {
+            transition: color, background-color 150ms ease-in-out;
+            color: var(--color-link-2);
+            background-color: var(--color-card-hover);
+            outline: none;
+        }
+
 /* HEADERS */
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-headings);
     margin-bottom: 0.2em;
 }
 
 h1 {
+    margin-bottom: 0.4em;
     font-weight: 800;
     font-size: 3.25em;
     color: var(--color-heading-lg-text);
@@ -292,6 +360,11 @@ ul {
     color: var(--color-table-header-text) !important;
 }
 
+.pure-table th {
+    background-color: var(--color-table-header-background) !important;
+    color: var(--color-table-header-text) !important;
+}
+
 .pure-table {
     border: 1px solid var(--color-table-border) !important;
 }
@@ -308,6 +381,11 @@ ul {
     font-size: 1em;
     color: var(--color-small);
     font-weight: 800;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--color-footer-border);
 }
 
 footer {

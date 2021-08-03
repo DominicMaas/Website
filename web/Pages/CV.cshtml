@@ -4,22 +4,19 @@
     ViewData["Title"] = "Curriculum vitae";
 }
 
+<h1>@ViewData["Title"]</h1>
+
 @if ((bool) ViewData["IsLookingForWork"] == false)
 {
-    <section>
-        <p>I'm not currently looking for any jobs, but you can check out my personal projects below</p>
-        <a href="/cv?show=true"></a>
-        <a class="pure-button pure-button-primary" href="/cv?show=true">Show skills, eduction &amp; experience anyway</a>
-    </section>
+    <p>I'm not currently looking for any jobs at the moment, but thanks for checking!</p>
+    <p><a href="/cv?show=true">Show skills, education &amp; experience anyway</a></p>
 }
 else
 {
-    <section>
-        <p>References and a full CV are available on request.</p>
-    </section>
+    <p>References and a full CV are available on request.</p>
 
     <section>
-        <h1>Skills</h1>
+        <h2>Skills</h2>
         <p>
             I’m skilled in <strong>C#</strong> and <strong>XAML</strong> having spent many years building applications using
             the <strong>UWP</strong> (Universal Windows Platform), <strong>WPF</strong> (Windows Presentation Foundation), and <strong>WP8.1</strong>
@@ -43,93 +40,93 @@ else
 
     <section>
         <h2>Work Experience</h2>
-        <h6>StaffPad</h6>
-        <p class="small">June 2019 - Current • <a href="https://www.staffpad.net/">Website</a> • Remote</p>
-        <p>
-            Staffpad is a music notation app designed for Windows 10 (Tablets) and iOS (iPad). I was tasked
-            with upgrading the existing UWP app to match a style guide supplied in Zeplin. This required
-            building out custom XAML and C# controls that work across various screen sizes.
-        </p>
 
-        <p>
-            Currently I’m implementing features based on set requirements as they arise.
-        </p>
+        <div class="card card-background">
+            <small>June 2019 &mdash; Current • Remote</small>
+            <p class="card-title"><a href="https://www.staffpad.net/">StaffPad</a></p>
+            <p>
+                Staffpad is a music notation app designed for Windows 10 (Tablets) and iOS (iPad). I was tasked
+                with upgrading the existing UWP app to match a style guide supplied in Zeplin. This required
+                building out custom XAML and C# controls that work across various screen sizes.
+            </p>
 
-        <p>
-            Working with Staffpad has required that I’m able to keep track of my working hours and
-            communicate with people across different time zones.
-        </p>
+            <br />
+
+            <p>
+                Currently I’m implementing features based on set requirements as they arise.
+            </p>
+
+            <br />
+
+            <p>
+                Working with Staffpad has required that I’m able to keep track of my working hours and
+                communicate with people across different time zones.
+            </p>
+        </div>
+
+        <div class="card card-background">
+            <small>April 2016 &mdash; Current • Hamilton, New Zealand</small>
+            <p class="card-title"><a href="https://inex.co.nz/">Independent Extrusions Ltd.</a></p>
+            <p>
+                Built a few miscellaneous “scanning” mobile applications (initially running on Windows Phone 8.1,
+                then Windows 10 (W10), finally Android via Xamarin). These applications usually update a
+                database (SQL Server) via a local web service (ASP.NET) using stored procedures based on the
+                scanned input.
+            </p>
+
+            <br />
+
+            <p>
+                Built a WPF application in collaboration with the Database Administrator to help simplify
+                aspects of the existing extrusion software for users. Consists of several dedicated screens
+                that either serve a single purpose, or work together.
+            </p>
+
+            <br />
+
+            <p>More details can be provided upon request.</p>
+
+            <br />
+
+            <ul>
+                <li><p><b>Windows Phone:</b> Scanner apps using custom Windows Phones with built in barcode scanners. </p></li>
+                <li><p><b>UWP:</b> Windows 10 Mobile scanners / weight scale reader. Interacts with webservice which talks to a database.</p></li>
+                <li><p><b>WPF:</b> User App, heavily interacts with database via dapper. Uses custom SQL queries and existing stored procedures. Auto deployment via click once and Azure DevOps, sorting of information, live updating of tables, keeping information in sync between multiple users.</p></li>
+                <li><p><b>ASP.NET:</b> Help support existing ASP.NET MVC project by adding controllers, adjusting functionality, redeploying the website etc.</p></li>
+                <li><p><b>Azure DevOps:</b> Source code hosting, nuget package hosting, CI, CD.</p></li>
+            </ul>
+        </div>
+
+        <div class="card card-background">
+            <small>December 2015 &mdash; April 2016 • Hamilton, New Zealand</small>
+            <p class="card-title"><a href="https://inex.co.nz/">Independent Extrusions Ltd.</a></p>
+            <p>
+                Part time work during the school holidays painting and cleaning factory floors and equipment.
+            </p>
+        </div>
     </section>
 
     <section>
-        <h6>Independent Extrusions Ltd.</h6>
-        <p class="small">April 2016 - Current • <a href="https://inex.co.nz/">Website</a> • Hamilton, NZ</p>
+        <h2>Education</h2>
 
-        <p>
-            Built a few miscellaneous “scanning” mobile applications (initially running on Windows Phone 8.1,
-            then Windows 10 (W10), finally Android via Xamarin). These applications usually update a
-            database (SQL Server) via a local web service (ASP.NET) using stored procedures based on the
-            scanned input.
-        </p>
+        <div class="card card-background">
+            <small>2018 &mdash; 2021 • Hamilton, New Zealand</small>
+            <p class="card-title"><a href="https://www.waikato.ac.nz/">University of Waikato</a></p>
+            <ul>
+                <li><p>Bachelor of Science in Computer Science (BSc)</p></li>
+                <li><p>A- grade average</p></li>
+                <li><p>Graduation expected late 2021</p></li>
+            </ul>
+        </div>
 
-        <p>
-            Built a WPF application in collaboration with the Database Administrator to help simplify
-            aspects of the existing extrusion software for users. Consists of several dedicated screens
-            that either serve a single purpose, or work together.
-        </p>
-
-        <p>More details can be provided upon request.</p>
-
-        <ul>
-            <li><p><b>Windows Phone:</b> Scanner apps using custom Windows Phones with built in barcode scanners. </p></li>
-            <li><p><b>UWP:</b> Windows 10 Mobile scanners / weight scale reader. Interacts with webservice which talks to a database.</p></li>
-            <li><p><b>WPF:</b> User App, heavily interacts with database via dapper. Uses custom SQL queries and existing stored procedures. Auto deployment via click once and Azure DevOps, sorting of information, live updating of tables, keeping information in sync between multiple users.</p></li>
-            <li><p><b>ASP.NET:</b> Help support existing ASP.NET MVC project by adding controllers, adjusting functionality, redeploying the website etc.</p></li>
-            <li><p><b>Azure DevOps:</b> Source code hosting, nuget package hosting, CI, CD.</p></li>
-        </ul>
-    </section>
-
-    <section>
-        <h6>Independent Extrusions Ltd.</h6>
-        <p class="small">December 2015 - April 2016 • <a href="https://inex.co.nz/">Website</a> • Hamilton, NZ</p>
-        <p>
-            Part time work during the school holidays painting and cleaning factory floors and equipment.
-        </p>
-    </section>
-
-    <section>
-        <h1>Education</h1>
-
-        <h6>University of Waikato</h6>
-        <p class="small">2018 - 2021 • <a href="https://www.waikato.ac.nz/">Website</a> • Hamilton, New Zealand</p>
-        <p>BSc (Computer Science)  </p>
-        <p>A- Grade Average</p>
-        <p>Graduation expected late 2021.</p>
-
-        <br />
-
-        <h6>Melville High School</h6>
-        <p class="small">2013 - 2017 • <a href="https://www.melville-high.school.nz/">Website</a> • Hamilton, New Zealand</p>
-        <ul>
-            <li><p>NCEA Level 1-3 certificates endorsed in Merit</p></li>
-            <li><p>Cup for Excellence in Year 13 Computing (2017)</p></li>
-            <li><p>Cup for Excellence in Senior Information Management (2016)</p></li>
-            <li><p>1<sup>st</sup> in Year 13 Statistics</p></li>
-            <li><p>1<sup>st</sup> in Year 10 Information Management, Year 11-13 Digital Technology</p></li>
-        </ul>
+        <div class="card card-background">
+            <small>2013 &mdash; 2017 • Hamilton, New Zealand</small>
+            <p class="card-title"><a href="https://www.melville-high.school.nz/">Melville High School</a></p>
+            <ul>
+                <li><p>NCEA Level 1,2,3 certificates endorsed in Merit</p></li>
+                <li><p>Cup for Excellence in Year 13 Computing (2017) &amp; Year 12 Senior Information Management (2016)</p></li>
+                <li><p>1<sup>st</sup> in Year 10 Information Management, Year 11-13 Digital Technology &amp; Year 13 Statistics</p></li>
+            </ul>
+        </div>
     </section>
 }
-
-<section>
-    <h2> <a href="/projects">Projects</a></h2>
-    <p>Click the link above to view some of the things I've worked on.</p>
-</section>
-
-<section>
-    <h1>Interests</h1>
-    <ul>
-        <li><p>Photography</p></li>
-        <li><p>Astronomy / Rocketry</p></li>
-        <li><p>Running (sometimes)</p></li>
-    </ul>
-</section>

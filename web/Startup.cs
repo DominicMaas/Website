@@ -18,6 +18,8 @@ namespace Website
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
             var builder = services.AddRazorPages(options =>
             {
                 options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer()));
@@ -53,6 +55,7 @@ namespace Website
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllerRoute("blog", "blog/{controller=Blog}/{action=Index}/{id?}");
             });
         }
     }
