@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Website.Pages
+namespace Website.Pages;
+
+public class SoundbytePostmortem : PageModel
 {
-    public class SoundbytePostmortem : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-        }
     }
 }

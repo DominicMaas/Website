@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Website.Pages
+namespace Website.Pages;
+
+public class StyleModel : PageModel
 {
-    public class StyleModel : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-        }
     }
 }
