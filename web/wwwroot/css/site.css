@@ -29,7 +29,7 @@
     --font-headings: 'Raleway', serif;
 }
 
-@media (prefers-color-scheme: light) {
+/*@media (prefers-color-scheme: light) {
     :root {
         --color-background: #fafaf6;
         --color-card: rgba(255, 255, 255, 0.5);
@@ -47,7 +47,7 @@
         --color-table-alt-background: #F9F9F9;
         --color-footer-border: #e1e1dd;
     }
-}
+}*/
 
 html {
     overflow-y: scroll;
