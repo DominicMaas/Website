@@ -1,5 +1,5 @@
 ﻿:root {
-    --color-background: #131318;
+    --color-background: radial-gradient(ellipse at top, rgba(29,29,34,1) 0%, rgba(19,19,24,1) 100%);
     --color-card: rgba(0, 0, 0, 0.15);
     --color-card-border: rgba(0, 0, 0, 0.35);
     --color-card-hover: rgba(0, 0, 0, 0.25);
@@ -55,9 +55,10 @@ html {
 
 html, body {
     color: var(--color-text);
-    background-color: var(--color-background);
     font-family: var(--font-body);
     font-weight: 500;
+    background: var(--color-background);
+    background-attachment: fixed;
 }
 
 body {
@@ -101,7 +102,7 @@ nav ul {
             margin: -0.2em -0.3em;
             border-radius: 8px;
             border: 1px solid transparent;
-            transition: background ease-out 50ms;
+            transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms;
         }
 
             nav ul li a:hover {
@@ -121,7 +122,7 @@ nav ul {
         }
 
         nav ul li a > .i-holder {
-            width: 30px !important;
+            width: 1.6em !important;
             text-align: left !important;
             display: inline-block !important;
             font-size: 0.9em;
@@ -134,7 +135,7 @@ nav ul {
 .container {
     margin-left: auto;
     margin-right: auto;
-    width: 1000px
+    width: 59em;
 }
 
 section {
@@ -149,8 +150,7 @@ section {
     padding: 1.2em;
     border-radius: 8px;
     border: 1px solid transparent;
-    transition: background ease-out 50ms;
-
+    transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms;
 }
 
     .card-background {
@@ -207,16 +207,15 @@ p {
         padding: 0.1em 0.2em;
         margin: -0.1em -0.2em;
         border-radius: 8px;
+        transition: color ease-in-out 150ms, background-color ease-in-out 150ms;
     }
 
         p a:hover {
-            transition: color, background-color 150ms ease-in-out;
             color: var(--color-link-2);
             background-color: var(--color-card-hover);
         }
 
         p a:focus {
-            transition: color, background-color 150ms ease-in-out;
             color: var(--color-link-2);
             background-color: var(--color-card-hover);
             outline: none;
@@ -294,10 +293,6 @@ ul {
         margin-bottom: 1.1em;
     }
 
-    .page-title {
-        font-size: 2.25em;
-    }
-
     h1 {
         font-size: 2.75em;
     }
@@ -323,7 +318,7 @@ ul {
     }
 
     footer > #footer_icons li {
-        margin: 0 0.8em;
+        margin: 0.6em 0.8em 0 0.8em;
         font-size: 1.5em;
     }
 }
@@ -335,11 +330,24 @@ ul {
 
     nav ul li {
         display: block;
-        margin: 0 0 0.9em 0;
+        margin: 0 0 1.2em 0;
+        font-size: 1.3em;
     }
 
+        nav ul li a {
+        }
+
+
     .profile-image {
-        margin: 0 0 1.2em;
+        margin: 0 0 2.5em;
+    }
+
+    .profile-image-holder {
+        margin: 0;
+    }
+
+    .page-title {
+        margin-bottom:0.8em;
     }
 }
 
@@ -401,6 +409,7 @@ footer {
 
         footer > #footer_links li a {
             color: var(--color-nav-link);
+            transition: color ease-in-out 150ms;
         }
 
             footer > #footer_links li a:hover {
@@ -434,6 +443,7 @@ footer {
 
 .twitter {
     color: var(--color-link-twitter);
+    transition: color ease-in-out 150ms;
 }
 
     .twitter:hover, .twitter:focus {
@@ -442,6 +452,7 @@ footer {
 
 .github {
     color: var(--color-link-github);
+    transition: color ease-in-out 150ms;
 }
 
     .github:hover, .github:focus {
@@ -456,13 +467,18 @@ footer {
 .profile-image {
     border-radius: 50%;
     border: 3px solid var(--color-profile-border);
-    margin-right: 12px;
+
     transition: border-color 150ms ease-in-out;
 }
 
     .profile-image:hover {
         border: 3px solid var(--color-accent);
     }
+
+.profile-image-holder {
+    margin: 0;
+    margin-right: 2em;
+}
 
 .pure-g > div {
     box-sizing: border-box;

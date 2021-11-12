@@ -64,7 +64,7 @@
                 <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv"><strong>curriculum vitae</strong></a></li>
                 <li><a class="@(Context.Request.Path == "/privacy" ? "active" : "")" href="/privacy"><strong>privacy</strong></a></li>
             </ul>
-            <small>Copyright © @DateTime.Now.Year Dominic Maas</small>
+            <small>Copyright © @DateTime.Now.Year Dominic Maas • <span style="opacity: 0.4">@System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription</span></small>
             <ul id="footer_icons">
                 <li><a class="twitter" aria-label="Twitter" href="https://twitter.com/dominicjmaas"><i class="fab fa-fw fa-twitter"></i></a></li>
                 <li><a class="github" aria-label="GitHub" href="https://github.com/DominicMaas"><i class="fab fa-fw fa-github"></i></a></li>
