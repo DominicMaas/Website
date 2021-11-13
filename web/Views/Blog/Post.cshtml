@@ -1,0 +1,19 @@
+﻿@using Website.Models
+@using Westwind.AspNetCore.Markdown
+@model Post
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.Title + " - Dominic Maas";
+}
+
+<h1>@Model.Title</h1>
+<p>@Model.Description</p>
+
+<br />
+<hr />
+<br />
+
+<section>
+
+        @Html.Raw(Markdown.ParseFromUrl($"{Context.Request.Scheme}://{Context.Request.Host}/blog/{Model.Slug}.md"))
+</section>

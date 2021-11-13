@@ -16,7 +16,17 @@ public class Post
     public bool IsPublished { get; set; }
 
     /// <summary>
-    ///     Where in the wwwroot is the markdown file for this blog post located
+    ///     The date this post was published
     /// </summary>
-    public string? MarkdownFile { get; set; }
+    public DateOnly? Published { get; set; }
+
+    /// <summary>
+    ///     The title of the blog post
+    /// </summary>
+    public string? Title { get; set; }
+
+    /// <summary>
+    ///     The short description of the blog post
+    /// </summary>
+    public string? Description { get; set; }
 }

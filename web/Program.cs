@@ -33,7 +33,9 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
-    endpoints.MapControllerRoute("blog", "blog/{controller=Blog}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute("blog", "blog/{controller=Blog}/{action=Index}");
+    endpoints.MapControllerRoute("blog-post", "blog/{id?}", new { controller = "Blog", action = "Post" });
 });
 
 app.Run();
