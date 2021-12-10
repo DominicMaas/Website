@@ -9,7 +9,7 @@ public class ExperienceModel : PageModel
         ViewData["IsLookingForWork"] = false;
 
         // Just override this variable
-        if (show == true)
+        if (show)
             ViewData["IsLookingForWork"] = true;
     }
 }
