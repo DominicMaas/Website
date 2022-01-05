@@ -7,11 +7,11 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<p>Something went wrong <i class="fal fa-frown"></i></p>
+<p>Something went wrong :(</p>
 
 @if (Model.ShowRequestId)
 {
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
+    <small>
+        <strong>RID:</strong> @Model.RequestId
+    </small>
 }
