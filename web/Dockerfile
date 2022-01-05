@@ -18,10 +18,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-RUN --mount=type=secret,id=AzureKeyVault__ClientId \
-  cat /run/secrets/AzureKeyVault__ClientId
-
-RUN --mount=type=secret,id=AzureKeyVault__ClientSecret \
-  cat /run/secrets/AzureKeyVault__ClientSecret
-
 ENTRYPOINT ["dotnet", "Website.dll"]
