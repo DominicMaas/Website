@@ -1,13 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Website.Common;
 using Website.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
 var services = builder.Services;
+var config = builder.Configuration;
+
+// Azure Key Vault
+config.AddAzureKeyVault(config["AzureKeyVault:Endpoint"], config["AzureKeyVault:ClientId"], config["AzureKeyVault:ClientSecret"], new DefaultKeyVaultSecretManager());
 
 services.AddMvc();
 
+// Services
 services.AddSingleton<SoundByteAuthenticationService>();
 
 var mvcBuilder = services.AddRazorPages(options =>
@@ -17,6 +23,8 @@ if (environment.IsDevelopment())
 {
     mvcBuilder.AddRazorRuntimeCompilation();
 }
+
+// ----- App ----- //
 
 var app = builder.Build();
 
