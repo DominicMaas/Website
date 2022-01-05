@@ -17,4 +17,8 @@ RUN dotnet publish "Website.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+ENV AzureKeyVault__ClientId=${{ secrets.AZKV_CLIENT_ID }}
+ENV AzureKeyVault__ClientSecret=${{ secrets.AZKV_CLIENT_SECRET }}
+
 ENTRYPOINT ["dotnet", "Website.dll"]
