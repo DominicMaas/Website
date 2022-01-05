@@ -8,6 +8,9 @@ var environment = builder.Environment;
 var services = builder.Services;
 var config = builder.Configuration;
 
+// Support docker secrets (where the config for azure key vault comes from)
+config.AddKeyPerFile(directoryPath: "/run/secrets", optional: true);
+
 // Azure Key Vault
 config.AddAzureKeyVault(config["AzureKeyVault:Endpoint"], config["AzureKeyVault:ClientId"], config["AzureKeyVault:ClientSecret"], new DefaultKeyVaultSecretManager());
 
