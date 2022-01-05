@@ -12,7 +12,13 @@ var config = builder.Configuration;
 config.AddKeyPerFile(directoryPath: "/run/secrets", optional: true);
 
 // Azure Key Vault
-config.AddAzureKeyVault(config["AzureKeyVault:Endpoint"], config["AzureKeyVault:ClientId"], config["AzureKeyVault:ClientSecret"], new DefaultKeyVaultSecretManager());
+var azureClientId = config["AzureKeyVault:ClientId"];
+var azureClientSercret = config["AzureKeyVault:ClientSecret"];
+
+if (!string.IsNullOrEmpty(azureClientId) && !string.IsNullOrEmpty(azureClientSercret))
+{
+    config.AddAzureKeyVault(config["AzureKeyVault:Endpoint"], azureClientId, azureClientSercret, new DefaultKeyVaultSecretManager());
+}
 
 services.AddMvc();
 

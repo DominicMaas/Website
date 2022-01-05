@@ -42,5 +42,5 @@ jobs:
             push: true
             tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/personal-website:latest
             secrets: |
-              AzureKeyVault__ClientId=${{ secrets.AZKV_CLIENT_ID }}
-              AzureKeyVault__ClientSecret=${{ secrets.AZKV_CLIENT_SECRET }}
+              "AzureKeyVault__ClientId=${{ secrets.AZKV_CLIENT_ID }}"
+              "AzureKeyVault__ClientSecret=${{ secrets.AZKV_CLIENT_SECRET }}"
