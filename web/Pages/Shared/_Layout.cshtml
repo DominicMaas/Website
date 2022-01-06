@@ -14,6 +14,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/dist/purecss/pure-min.css" />
         <link rel="stylesheet" href="~/dist/purecss/grids-responsive-min.css" />
+        <link rel="stylesheet" href="~/dist/prism/prism.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
 
@@ -28,10 +29,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Icon Fonts -->
-    <script defer src="~/dist/fontawesome/js/brands.min.js"></script>
-    <script defer src="~/dist/fontawesome/js/duotone.min.js"></script>
-    <script defer src="~/dist/fontawesome/js/fontawesome.min.js"></script>
+    <!-- Scripts -->
+    <environment include="Development">
+        <script defer src="~/dist/fontawesome/js/brands.min.js"></script>
+        <script defer src="~/dist/fontawesome/js/duotone.min.js"></script>
+        <script defer src="~/dist/fontawesome/js/fontawesome.min.js"></script>
+        <script defer src="~/dist/prism/prism.js"></script>
+    </environment>
+
+    <environment include="Production">
+        <script defer src="~/js/site.min.js"></script>
+    </environment>
 
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9a83dde51566447ca826481a7d3ffc6f"}'></script>

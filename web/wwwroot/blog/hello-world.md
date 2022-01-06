@@ -33,3 +33,9 @@ This is a [link to google](https://google.com). Look at that, links work!
 	<small>Testing</small>
 	<p>Yes we can do custom HTML so cards will work!!!<p>
 </div>
+
+<br />
+
+Here is a test code snippet (C#)
+
+<pre><code class="language-csharp">var hello = "Hello";</code></pre>
