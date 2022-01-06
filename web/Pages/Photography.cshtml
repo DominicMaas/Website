@@ -1,0 +1,26 @@
+﻿@page
+@model Website.Pages.PhotographyModel
+
+@{
+    ViewData["Title"] = "Photography";
+}
+
+<h1>Photography</h1>
+<p>A collection of some of my photographs</p>
+
+@foreach (var group in Model.PhotosGroups)
+{
+    <section>
+        <h2>@group.Title</h2>
+        <p>@group.Description</p>
+
+        <div class="gallery">
+            @foreach (var photo in group.Photos)
+            {
+                <a href="@photo.ImagePath" target="_blank">
+                    <img class="image pure-img" src="@photo.ThumbnailPath" alt="" />
+                </a>
+            }
+        </div>
+    </section>
+}
