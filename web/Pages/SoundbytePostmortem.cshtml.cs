@@ -4,7 +4,10 @@ namespace Website.Pages;
 
 public class SoundbytePostmortem : PageModel
 {
-    public void OnGet()
+    public bool IsSoundByteContext { get; set; }
+
+    public void OnGet(bool? isSoundByteContext)
     {
+        IsSoundByteContext = isSoundByteContext ?? false;
     }
 }
