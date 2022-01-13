@@ -16,4 +16,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Westwind.AspNetCore.Markdown" Version="3.7.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\soundbyte\" />
+  </ItemGroup>
 </Project>
