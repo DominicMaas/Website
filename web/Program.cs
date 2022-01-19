@@ -17,6 +17,12 @@ if (!string.IsNullOrEmpty(azureClientId) && !string.IsNullOrEmpty(azureClientSer
     config.AddAzureKeyVault(config["AzureKeyVault:Endpoint"], azureClientId, azureClientSercret, new DefaultKeyVaultSecretManager());
 }
 
+// Application Insights
+if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))
+{
+    builder.Services.AddApplicationInsightsTelemetry(config["ApplicationInsights:ConnectionString"]);
+}
+
 services.AddMvc();
 
 // Services

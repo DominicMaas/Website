@@ -41,9 +41,7 @@
         <script defer src="~/js/site.min.js"></script>
     </environment>
 
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9a83dde51566447ca826481a7d3ffc6f"}'></script>
-    <!-- End Cloudflare Web Analytics -->
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
     <div class="container">
