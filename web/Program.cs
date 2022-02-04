@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+﻿using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Website.Common;
 using Website.Services;
@@ -40,6 +41,11 @@ if (environment.IsDevelopment())
 
 var app = builder.Build();
 
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 if (!environment.IsDevelopment())
 {
     app.UseExceptionHandler("/error/500");
@@ -57,6 +63,17 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
     endpoints.MapControllers();
+});
+
+app.Use(async (context, next) =>
+{
+    // Security Headers
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' ajax.cloudflare.com static.cloudflareinsights.com");
+    context.Response.Headers.Add("X-Frame-Options", "DENY");
+    context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+    context.Response.Headers.Add("Referrer-Policy", "no-referrer-when-downgrade");
+
+    await next();
 });
 
 app.Run();
