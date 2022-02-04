@@ -40,8 +40,6 @@
     <environment include="Production">
         <script defer src="~/js/site.min.js"></script>
     </environment>
-
-    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
     <div class="container">
@@ -54,7 +52,6 @@
             <nav>
                 <ul>
                     <li><a class="@(Context.Request.Path == "/" ? "active" : "")" href="/"><span class="i-holder"><i class="fad fa-fw fa-user"></i></span>about</a></li>
-                    <li><a class="@(Context.Request.Path == "/blog" ? "active" : "")" href="/blog"><span class="i-holder"><i class="fad fa-fw fa-rss"></i></span>blog</a></li>
                     <li><a class="@(Context.Request.Path == "/projects" ? "active" : "")" href="/projects"><span class="i-holder"><i class="fad fa-fw fa-tasks"></i></span>projects</a></li>
                     <li><a class="@(Context.Request.Path == "/contact" ? "active" : "")" href="/contact"><span class="i-holder"><i class="fad fa-fw fa-paper-plane"></i></span>contact</a></li>
                 </ul>
@@ -80,7 +77,5 @@
             </ul>
         </footer>
     </div>
-
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

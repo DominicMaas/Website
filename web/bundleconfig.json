@@ -4,7 +4,6 @@
     "inputFiles": [
       "wwwroot/dist/purecss/pure-min.css",
       "wwwroot/dist/purecss/grids-responsive-min.css",
-      "wwwroot/dist/prism/prism.css",
       "wwwroot/css/site.css"
     ],
     "minify": {
@@ -17,8 +16,7 @@
     "inputFiles": [
       "wwwroot/dist/fontawesome/js/brands.min.js",
       "wwwroot/dist/fontawesome/js/duotone.min.js",
-      "wwwroot/dist/fontawesome/js/fontawesome.min.js",
-      "wwwroot/dist/prism/prism.js"
+      "wwwroot/dist/fontawesome/js/fontawesome.min.js"
     ],
     "minify": {
       "enabled": true,
