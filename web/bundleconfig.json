@@ -10,17 +10,5 @@
       "enabled": true,
       "commentMode": "none"
     }
-  },
-  {
-    "outputFileName": "wwwroot/js/site.min.js",
-    "inputFiles": [
-      "wwwroot/dist/fontawesome/js/brands.min.js",
-      "wwwroot/dist/fontawesome/js/duotone.min.js",
-      "wwwroot/dist/fontawesome/js/fontawesome.min.js"
-    ],
-    "minify": {
-      "enabled": true,
-      "commentMode": "none"
-    }
   }
 ]

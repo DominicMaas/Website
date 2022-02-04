@@ -104,6 +104,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -.125em;
+}
+
 /* Top of page */
 
 .header {
