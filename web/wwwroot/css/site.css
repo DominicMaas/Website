@@ -1,4 +1,42 @@
-﻿:root {
+﻿/* ---------- Fonts ---------- */
+
+/* raleway-700 - latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''), url('../fonts/raleway-v26-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/raleway-v26-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* raleway-800 - latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 800;
+    src: local(''), url('../fonts/raleway-v26-latin-800.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/raleway-v26-latin-800.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* inter-regular - latin */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''), url('../fonts/inter-v7-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v7-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* inter-700 - latin */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''), url('../fonts/inter-v7-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v7-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+:root {
     --color-background: radial-gradient(ellipse at top, rgba(29,29,34,1) 0%, rgba(19,19,24,1) 100%);
     --color-card: rgba(0, 0, 0, 0.15);
     --color-card-border: rgba(0, 0, 0, 0.35);
@@ -25,8 +63,8 @@
     --color-table-background: var(--color-background);
     --color-table-alt-background: var(--color-card);
     --color-footer-border: #2a2a2f;
-    --font-body: 'Inter', sans-serif;
-    --font-headings: 'Raleway', serif;
+    --font-body: Inter, sans-serif;
+    --font-headings: Raleway, sans-serif;
 }
 
 /*@media (prefers-color-scheme: light) {
@@ -56,7 +94,7 @@ html {
 html, body {
     color: var(--color-text);
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: 400;
     background: var(--color-background);
     background-attachment: fixed;
 }
