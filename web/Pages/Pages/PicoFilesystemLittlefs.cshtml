@@ -1,0 +1,19 @@
+﻿@page
+@model Website.Pages.Pages.PicoFilesystemLittlefsModel
+@{
+    ViewData["Title"] = "Raspberry Pi Pico File System via LittleFS";
+    ViewData["Description"] = "How to use the built in ROM of the Raspberry Pi Pico as a file system using LittleFS";
+}
+
+@section Meta {
+    <meta name="keywords" content="raspberry pi, pico, littlefs, embedded, file system, flash, rpi">
+    <meta name="author" content="Dominic Maas">
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>A quick implementation of LittleFS for the Raspberry Pi Pico.</p>
+
+<p>This hasn't been tested super well, but got the initial job done when needing to log some quick flight data for a rocket controller.</p>
+
+<script src="https://gist.github.com/DominicMaas/4bc8f6625cba2ba1a0c722792d87fdad.js"></script>

@@ -15,7 +15,10 @@ public class FwModel : PageModel
         { "4toUN4j53iK", "https://github.com/DominicMaas/SpaceChunks" },
         { "yENyTb", "https://twitter.com/SoundByteUWP" },
         { "Y5jGLtoFXs", "https://soundbytemedia.com/privacy-policy" },
-        { "GvC5iXmJSo", "https://soundbytemedia.com/support" }
+        { "GvC5iXmJSo", "https://soundbytemedia.com/support" },
+
+        { "github", "https://github.com/DominicMaas" },
+        { "twitter", "https://twitter.com/dominicjmaas" }
     };
 
     public void OnGet(string id)
