@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Website.Pages;
+namespace Website.Pages.Projects;
 
-public class Projects : PageModel
+public class Index : PageModel
 {
     public void OnGet()
     {
