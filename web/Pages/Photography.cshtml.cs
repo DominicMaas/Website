@@ -6,12 +6,6 @@ namespace Website.Pages;
 public class PhotographyModel : PageModel
 {
     public List<PhotoGroup> PhotosGroups { get; } = new List<PhotoGroup>() {
-        new PhotoGroup("Placeholders", "These photos are placeholders from placeimg.com", new()
-        {
-            new Photo("http://placeimg.com/350/480/any", "http://placeimg.com/350/480/any"),
-            new Photo("http://placeimg.com/640/480/any", "http://placeimg.com/640/480/any"),
-            new Photo("http://placeimg.com/300/600/any", "http://placeimg.com/300/600/any"),
-        }),
         new PhotoGroup("Astrophotography", "Photographs of celestial objects and the sky", new()
         {
             new Photo("/images/gallery/astro/001_thumb.jpg", "/images/gallery/astro/001.jpg"),
