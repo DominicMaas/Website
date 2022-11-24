@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.HttpOverrides;
+﻿using Azure.Extensions.AspNetCore.Configuration.Secrets;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Website.Common;
 using Website.Services;
 
@@ -10,18 +12,19 @@ var services = builder.Services;
 var config = builder.Configuration;
 
 // Azure Key Vault
-var azureClientId = config["AzureKeyVault:ClientId"];
-var azureClientSercret = config["AzureKeyVault:ClientSecret"];
-
-if (!string.IsNullOrEmpty(azureClientId) && !string.IsNullOrEmpty(azureClientSercret))
+if (!string.IsNullOrEmpty(config["AzureKeyVault:Endpoint"]))
 {
-    config.AddAzureKeyVault(config["AzureKeyVault:Endpoint"], azureClientId, azureClientSercret, new DefaultKeyVaultSecretManager());
+    var secretClient = new SecretClient(new Uri(config["AzureKeyVault:Endpoint"]!), new DefaultAzureCredential());
+    config.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
 }
 
 // Application Insights
 if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))
 {
-    builder.Services.AddApplicationInsightsTelemetry(config["ApplicationInsights:ConnectionString"]);
+    builder.Services.AddApplicationInsightsTelemetry(options =>
+    {
+        options.ConnectionString = config["ApplicationInsights:ConnectionString"]!;
+    });
 }
 
 services.AddMvc();
@@ -59,11 +62,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-    endpoints.MapControllers();
-});
+app.MapRazorPages();
+
+app.MapControllers();
 
 app.Use(async (context, next) =>
 {
