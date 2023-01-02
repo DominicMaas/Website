@@ -71,25 +71,32 @@
     --font-headings: Raleway, sans-serif;
 }
 
-/*@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
     :root {
-        --color-background: #fafaf6;
+        --color-background: radial-gradient(ellipse at top, rgba(250,250,246,1) 0%, rgba(225,225,221,1) 100%);
         --color-card: rgba(255, 255, 255, 0.5);
         --color-card-border: rgba(0, 0, 0, 0.15);
         --color-card-hover: rgba(255, 255, 255, 1.0);
         --color-card-border-hover: rgba(0, 0, 0, 0.3);
         --color-text: #131313;
-        --color-heading-lg-text: #333333;
-        --color-heading-sm-text: #444444;
+        --color-heading-lg-text: #222222;
+        --color-heading-sm-text: #333333;
+        --color-accent: #4376b0;
         --color-bold: #000000;
-        --color-nav-link: #555;
-        --color-small: #777;
+        --color-nav-link: #444;
+        --color-small: #333;
+        --color-link-2: #4c80bb;
+        --color-link-twitter: #1DA1F2;
+        --color-link-2-twitter: #8ED0F8;
+        --color-link-github: #000000;
+        --color-link-2-github: #333333;
         --color-table-border: #DDD;
         --color-table-header-background: #EFEFEF;
         --color-table-alt-background: #F9F9F9;
         --color-footer-border: #e1e1dd;
     }
-}*/
+}
+
 
 html {
     overflow-y: scroll;
@@ -476,10 +483,10 @@ footer {
         }
 
     footer > small {
+        color: var(--color-small);
         display: block;
         margin-top: 1em;
         margin-bottom: 1em;
-        opacity: 0.6;
     }
 
     footer ul {
