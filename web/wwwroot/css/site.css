@@ -67,6 +67,8 @@
     --color-table-background: var(--color-background);
     --color-table-alt-background: var(--color-card);
     --color-footer-border: #2a2a2f;
+    --color-shadow: rgba(11, 11, 11, 0.8);
+    --color-shadow-hover: rgba(6, 6, 6, 0.8);
     --font-body: Inter, sans-serif;
     --font-headings: Raleway, sans-serif;
 }
@@ -94,6 +96,8 @@
         --color-table-header-background: #EFEFEF;
         --color-table-alt-background: #F9F9F9;
         --color-footer-border: #e1e1dd;
+        --color-shadow: rgba(99, 99, 99, 0.2);
+        --color-shadow-hover: rgba(99, 99, 99, 0.4);
     }
 }
 
@@ -135,6 +139,7 @@ body {
 
 /* The 'Dominic Maas' header on the page */
 .page-title {
+    font-family: var(--font-headings);
     font-size: 2.5em;
     font-weight: 700;
     color: var(--color-body-text);
@@ -162,23 +167,26 @@ nav ul {
             margin: -0.2em -0.3em;
             border-radius: 8px;
             border: 1px solid transparent;
-            transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms;
+            transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms, box-shadow ease-in-out 150ms;
         }
 
             nav ul li a:hover {
                 background-color: var(--color-card-hover);
                 border-color: var(--color-card-border-hover);
+                box-shadow: var(--color-shadow) 0px 1px 4px 0px;
             }
 
         nav ul li .a:focus {
             background-color: var(--color-card-hover);
             border-color: var(--color-card-border-hover);
+            box-shadow: var(--color-shadow) 0px 1px 4px 0px;
         }
 
         nav ul li .active {
             color: var(--color-link);
             background-color: var(--color-card-hover);
             border-color: var(--color-card-border-hover);
+            box-shadow: var(--color-shadow) 0px 1px 4px 0px;
         }
 
         nav ul li a > .i-holder {
@@ -210,17 +218,19 @@ section {
     padding: 1.2em;
     border-radius: 8px;
     border: 1px solid transparent;
-    transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms;
+    transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms, box-shadow ease-in-out 150ms;
 }
 
     .card-background {
         background-color: var(--color-card);
         border-color: var(--color-card-border);
+        box-shadow: var(--color-shadow) 0px 1px 4px 0px;
     }
 
     .card-hoverable:hover {
         background-color: var(--color-card-hover);
         border-color: var(--color-card-border-hover);
+        box-shadow: var(--color-shadow-hover) 0px 1px 4px 0px;
     }
 
     .card > small {
@@ -411,6 +421,8 @@ ul {
 
 .pure-table {
     margin-top: 0.6em !important;
+    border: 1px solid var(--color-table-border) !important;
+    box-shadow: var(--color-shadow) 0px 1px 4px 0px;
 }
 
 .pure-table-horizontal td, .pure-table-horizontal th {
@@ -431,16 +443,28 @@ ul {
     color: var(--color-table-header-text) !important;
 }
 
-.pure-table {
-    border: 1px solid var(--color-table-border) !important;
-}
-
 .pure-table-striped tr td {
     background-color: var(--color-table-background) !important;
 }
 
 .pure-table-striped tr:nth-child(2n-1) td {
     background-color: var(--color-table-alt-background) !important;
+}
+
+.pure-table th:first-of-type {
+    border-top-left-radius: 8px !important;
+}
+
+.pure-table th:last-of-type {
+    border-top-right-radius: 8px !important;
+}
+
+.pure-table tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 8px !important;
+}
+
+.pure-table tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 8px !important;
 }
 
 .small {
@@ -520,17 +544,18 @@ footer {
 .image {
     border-radius: 8px;
     border: 1px solid var(--color-card-border);
+    transition: border ease-in-out 150ms, box-shadow ease-in-out 150ms;
+    box-shadow: var(--color-shadow) 0px 2px 8px 0px;
 }
+
+    .image:hover {
+        border: 1px solid var(--color-card-border-hover);
+        box-shadow: var(--color-shadow-hover) 0px 4px 16px 0px;
+    }
 
 .profile-image {
     border-radius: 50%;
-    border: 1px solid var(--color-card-border);
-    transition: border-color 150ms ease-in-out;
 }
-
-    .profile-image:hover {
-        border: 1px solid var(--color-accent);
-    }
 
 .profile-image-holder {
     margin: 0;

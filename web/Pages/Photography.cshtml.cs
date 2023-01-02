@@ -5,10 +5,11 @@ namespace Website.Pages;
 
 public class PhotographyModel : PageModel
 {
-    public List<PhotoGroup> PhotosGroups { get; } = new List<PhotoGroup>() {
+    public List<PhotoGroup> PhotosGroups { get; } = new List<PhotoGroup>()
+    {
         new PhotoGroup("Astrophotography", "Photographs of celestial objects and the sky", new()
         {
-            new Photo("/images/gallery/astro/001_thumb.jpg", "/images/gallery/astro/001.jpg"),
+            new Photo("/images/gallery/astro/001.jpg", "/images/gallery/astro/001.jpg"),
             new Photo("/images/gallery/astro/002.jpg", "/images/gallery/astro/002.jpg"),
         }),
         new PhotoGroup("Nature", null, new()
