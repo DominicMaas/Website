@@ -133,8 +133,10 @@ body {
 
 .header {
     font-family: var(--font-headings);
-    margin-bottom: 2em;
+    padding-bottom: 1.2em;
+    margin-bottom: 0.8em;
     font-weight: 700;
+    border-bottom: 1px solid var(--color-footer-border);
 }
 
 /* The 'Dominic Maas' header on the page */
@@ -173,12 +175,12 @@ nav ul {
             nav ul li a:hover {
                 background-color: var(--color-card-hover);
                 border-color: var(--color-card-border-hover);
-                box-shadow: var(--color-shadow) 0px 1px 4px 0px;
+                box-shadow: var(--color-shadow-hover) 0px 1px 4px 0px;
             }
 
         nav ul li .a:focus {
-            background-color: var(--color-card-hover);
-            border-color: var(--color-card-border-hover);
+            background-color: var(--color-card);
+            border-color: var(--color-card-border);
             box-shadow: var(--color-shadow) 0px 1px 4px 0px;
         }
 
@@ -257,7 +259,7 @@ a {
 
 p {
     color: var(--color-body-text);
-    font-weight: 500;
+    font-weight: 400;
     font-size: 1.1em;
     margin-bottom: 0.8em;
     margin-top: 0;
@@ -347,10 +349,19 @@ ul {
     }
 
 @media screen and (max-width: 64em) {
+    .page-title {
+        text-align: center;
+        padding-top: 0.4em;
+    }
+
     .container {
-        width: calc(100% - 5em);
-        margin-left: 2.5em;
-        margin-right: 2.5em;
+        width: calc(100% - 3em);
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+    }
+
+    nav ul {
+        text-align: center;
     }
 
     nav ul li {
@@ -402,10 +413,6 @@ ul {
         font-size: 1.3em;
     }
 
-        nav ul li a {
-        }
-
-
     .profile-image {
         margin: 0 0 2.5em;
     }
@@ -415,7 +422,7 @@ ul {
     }
 
     .page-title {
-        margin-bottom:0.8em;
+        margin-bottom: 0.8em;
     }
 }
 
@@ -494,9 +501,9 @@ footer {
             transition: color ease-in-out 150ms;
         }
 
-            footer > #footer_links li a:hover {
-                color: var(--color-link-2);
-            }
+        footer > #footer_links li a:hover {
+            color: var(--color-link-2);
+        }
 
         footer > #footer_links li .a:focus {
             color: var(--color-link-2);
@@ -603,13 +610,13 @@ footer {
 
 .pure-button-primary {
     background-color: var(--color-link) !important;
-    font-weight: 600;
+    font-weight: 700;
     color: #FFF;
 }
 
     .pure-button-primary:hover {
         background-color: var(--color-link-2);
-        font-weight: 600;
+        font-weight: 700;
         color: #FFF;
     }
 
@@ -649,7 +656,7 @@ body .gist .gist-data {
 }
 
 body .gist .gist-meta {
-    color: #ffffff;
+    color: var(--color-body-text);
     border: 1px solid var(--color-card-border);
     border-top: 0;
     border-radius: 0px 0px 8px 8px;
@@ -657,7 +664,7 @@ body .gist .gist-meta {
 }
 
 body .gist .gist-meta a {
-    color: #ffffff
+    color: var(--color-body-text);
 }
 
 body .gist .blob-num,
