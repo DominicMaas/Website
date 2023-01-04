@@ -21,12 +21,12 @@ public class FwModel : PageModel
         { "twitter", "https://twitter.com/dominicjmaas" }
     };
 
-    public void OnGet(string id)
+    public void OnGet(string? id)
     {
         if (string.IsNullOrEmpty(id))
         {
             RequestedUri = string.Empty;
-            Message = "No ID was passed in";
+            Message = "This link does not exist";
             IsSuccess = false;
             return;
         }

@@ -41,7 +41,7 @@
 }
 
 :root {
-    --color-background: radial-gradient(ellipse at top, rgba(29,29,34,1) 0%, rgba(19,19,24,1) 100%);
+    --color-background: radial-gradient(ellipse at bottom, rgba(29,29,34,1) 0%, rgba(19,19,24,1) 100%);
     --color-card: rgba(0, 0, 0, 0.15);
     --color-card-border: rgba(0, 0, 0, 0.35);
     --color-card-hover: rgba(0, 0, 0, 0.25);
@@ -75,7 +75,7 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        --color-background: radial-gradient(ellipse at top, rgba(250,250,246,1) 0%, rgba(225,225,221,1) 100%);
+        --color-background: radial-gradient(ellipse at bottom, rgba(250,250,246,1) 0%, rgba(225,225,221,1) 100%);
         --color-card: rgba(255, 255, 255, 0.5);
         --color-card-border: rgba(0, 0, 0, 0.15);
         --color-card-hover: rgba(255, 255, 255, 1.0);
@@ -101,7 +101,6 @@
     }
 }
 
-
 html {
     overflow-y: scroll;
 }
@@ -125,9 +124,9 @@ body {
     vertical-align: -.125em;
 }
 
-.icon .fa-secondary {
-    opacity: 0.6;
-}
+    .icon .fa-secondary {
+        opacity: 0.6;
+    }
 
 /* Top of page */
 
@@ -198,8 +197,6 @@ nav ul {
             font-size: 0.9em;
         }
 
-
-
 /* Content */
 
 .container {
@@ -223,34 +220,34 @@ section {
     transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms, box-shadow ease-in-out 150ms;
 }
 
-    .card-background {
-        background-color: var(--color-card);
-        border-color: var(--color-card-border);
-        box-shadow: var(--color-shadow) 0px 1px 4px 0px;
-    }
+.card-background {
+    background-color: var(--color-card);
+    border-color: var(--color-card-border);
+    box-shadow: var(--color-shadow) 0px 1px 4px 0px;
+}
 
-    .card-hoverable:hover {
-        background-color: var(--color-card-hover);
-        border-color: var(--color-card-border-hover);
-        box-shadow: var(--color-shadow-hover) 0px 1px 4px 0px;
-    }
+.card-hoverable:hover {
+    background-color: var(--color-card-hover);
+    border-color: var(--color-card-border-hover);
+    box-shadow: var(--color-shadow-hover) 0px 1px 4px 0px;
+}
 
-    .card > small {
-        opacity: 0.6;
-        margin-bottom: 0.1em;
-    }
+.card > small {
+    opacity: 0.6;
+    margin-bottom: 0.1em;
+}
 
-    .card > .card-title {
-        margin:0;
-        opacity: 1.0;
-        font-weight: 700;
-        font-size: 1.6em;
-    }
+.card > .card-title {
+    margin: 0;
+    opacity: 1.0;
+    font-weight: 700;
+    font-size: 1.6em;
+}
 
-    .card p {
-        margin: 0;
-        margin-top: 0.1em;
-    }
+.card p {
+    margin: 0;
+    margin-top: 0.1em;
+}
 
 a {
     text-decoration: none;
@@ -364,9 +361,9 @@ ul {
         text-align: center;
     }
 
-    nav ul li {
-        margin-bottom: 0.9em;
-    }
+        nav ul li {
+            margin-bottom: 0.9em;
+        }
 
     .header {
         margin-bottom: 1.1em;
@@ -458,7 +455,7 @@ ul {
     background-color: var(--color-table-alt-background) !important;
 }
 
-.pure-table th:first-of-type {
+/*.pure-table th:first-of-type {
     border-top-left-radius: 8px !important;
 }
 
@@ -472,7 +469,7 @@ ul {
 
 .pure-table tr:last-of-type td:last-of-type {
     border-bottom-right-radius: 8px !important;
-}
+}*/
 
 .small {
     font-size: 1em;
@@ -501,9 +498,9 @@ footer {
             transition: color ease-in-out 150ms;
         }
 
-        footer > #footer_links li a:hover {
-            color: var(--color-link-2);
-        }
+            footer > #footer_links li a:hover {
+                color: var(--color-link-2);
+            }
 
         footer > #footer_links li .a:focus {
             color: var(--color-link-2);
@@ -551,13 +548,14 @@ footer {
 .image {
     border-radius: 8px;
     border: 1px solid var(--color-card-border);
-    transition: border ease-in-out 150ms, box-shadow ease-in-out 150ms;
+    transition: border ease-in-out 150ms, box-shadow ease-in-out 150ms, filter 150ms ease-in-out;
     box-shadow: var(--color-shadow) 0px 2px 8px 0px;
 }
 
     .image:hover {
         border: 1px solid var(--color-card-border-hover);
         box-shadow: var(--color-shadow-hover) 0px 4px 16px 0px;
+        filter: brightness(0.8);
     }
 
 .profile-image {
@@ -583,44 +581,6 @@ footer {
     font-size: 1.1em;
 }
 
-/* 2 columns by default */
-.image-sizer,
-.image-item {
-    width: calc(50% - 20px);
-    margin-bottom: 10px;
-}
-
-    .image-item img {
-        border-radius: 12px;
-        cursor: pointer;
-        transition: filter 150ms ease-in-out;
-    }
-
-        .image-item img:hover {
-            filter: brightness(0.6);
-        }
-
-@media screen and (max-width: 35.5em) {
-    /* 3 columns for larger screens */
-    .image-sizer,
-    .image-item {
-        width: calc(33.333% - 30px);
-    }
-}
-
-.pure-button-primary {
-    background-color: var(--color-link) !important;
-    font-weight: 700;
-    color: #FFF;
-}
-
-    .pure-button-primary:hover {
-        background-color: var(--color-link-2);
-        font-weight: 700;
-        color: #FFF;
-    }
-
-
 .gallery {
     column-count: 2;
     column-gap: .8em;
@@ -636,7 +596,6 @@ footer {
         height: auto;
         max-width: 100%;
     }
-
 
 /* Custom GIST Theme */
 
@@ -663,9 +622,9 @@ body .gist .gist-meta {
     background: var(--color-card-hover);
 }
 
-body .gist .gist-meta a {
-    color: var(--color-body-text);
-}
+    body .gist .gist-meta a {
+        color: var(--color-body-text);
+    }
 
 body .gist .blob-num,
 body .gist .blob-code-inner,
