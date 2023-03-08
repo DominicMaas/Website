@@ -22,7 +22,7 @@
 
 /* inter-regular - latin */
 @font-face {
-    font-family: 'Inter';
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-display: swap;
@@ -32,7 +32,7 @@
 
 /* inter-700 - latin */
 @font-face {
-    font-family: 'Inter';
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-display: swap;
@@ -41,7 +41,7 @@
 }
 
 :root {
-    --color-background: radial-gradient(ellipse at bottom, rgba(29,29,34,1) 0%, rgba(19,19,24,1) 100%);
+    --color-background: #202020;
     --color-card: rgba(0, 0, 0, 0.15);
     --color-card-border: rgba(0, 0, 0, 0.35);
     --color-card-hover: rgba(0, 0, 0, 0.25);
@@ -75,7 +75,7 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        --color-background: radial-gradient(ellipse at bottom, rgba(250,250,246,1) 0%, rgba(225,225,221,1) 100%);
+        --color-background: #EFEFEF;
         --color-card: rgba(255, 255, 255, 0.5);
         --color-card-border: rgba(0, 0, 0, 0.15);
         --color-card-hover: rgba(255, 255, 255, 1.0);
@@ -164,30 +164,19 @@ nav ul {
             font-weight: 700;
             font-family: var(--font-body);
             font-size: 1.35em;
-            padding: 0.2em 0.3em;
-            margin: -0.2em -0.3em;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms, box-shadow ease-in-out 150ms;
+            transition: color ease-in-out 150ms;
         }
 
             nav ul li a:hover {
-                background-color: var(--color-card-hover);
-                border-color: var(--color-card-border-hover);
-                box-shadow: var(--color-shadow-hover) 0px 1px 4px 0px;
+                color: var(--color-text);
             }
 
         nav ul li .a:focus {
-            background-color: var(--color-card);
-            border-color: var(--color-card-border);
-            box-shadow: var(--color-shadow) 0px 1px 4px 0px;
+            color: var(--color-text);
         }
 
         nav ul li .active {
             color: var(--color-link);
-            background-color: var(--color-card-hover);
-            border-color: var(--color-card-border-hover);
-            box-shadow: var(--color-shadow) 0px 1px 4px 0px;
         }
 
         nav ul li a > .i-holder {
@@ -210,8 +199,8 @@ section {
 }
 
 .card {
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
     margin-left: -1.2em;
     margin-right: -1.2em;
     padding: 1.2em;
@@ -223,7 +212,6 @@ section {
 .card-background {
     background-color: var(--color-card);
     border-color: var(--color-card-border);
-    box-shadow: var(--color-shadow) 0px 1px 4px 0px;
 }
 
 .card-hoverable:hover {
@@ -260,7 +248,7 @@ p {
     font-size: 1.1em;
     margin-bottom: 0.8em;
     margin-top: 0;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
     p b {
@@ -270,7 +258,6 @@ p {
     p a {
         font-weight: 700;
         color: var(--color-link);
-        text-decoration: none;
         padding: 0.1em 0.2em;
         margin: -0.1em -0.2em;
         border-radius: 8px;
@@ -426,7 +413,6 @@ ul {
 .pure-table {
     margin-top: 0.6em !important;
     border: 1px solid var(--color-table-border) !important;
-    box-shadow: var(--color-shadow) 0px 1px 4px 0px;
 }
 
 .pure-table-horizontal td, .pure-table-horizontal th {
@@ -549,7 +535,6 @@ footer {
     border-radius: 8px;
     border: 1px solid var(--color-card-border);
     transition: border ease-in-out 150ms, box-shadow ease-in-out 150ms, filter 150ms ease-in-out;
-    box-shadow: var(--color-shadow) 0px 2px 8px 0px;
 }
 
     .image:hover {

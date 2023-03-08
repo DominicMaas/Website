@@ -19,8 +19,8 @@ jobs:
         # checkout the repo
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@main
-          
-        # Login to the NESO registry     
+
+        # Login to the NESO registry
         - name: Docker Login
           uses: docker/login-action@v1.12.0
           with:

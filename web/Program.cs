@@ -14,8 +14,15 @@ var config = builder.Configuration;
 // Azure Key Vault
 if (!string.IsNullOrEmpty(config["AzureKeyVault:Endpoint"]))
 {
-    var secretClient = new SecretClient(new Uri(config["AzureKeyVault:Endpoint"]!), new DefaultAzureCredential());
-    config.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
+    try
+    {
+        var secretClient = new SecretClient(new Uri(config["AzureKeyVault:Endpoint"]!), new DefaultAzureCredential());
+        config.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
 }
 
 // Application Insights
