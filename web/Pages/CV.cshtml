@@ -6,125 +6,118 @@
 
 <h1>@ViewData["Title"]</h1>
 
-@if (ViewData["IsLookingForWork"] as bool? == false)
-{
-    <p>I'm not currently looking for any work at the moment, but thanks for checking!</p>
-    <p><a href="/cv?show=true">Show skills, education &amp; experience anyway</a></p>
-}
-else
-{
-    <p>References and a full CV are available on request.</p>
+<p>References and full CV are available on request</p>
 
-    <section>
-        <h2>Skills</h2>
+<section>
+    <h2>Skills</h2>
+    <p>
+        I’m skilled in <strong>C#</strong> and <strong>XAML</strong> having spent many years building applications using
+        the <strong>UWP</strong> (Universal Windows Platform), <strong>WPF</strong> (Windows Presentation Foundation), and <strong>WP8.1</strong>
+        (Windows Phone 8.1) UI frameworks. I have recently started exploring mobile development both
+        professionally (<strong>Xamarin Forms</strong>) and in my own time (<strong>Xamarin Native</strong>, <strong>Flutter</strong>).
+        I have also worked with <strong>ASP.NET Core</strong> and <strong>Entity Framework</strong> (Core and ‘Legacy’).
+    </p>
+
+    <p>
+        I've had some experience with <strong>Java</strong>, <strong>PHP</strong>, <strong>JavaScript</strong>, <strong>TypeScript</strong>, <strong>HTML</strong> & <strong>CSS</strong>. I have used <strong>C++</strong> (basic
+        opengl games), <strong>Python</strong> and <strong>ReactJS</strong> in the past, but am not very experienced with those
+        languages / frameworks - although I’m willing to learn!
+    </p>
+
+    <p>
+        I’m experienced in working with source control (<strong>git</strong>) using <strong>GitHub</strong>, <strong>GitLab</strong>
+        and <strong>Azure DevOps</strong>. This includes dealing with branches, pull requests, reviews and
+        merge conflicts.
+    </p>
+</section>
+
+<section>
+    <h2>Work Experience</h2>
+
+    <div class="card card-background">
+        <small>June 2023 &mdash; Current • Remote</small>
+        <p class="card-title"><a href="https://mu.se/">Muse Group</a></p>
         <p>
-            I’m skilled in <strong>C#</strong> and <strong>XAML</strong> having spent many years building applications using
-            the <strong>UWP</strong> (Universal Windows Platform), <strong>WPF</strong> (Windows Presentation Foundation), and <strong>WP8.1</strong>
-            (Windows Phone 8.1) UI frameworks. I have recently started exploring mobile development both
-            professionally (<strong>Xamarin Forms</strong>) and in my own time (<strong>Xamarin Native</strong>, <strong>Flutter</strong>).
-            I have also worked with <strong>ASP.NET Core</strong> and <strong>Entity Framework</strong> (Core and ‘Legacy’).
+            Building the Windows implementations of StaffPad, Muse Hub, alongside other products.
+        </p>
+    </div>
+
+    <div class="card card-background">
+        <small>June 2019 &mdash; May 2023 • Remote</small>
+        <p class="card-title"><a href="https://www.staffpad.net/">StaffPad</a></p>
+        <p>
+            Staffpad is a music notation app designed for Windows 10 (Tablets) and iOS (iPad). I was tasked
+            with upgrading the existing UWP app to match a style guide supplied in Zeplin. This required
+            building out custom XAML and C# controls that work across various screen sizes.
         </p>
 
-        <p>
-            I've had some experience with <strong>Java</strong>, <strong>PHP</strong>, <strong>JavaScript</strong>, <strong>TypeScript</strong>, <strong>HTML</strong> & <strong>CSS</strong>. I have used <strong>C++</strong> (basic
-            opengl games), <strong>Python</strong> and <strong>ReactJS</strong> in the past, but am not very experienced with those
-            languages / frameworks - although I’m willing to learn!
-        </p>
+        <br />
 
         <p>
-            I’m experienced in working with source control (<strong>git</strong>) using <strong>GitHub</strong>, <strong>GitLab</strong>
-            and <strong>Azure DevOps</strong>. This includes dealing with branches, pull requests, reviews and
-            merge conflicts.
+            Currently I’m implementing features based on set requirements as they arise.
         </p>
-    </section>
+    </div>
 
-    <section>
-        <h2>Work Experience</h2>
+    <div class="card card-background">
+        <small>April 2016 &mdash; May 2023 • Hamilton, New Zealand</small>
+        <p class="card-title"><a href="https://inex.co.nz/">Independent Extrusions Ltd.</a></p>
+        <p>
+            Built a few miscellaneous “scanning” mobile applications (initially running on Windows Phone 8.1,
+            then Windows 10 (W10), finally Android via Xamarin). These applications usually update a
+            database (SQL Server) via a local web service (ASP.NET) using stored procedures based on the
+            scanned input.
+        </p>
 
-        <div class="card card-background">
-            <small>June 2019 &mdash; Current • Remote</small>
-            <p class="card-title"><a href="https://www.staffpad.net/">StaffPad</a></p>
-            <p>
-                Staffpad is a music notation app designed for Windows 10 (Tablets) and iOS (iPad). I was tasked
-                with upgrading the existing UWP app to match a style guide supplied in Zeplin. This required
-                building out custom XAML and C# controls that work across various screen sizes.
-            </p>
+        <br />
 
-            <br />
+        <p>
+            Built a WPF application in collaboration with the Database Administrator to help simplify
+            aspects of the existing extrusion software for users. Consists of several dedicated screens
+            that either serve a single purpose, or work together.
+        </p>
 
-            <p>
-                Currently I’m implementing features based on set requirements as they arise.
-            </p>
+        <br />
 
-            <br />
+        <p>More details can be provided upon request.</p>
 
-            <p>
-                Working with Staffpad has required that I’m able to keep track of my working hours and
-                communicate with people across different time zones.
-            </p>
-        </div>
+        <br />
 
-        <div class="card card-background">
-            <small>April 2016 &mdash; Current • Hamilton, New Zealand</small>
-            <p class="card-title"><a href="https://inex.co.nz/">Independent Extrusions Ltd.</a></p>
-            <p>
-                Built a few miscellaneous “scanning” mobile applications (initially running on Windows Phone 8.1,
-                then Windows 10 (W10), finally Android via Xamarin). These applications usually update a
-                database (SQL Server) via a local web service (ASP.NET) using stored procedures based on the
-                scanned input.
-            </p>
+        <ul>
+            <li><p><b>Windows Phone:</b> Scanner apps using custom Windows Phones with built in barcode scanners. </p></li>
+            <li><p><b>UWP:</b> Windows 10 Mobile scanners / weight scale reader. Interacts with webservice which talks to a database.</p></li>
+            <li><p><b>WPF:</b> User App, heavily interacts with database via dapper. Uses custom SQL queries and existing stored procedures. Auto deployment via click once and Azure DevOps, sorting of information, live updating of tables, keeping information in sync between multiple users.</p></li>
+            <li><p><b>ASP.NET:</b> Help support existing ASP.NET MVC project by adding controllers, adjusting functionality, redeploying the website etc.</p></li>
+            <li><p><b>Azure DevOps:</b> Source code hosting, nuget package hosting, CI, CD.</p></li>
+        </ul>
+    </div>
 
-            <br />
+    <div class="card card-background">
+        <small>December 2015 &mdash; April 2016 • Hamilton, New Zealand</small>
+        <p class="card-title"><a href="https://inex.co.nz/">Independent Extrusions Ltd.</a></p>
+        <p>
+            Part time work during the school holidays painting and cleaning factory floors and equipment.
+        </p>
+    </div>
+</section>
 
-            <p>
-                Built a WPF application in collaboration with the Database Administrator to help simplify
-                aspects of the existing extrusion software for users. Consists of several dedicated screens
-                that either serve a single purpose, or work together.
-            </p>
+<section>
+    <h2>Education</h2>
 
-            <br />
+    <div class="card card-background">
+        <small>2018 &mdash; 2021 • Hamilton, New Zealand</small>
+        <p class="card-title"><a href="https://www.waikato.ac.nz/">The University of Waikato</a></p>
+        <ul>
+            <li><p>Bachelor of Science (major in Computer Science)</p></li>
+        </ul>
+    </div>
 
-            <p>More details can be provided upon request.</p>
-
-            <br />
-
-            <ul>
-                <li><p><b>Windows Phone:</b> Scanner apps using custom Windows Phones with built in barcode scanners. </p></li>
-                <li><p><b>UWP:</b> Windows 10 Mobile scanners / weight scale reader. Interacts with webservice which talks to a database.</p></li>
-                <li><p><b>WPF:</b> User App, heavily interacts with database via dapper. Uses custom SQL queries and existing stored procedures. Auto deployment via click once and Azure DevOps, sorting of information, live updating of tables, keeping information in sync between multiple users.</p></li>
-                <li><p><b>ASP.NET:</b> Help support existing ASP.NET MVC project by adding controllers, adjusting functionality, redeploying the website etc.</p></li>
-                <li><p><b>Azure DevOps:</b> Source code hosting, nuget package hosting, CI, CD.</p></li>
-            </ul>
-        </div>
-
-        <div class="card card-background">
-            <small>December 2015 &mdash; April 2016 • Hamilton, New Zealand</small>
-            <p class="card-title"><a href="https://inex.co.nz/">Independent Extrusions Ltd.</a></p>
-            <p>
-                Part time work during the school holidays painting and cleaning factory floors and equipment.
-            </p>
-        </div>
-    </section>
-
-    <section>
-        <h2>Education</h2>
-
-        <div class="card card-background">
-            <small>2018 &mdash; 2021 • Hamilton, New Zealand</small>
-            <p class="card-title"><a href="https://www.waikato.ac.nz/">The University of Waikato</a></p>
-            <ul>
-                <li><p>Bachelor of Science (major in Computer Science)</p></li>
-            </ul>
-        </div>
-
-        <div class="card card-background">
-            <small>2013 &mdash; 2017 • Hamilton, New Zealand</small>
-            <p class="card-title"><a href="https://www.melville-high.school.nz/">Melville High School</a></p>
-            <ul>
-                <li><p>NCEA Level 1,2,3 certificates endorsed in Merit</p></li>
-                <li><p>Cup for Excellence in Year 13 Computing (2017) &amp; Year 12 Senior Information Management (2016)</p></li>
-                <li><p>1<sup>st</sup> in Year 10 Information Management, Year 11-13 Digital Technology &amp; Year 13 Statistics</p></li>
-            </ul>
-        </div>
-    </section>
-}
+    <div class="card card-background">
+        <small>2013 &mdash; 2017 • Hamilton, New Zealand</small>
+        <p class="card-title"><a href="https://www.melville-high.school.nz/">Melville High School</a></p>
+        <ul>
+            <li><p>NCEA Level 1,2,3 certificates endorsed in Merit</p></li>
+            <li><p>Cup for Excellence in Year 13 Computing (2017) &amp; Year 12 Senior Information Management (2016)</p></li>
+            <li><p>1<sup>st</sup> in Year 10 Information Management, Year 11-13 Digital Technology &amp; Year 13 Statistics</p></li>
+        </ul>
+    </div>
+</section>

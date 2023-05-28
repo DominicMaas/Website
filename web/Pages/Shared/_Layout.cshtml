@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     @if (ViewData["Description"] == null)
     {
-    <meta name="description" content="Hello, my name is Dominic. I'm primarily a .NET developer focusing on Windows GUI Platforms (UWP, WinUI &amp; WPF), alongside mobile platforms via Xamarin Forms.">
+        <meta name="description" content="Hi! I'm a software developer specializing with the Windows GUI platform (such as WinUI 3, UWP and WPF). I also have experience with Xamarin Forms and really anything XAML related.">
     }
     else
     {
     <meta name="description" content="@ViewData["Description"]">
     }
     <meta name="theme-color" content="#EFEFEF" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#202020" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#202020">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#121212">
     @await RenderSectionAsync("Meta", required: false)
 
     <title>@ViewData["Title"]</title>

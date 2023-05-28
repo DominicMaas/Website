@@ -41,15 +41,15 @@
 }
 
 :root {
-    --color-background: #202020;
-    --color-card: rgba(0, 0, 0, 0.15);
-    --color-card-border: rgba(0, 0, 0, 0.35);
-    --color-card-hover: rgba(0, 0, 0, 0.25);
-    --color-card-border-hover: rgba(0, 0, 0, 0.65);
-    --color-text: #DDDDDD;
+    --color-background: #121212;
+    --color-card: rgba(40, 40, 40, 0.35);
+    --color-card-border: rgba(50, 50, 50, 0.55);
+    --color-card-hover: rgba(40, 40, 40, 0.55);
+    --color-card-border-hover: rgba(50, 50, 50, 0.65);
+    --color-text: #EAEAEA;
     --color-body-text: var(--color-text);
     --color-heading-lg-text: #EEEEEE;
-    --color-heading-sm-text: #DDDDDD;
+    --color-heading-sm-text: #EAEAEA;
     --color-accent: #769ECB;
     --color-bold: #FFFFFF;
     --color-profile-border: var(--color-bold);
@@ -549,7 +549,9 @@ footer {
 
 .profile-image-holder {
     margin: 0;
-    margin-right: 2em;
+    margin-right: 1.6em;
+    float: left;
+    width: 120px;
 }
 
 .pure-g > div {

@@ -18,7 +18,7 @@
 	</url>
 	<url>
 		<loc>https://dominicmaas.co.nz/cv</loc>
-		<priority>0.80</priority>
+		<priority>0.90</priority>
 	</url>
 	<url>
 		<loc>https://dominicmaas.co.nz/photography</loc>
@@ -49,11 +49,11 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://dominicmaas.co.nz/stonks</loc>
+		<loc>https://dominicmaas.co.nz/soundbyte-postmortem</loc>
 		<priority>0.50</priority>
 	</url>
 	<url>
-		<loc>https://dominicmaas.co.nz/soundbyte-postmortem</loc>
+		<loc>https://dominicmaas.co.nz/pc</loc>
 		<priority>0.50</priority>
 	</url>
 </urlset>
