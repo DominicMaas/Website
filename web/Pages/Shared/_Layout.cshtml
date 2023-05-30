@@ -45,9 +45,49 @@
             <!-- Navigation Links -->
             <nav>
                 <ul>
-                    <li><a class="@(Context.Request.Path == "/" ? "active" : "")" href="/"><span class="i-holder"><svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" class="svg-inline--fa fa-user icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-duotone-group"><path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path><path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path></g></svg></span>about</a></li>
-                    <li><a class="@(Context.Request.Path.StartsWithSegments("/projects") ? "active" : "")" href="/projects"><span class="i-holder"><svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="list-check" class="svg-inline--fa fa-list-check icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-duotone-group"><path class="fa-secondary" fill="currentColor" d="M192 384H480C497.7 384 512 398.3 512 416C512 433.7 497.7 448 480 448H192C174.3 448 160 433.7 160 416C160 398.3 174.3 384 192 384zM256 224H480C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H256C238.3 288 224 273.7 224 256C224 238.3 238.3 224 256 224zM256 128C238.3 128 224 113.7 224 96C224 78.33 238.3 64 256 64H480C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H256z"></path><path class="fa-primary" fill="currentColor" d="M81.84 152.1C77.43 156.9 71.21 159.8 64.63 159.1C58.05 160.2 51.69 157.6 47.03 152.1L7.029 112.1C-2.343 103.6-2.343 88.4 7.029 79.03C16.4 69.66 31.6 69.66 40.97 79.03L63.08 101.1L118.2 39.94C127 30.09 142.2 29.29 152.1 38.16C161.9 47.03 162.7 62.2 153.8 72.06L81.84 152.1zM81.84 312.1C77.43 316.9 71.21 319.8 64.63 319.1C58.05 320.2 51.69 317.6 47.03 312.1L7.029 272.1C-2.343 263.6-2.343 248.4 7.029 239C16.4 229.7 31.6 229.7 40.97 239L63.08 261.1L118.2 199.9C127 190.1 142.2 189.3 152.1 198.2C161.9 207 162.7 222.2 153.8 232.1L81.84 312.1zM0 416C0 389.5 21.49 368 48 368C74.51 368 96 389.5 96 416C96 442.5 74.51 464 48 464C21.49 464 0 442.5 0 416z"></path></g></svg></span>projects</a></li>
-                    <li><a class="@(Context.Request.Path == "/contact" ? "active" : "")" href="/contact"><span class="i-holder"><svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-duotone-group"><path class="fa-secondary" fill="currentColor" d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1L191.1 512L192 394.1c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z"></path><path class="fa-primary" fill="currentColor" d="M416 96l-217.3 279.3C194.4 380.1 192 387.9 192 394.1L191.1 512L122.3 360.3L416 96z"></path></g></svg></span>contact</a></li>
+                    <li>
+                        <a class="@(Context.Request.Path == "/" ? "active" : "")" href="/">
+                            <span class="i-holder">
+                                <svg aria-hidden="true" focusable="false" class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path class="fa-secondary" fill="currentColor" d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"></path>
+                                    <path class="fa-primary" fill="currentColor" d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+                                </svg>
+                            </span>about
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="@(Context.Request.Path.StartsWithSegments("/projects") ? "active" : "")" href="/projects">
+                            <span class="i-holder">
+                                <svg aria-hidden="true" focusable="false" class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path class="fa-secondary" fill="currentColor" d="M192 384H480C497.7 384 512 398.3 512 416C512 433.7 497.7 448 480 448H192C174.3 448 160 433.7 160 416C160 398.3 174.3 384 192 384zM256 224H480C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H256C238.3 288 224 273.7 224 256C224 238.3 238.3 224 256 224zM256 128C238.3 128 224 113.7 224 96C224 78.33 238.3 64 256 64H480C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H256z"></path>
+                                    <path class="fa-primary" fill="currentColor" d="M81.84 152.1C77.43 156.9 71.21 159.8 64.63 159.1C58.05 160.2 51.69 157.6 47.03 152.1L7.029 112.1C-2.343 103.6-2.343 88.4 7.029 79.03C16.4 69.66 31.6 69.66 40.97 79.03L63.08 101.1L118.2 39.94C127 30.09 142.2 29.29 152.1 38.16C161.9 47.03 162.7 62.2 153.8 72.06L81.84 152.1zM81.84 312.1C77.43 316.9 71.21 319.8 64.63 319.1C58.05 320.2 51.69 317.6 47.03 312.1L7.029 272.1C-2.343 263.6-2.343 248.4 7.029 239C16.4 229.7 31.6 229.7 40.97 239L63.08 261.1L118.2 199.9C127 190.1 142.2 189.3 152.1 198.2C161.9 207 162.7 222.2 153.8 232.1L81.84 312.1zM0 416C0 389.5 21.49 368 48 368C74.51 368 96 389.5 96 416C96 442.5 74.51 464 48 464C21.49 464 0 442.5 0 416z"></path>
+                                </svg>
+                            </span>projects
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="@(Context.Request.Path.StartsWithSegments("/pages") ? "active" : "")" href="/pages">
+                            <span class="i-holder">
+                                <svg aria-hidden="true" focusable="false" class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path class="fa-secondary" fill="currentColor" d="M0 384l128-.0001V128L0 128V384zM96 .0028H31.1C14.38 .0028 0 14.38 0 32v63.1l128-.0008l.0008-63.1C128 14.38 113.6 .0028 96 .0028zM0 479.1c0 17.62 14.38 31.1 31.1 31.1h64c17.62 0 31.1-14.37 31.1-31.1L128 416H0V479.1zM412.3 85.32L289.5 118.4l8.223 30.83l122.7-33.04L412.3 85.32zM486.2 362.8l-122.7 33.04l8.221 30.83l122.7-33.05L486.2 362.8zM160 384l127.1 .0001V128L160 128V384zM160 479.1c0 17.62 14.38 31.1 32 31.1h63.1c17.62 0 31.98-14.36 31.1-31.98l0-64.02h-127.1L160 479.1zM273.1 56.71c-3.574-13.41 2.162-26.9 12.96-34.34c-4.154-12.86-15.83-22.36-30.04-22.36h-63.1c-17.63 0-32 14.37-32 31.1L160 96l123.6 .0005L273.1 56.71z"></path>
+                                    <path class="fa-primary" fill="currentColor" d="M0 128l128-.0005L128 96L0 96V128zM0 416h128l.0003-31.1L0 384V416zM160 416h127.1v-31.1l-127.1-.0001L160 416zM510.9 455.3l-16.48-61.67l-122.7 33.05l16.44 61.66c4.527 16.98 22 27.12 38.9 22.57l61.29-16.52C505.3 489.8 515.4 472.3 510.9 455.3zM420.5 116.2L297.7 149.2l65.77 246.7l122.7-33.04L420.5 116.2zM395.8 23.66c-4.527-16.98-22-27.12-38.9-22.57l-61.37 16.52c-16.9 4.551-26.99 22.11-22.46 39.09l10.48 39.3L160 96l.0003 32l127.1 .0005l-.0001-15.36l1.525 5.723l122.7-33.05L395.8 23.66z"></path>
+                                </svg>
+                            </span>pages
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="@(Context.Request.Path == "/contact" ? "active" : "")" href="/contact">
+                            <span class="i-holder">
+                                <svg aria-hidden="true" focusable="false" class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path class="fa-secondary" fill="currentColor" d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1L191.1 512L192 394.1c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z"></path>
+                                    <path class="fa-primary" fill="currentColor" d="M416 96l-217.3 279.3C194.4 380.1 192 387.9 192 394.1L191.1 512L122.3 360.3L416 96z"></path>
+                                </svg>
+                            </span>contact
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
