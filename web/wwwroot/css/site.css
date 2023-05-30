@@ -281,44 +281,37 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     font-family: var(--font-headings);
     margin-bottom: 0.2em;
+    font-weight: 800;
 }
 
 h1 {
-    margin-bottom: 0.4em;
-    font-weight: 800;
-    font-size: 3.25em;
+    font-size: 3.052rem;
     color: var(--color-heading-lg-text);
 }
 
 h2 {
-    font-size: 2.75em;
-    font-weight: 800;
     color: var(--color-heading-lg-text);
+    font-size: 2.441rem;
 }
 
 h3 {
     color: var(--color-heading-lg-text);
-    font-size: 2.5em;
-    font-weight: 800;
+    font-size: 1.953rem;
 }
 
 h4 {
     color: var(--color-heading-sm-text);
-    font-size: 2.25em;
-    font-weight: 700;
+    font-size: 1.563rem;
 }
 
 h5 {
     color: var(--color-heading-sm-text);
-    font-size: 2.0em;
-    font-weight: 700;
+    font-size: 1.25rem;
 }
 
 h6 {
-    font-size: 1.75em;
-    font-weight: 700;
     color: var(--color-heading-sm-text);
-    margin-bottom: 5px;
+    font-size: 1rem;
 }
 
 ul {
