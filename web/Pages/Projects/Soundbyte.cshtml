@@ -5,22 +5,17 @@
     ViewData["Title"] = "SoundByte";
 }
 
-@if (Model.IsSoundByteContext)
-{
-     <hr />
-     <br /><br />
-    <section>
-        <p>Due to changes in the SoundCloud API, many previous functions of SoundByte no longer work:</p>
-        <p>It is no longer possible for 3rd-party apps to access the logged in users stream.</p>
-        <p>It is no longer possible for 3rd-party apps to access top charts and trending music.</p>
-        <p>You must now be logged in to access the SoundCloud API. All SoundCloud functions of the app will not work without being logged in (including listening to music).</p>
-        <p>In addition to the above, SoundByte Account functionality has been removed from the app.</p>
-        <p>YouTube login is still broken. API access may work, playback may work.</p>
-    </section>
-
-    <hr />
-    <br />
-}
+<div class="card card-background card-hoverable card-alert">
+    <p class="card-title">Future of SoundByte</p>
+    <p>Due to changes in the SoundCloud API, many previous functions of SoundByte no longer work:</p>
+    <ul>
+        <li><p>It is no longer possible for 3rd-party apps to access the logged in users stream.</p></li>
+        <li><p>It is no longer possible for 3rd-party apps to access top charts and trending music.</p></li>
+        <li><p>You must now be logged in to access the SoundCloud API. All SoundCloud functions of the app will not work without being logged in (including listening to music).</p></li>
+        <li><p>In addition to the above, SoundByte Account functionality has been removed from the app.</p></li>
+        <li><p>YouTube login is still broken. API access may work, playback may work.</p></li>
+    </ul>
+</div>
 
 <section>
     <h1 id="h-intro">SoundByte</h1>
@@ -230,8 +225,8 @@
     </p>
 
     <p>
-        On January 31st, 2022 the SoundByte API will be shutdown. An app update will be released which removes SoundByte account functionality from the app. The account
-        login system will be moved to a lightweight API hosted on this current website.
+        The SoundByte API has been shutdown as of January 31st, 2022. An app update was also released which removed SoundByte account functionality from the app. The account
+        login was moved to a lightweight API hosted on my personal website (this).
     </p>
 
     <p>

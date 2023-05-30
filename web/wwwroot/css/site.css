@@ -42,12 +42,17 @@
 
 :root {
     color-scheme: dark;
-
     --color-background: #121212;
+    --color-code-background: rgba(255, 255, 255, 0.08);
+    --color-code-border: rgba(255, 255, 255, 0.18);
     --color-card: rgba(40, 40, 40, 0.35);
     --color-card-border: rgba(50, 50, 50, 0.55);
     --color-card-hover: rgba(40, 40, 40, 0.55);
     --color-card-border-hover: rgba(50, 50, 50, 0.65);
+    --color-alert-card: rgba(118, 158, 203, 0.35);
+    --color-alert-card-border: rgba(118, 158, 203, 0.55);
+    --color-alert-card-hover: rgba(118, 158, 203, 0.55);
+    --color-alert-card-border-hover: rgba(118, 158, 203, 0.65);
     --color-text: #EAEAEA;
     --color-body-text: var(--color-text);
     --color-heading-lg-text: #EEEEEE;
@@ -73,13 +78,15 @@
     --color-shadow-hover: rgba(6, 6, 6, 0.8);
     --font-body: Inter, sans-serif;
     --font-headings: Raleway, sans-serif;
+    --font-code: monospace, monospace;
 }
 
-@media (prefers-color-scheme: light) {
+/*@media (prefers-color-scheme: light) {
     :root {
         color-scheme: light;
-
         --color-background: #EFEFEF;
+        --color-code-background: rgba(0, 0, 0, 0.08);
+        --color-code-border: rgba(0, 0, 0, 0.18);
         --color-card: rgba(255, 255, 255, 0.5);
         --color-card-border: rgba(0, 0, 0, 0.15);
         --color-card-hover: rgba(255, 255, 255, 1.0);
@@ -103,7 +110,7 @@
         --color-shadow: rgba(99, 99, 99, 0.2);
         --color-shadow-hover: rgba(99, 99, 99, 0.4);
     }
-}
+}*/
 
 html {
     overflow-y: scroll;
@@ -139,7 +146,7 @@ body {
     padding-bottom: 1.2em;
     margin-bottom: 0.8em;
     font-weight: 700;
-    border-bottom: 1px solid var(--color-footer-border);
+    border-bottom: 3px solid var(--color-footer-border);
 }
 
 /* The 'Dominic Maas' header on the page */
@@ -218,11 +225,22 @@ section {
     border-color: var(--color-card-border);
 }
 
+    .card-background.card-alert {
+        background-color: var(--color-alert-card);
+        border-color: var(--color-alert-card-border);
+    }
+
 .card-hoverable:hover {
     background-color: var(--color-card-hover);
     border-color: var(--color-card-border-hover);
     box-shadow: var(--color-shadow-hover) 0px 1px 4px 0px;
 }
+
+    .card-hoverable.card-alert:hover {
+        background-color: var(--color-alert-card-hover);
+        border-color: var(--color-alert-card-border-hover);
+        box-shadow: var(--color-shadow-hover) 0px 1px 4px 0px;
+    }
 
 .card > small {
     opacity: 0.6;
@@ -279,6 +297,23 @@ p {
             outline: none;
         }
 
+.code {
+    font-family: var(--font-code);
+    background-color: var(--color-code-background);
+    border: 1px solid var(--color-code-border);
+    border-radius: 4px;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+pre {
+    font-family: var(--font-code);
+    background-color: var(--color-code-background);
+    border: 1px solid var(--color-code-border);
+    border-radius: 8px;
+    padding: 0.6em;
+}
+
 /* HEADERS */
 
 h1, h2, h3, h4, h5, h6 {
@@ -321,12 +356,27 @@ h6 {
 ul {
     margin: 0;
     padding: 0;
-    margin-left: 18px;
+    margin-left: 1.1em;
+    margin-bottom: 0.6em;
 }
 
-    ul li p {
-        margin: 0em;
+    ul > li p {
         margin-bottom: 0.2em;
+    }
+
+ol {
+    margin: 0;
+    padding: 0;
+    margin-left: 1.1em;
+    margin-bottom: 0.6em;
+}
+
+    ol > li p {
+        margin-bottom: 0.2em;
+    }
+
+    ol > li::marker {
+        font-weight: bold;
     }
 
 @media screen and (max-width: 64em) {
@@ -466,7 +516,7 @@ hr {
 }
 
 footer {
-    border-top: 1px solid var(--color-footer-border);
+    border-top: 3px solid var(--color-footer-border);
     margin-top: 1.5em;
     margin-bottom: 2em;
     text-align: center;
@@ -539,17 +589,6 @@ footer {
         box-shadow: var(--color-shadow-hover) 0px 4px 16px 0px;
         filter: brightness(0.8);
     }
-
-.profile-image {
-    border-radius: 50%;
-}
-
-.profile-image-holder {
-    margin: 0;
-    margin-right: 1.6em;
-    float: left;
-    width: 120px;
-}
 
 .pure-g > div {
     box-sizing: border-box;
@@ -782,3 +821,25 @@ body .gist .pl-mdh,
 body .gist .pl-mdi {
     color: #df6b75;
 }
+
+/* Pure CSS Overrides */
+
+.pure-button-primary {
+    background-color: var(--color-accent);
+    border-radius: 4px;
+}
+
+input {
+    background-color: var(--color-card);
+    border-radius: 4px;
+    border: 1px solid var(--color-card-border-hover) !important;
+    box-shadow: none !important;
+}
+
+    input:hover {
+        background-color: var(--color-card-hover);
+    }
+
+    input:active {
+        background-color: var(--color-card-hover);
+    }
