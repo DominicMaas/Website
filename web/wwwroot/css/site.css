@@ -41,6 +41,8 @@
 }
 
 :root {
+    color-scheme: dark;
+
     --color-background: #121212;
     --color-card: rgba(40, 40, 40, 0.35);
     --color-card-border: rgba(50, 50, 50, 0.55);
@@ -75,6 +77,8 @@
 
 @media (prefers-color-scheme: light) {
     :root {
+        color-scheme: light;
+
         --color-background: #EFEFEF;
         --color-card: rgba(255, 255, 255, 0.5);
         --color-card-border: rgba(0, 0, 0, 0.15);
