@@ -81,7 +81,7 @@
     --font-code: monospace, monospace;
 }
 
-/*@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
     :root {
         color-scheme: light;
         --color-background: #EFEFEF;
@@ -91,6 +91,10 @@
         --color-card-border: rgba(0, 0, 0, 0.15);
         --color-card-hover: rgba(255, 255, 255, 1.0);
         --color-card-border-hover: rgba(0, 0, 0, 0.3);
+        --color-alert-card: rgba(118, 158, 203, 0.35);
+        --color-alert-card-border: rgba(118, 158, 203, 0.55);
+        --color-alert-card-hover: rgba(118, 158, 203, 0.55);
+        --color-alert-card-border-hover: rgba(118, 158, 203, 0.65);
         --color-text: #131313;
         --color-heading-lg-text: #222222;
         --color-heading-sm-text: #333333;
@@ -110,7 +114,7 @@
         --color-shadow: rgba(99, 99, 99, 0.2);
         --color-shadow-hover: rgba(99, 99, 99, 0.4);
     }
-}*/
+}
 
 html {
     overflow-y: scroll;
