@@ -34,6 +34,6 @@ jobs:
         - name: 'Build and Push Image'
           uses: docker/build-push-action@v2
           with:
-            context: web/
+            context: src/Website/
             push: true
             tags: registry.dominicmaas.co.nz/personal-website:latest
