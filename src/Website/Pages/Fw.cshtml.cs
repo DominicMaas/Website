@@ -14,8 +14,8 @@ public class FwModel : PageModel
     {
         { "4toUN4j53iK", "https://github.com/DominicMaas/SpaceChunks" },
         { "yENyTb", "https://twitter.com/SoundByteUWP" },
-        { "Y5jGLtoFXs", "https://soundbytemedia.com/privacy-policy" },
-        { "GvC5iXmJSo", "https://soundbytemedia.com/support" },
+        { "Y5jGLtoFXs", "https://dominicmaas.co.nz/privacy" },
+        { "GvC5iXmJSo", "https://dominicmaas.co.nz/projects/soundbyte" },
 
         { "github", "https://github.com/DominicMaas" },
         { "twitter", "https://twitter.com/dominicjmaas" }

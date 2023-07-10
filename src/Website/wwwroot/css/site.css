@@ -64,10 +64,6 @@
     --color-small: #666666;
     --color-link: var(--color-accent);
     --color-link-2: #9DBAD5;
-    --color-link-twitter: #1DA1F2;
-    --color-link-2-twitter: #8ED0F8;
-    --color-link-github: #F4CBB2;
-    --color-link-2-github: #F9E4D8;
     --color-table-border: var(--color-card-border);
     --color-table-header-background: var(--color-card-hover);
     --color-table-header-text: var(--color-bold);
@@ -103,10 +99,6 @@
         --color-nav-link: #444;
         --color-small: #333;
         --color-link-2: #4c80bb;
-        --color-link-twitter: #1DA1F2;
-        --color-link-2-twitter: #8ED0F8;
-        --color-link-github: #000000;
-        --color-link-2-github: #333333;
         --color-table-border: #DDD;
         --color-table-header-background: #EFEFEF;
         --color-table-alt-background: #F9F9F9;
@@ -532,23 +524,6 @@ footer {
         margin-top: 2em;
     }
 
-        footer > #footer_links li a {
-            color: var(--color-nav-link);
-            transition: color ease-in-out 150ms;
-        }
-
-            footer > #footer_links li a:hover {
-                color: var(--color-link-2);
-            }
-
-        footer > #footer_links li .a:focus {
-            color: var(--color-link-2);
-        }
-
-        footer > #footer_links li .active {
-            color: var(--color-link);
-        }
-
     footer > small {
         color: var(--color-small);
         display: block;
@@ -566,23 +541,22 @@ footer {
             margin: 0 0.2em;
         }
 
-.twitter {
-    color: var(--color-link-twitter);
-    transition: color ease-in-out 150ms;
-}
+            footer ul li a {
+                color: var(--color-nav-link);
+                transition: color ease-in-out 150ms;
+            }
 
-    .twitter:hover, .twitter:focus {
-        color: var(--color-link-2-twitter);
-    }
+                footer ul li a:hover {
+                    color: var(--color-link-2);
+                }
 
-.github {
-    color: var(--color-link-github);
-    transition: color ease-in-out 150ms;
-}
+            footer ul li .a:focus {
+                color: var(--color-link-2);
+            }
 
-    .github:hover, .github:focus {
-        color: var(--color-link-2-github);
-    }
+            footer ul li .active {
+                color: var(--color-link);
+            }
 
 .image {
     border-radius: 8px;
