@@ -3,6 +3,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.EntityFrameworkCore;
 using Website.Common;
 using Website.Services;
 
@@ -34,6 +35,10 @@ if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))
     });
 }
 
+// Database
+services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlite(config.GetConnectionString("WebsiteDatabase")));
+
 services.AddMvc();
 
 // Services
@@ -61,6 +66,10 @@ if (!environment.IsDevelopment())
     app.UseExceptionHandler("/error/500");
     app.UseHsts();
 }
+else
+{
+    app.UseDeveloperExceptionPage();
+}
 
 app.UseStatusCodePagesWithReExecute("/error/{0}");
 
@@ -83,5 +92,13 @@ app.Use(async (context, next) =>
 
     await next();
 });
+
+
+// Run our migrations on start up
+using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    context.Database.Migrate();
+}
 
 app.Run();

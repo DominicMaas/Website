@@ -1,27 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Website.Common;
 
 namespace Website.Pages;
 
 public class FwModel : PageModel
 {
+    private readonly DatabaseContext _databaseContext;
+
     public string? RequestedUri { get; set; }
 
     public string? Message { get; set; }
 
     public bool IsSuccess { get; set; }
 
-    private readonly Dictionary<string, string> _links = new()
+    public FwModel(DatabaseContext databaseContext)
     {
-        { "4toUN4j53iK", "https://github.com/DominicMaas/SpaceChunks" },
-        { "yENyTb", "https://twitter.com/SoundByteUWP" },
-        { "Y5jGLtoFXs", "https://dominicmaas.co.nz/privacy" },
-        { "GvC5iXmJSo", "https://dominicmaas.co.nz/projects/soundbyte" },
+        _databaseContext = databaseContext;
+    }
 
-        { "github", "https://github.com/DominicMaas" },
-        { "twitter", "https://twitter.com/dominicjmaas" }
-    };
-
-    public void OnGet(string? id)
+    public async Task OnGetAsync(string? id)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -31,9 +28,9 @@ public class FwModel : PageModel
             return;
         }
 
-        var url = _links.GetValueOrDefault(id);
+        var link = await _databaseContext.ShortLinks.FindAsync(id);
 
-        if (string.IsNullOrEmpty(url))
+        if (link == null || string.IsNullOrEmpty(link.RedirectLink))
         {
             // This URI does not exist
             RequestedUri = string.Empty;
@@ -42,7 +39,7 @@ public class FwModel : PageModel
             return;
         }
 
-        RequestedUri = url;
+        RequestedUri = link.RedirectLink;
         IsSuccess = true;
     }
 }
