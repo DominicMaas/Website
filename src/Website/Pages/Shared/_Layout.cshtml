@@ -36,7 +36,7 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <div class="container">
+    <div class="container" hx-boost="true">
         <!-- Page header -->
         <div class="header">
             <!-- Page title -->
@@ -110,5 +110,9 @@
             </ul>
         </footer>
     </div>
+
+    <script src="~/js/htmx.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

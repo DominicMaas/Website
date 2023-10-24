@@ -175,7 +175,7 @@ nav ul {
         }
 
             nav ul li a:hover {
-                color: var(--color-text);
+                color: var(--color-link);
             }
 
         nav ul li .a:focus {
