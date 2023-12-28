@@ -456,8 +456,9 @@ ol {
 }
 
 .pure-table {
-    margin-top: 0.6em !important;
-    border: 1px solid var(--color-table-border) !important;
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+    border: 0 !important;
 }
 
 .pure-table-horizontal td, .pure-table-horizontal th {
@@ -465,16 +466,17 @@ ol {
 }
 
 .pure-table td, .pure-table th {
-    border-left: 1px solid var(--color-table-border) !important;
+    border-left: 0 !important;
 }
 
 .pure-table thead {
-    background-color: var(--color-table-header-background) !important;
+    background-color: transparent !important;
     color: var(--color-table-header-text) !important;
+    border-bottom: 2px solid var(--color-card-border) !important;
 }
 
 .pure-table th {
-    background-color: var(--color-table-header-background) !important;
+    background-color: transparent !important;
     color: var(--color-table-header-text) !important;
 }
 
@@ -486,21 +488,9 @@ ol {
     background-color: var(--color-table-alt-background) !important;
 }
 
-/*.pure-table th:first-of-type {
-    border-top-left-radius: 8px !important;
+.stretch {
+    width: 100%;
 }
-
-.pure-table th:last-of-type {
-    border-top-right-radius: 8px !important;
-}
-
-.pure-table tr:last-of-type td:first-of-type {
-    border-bottom-left-radius: 8px !important;
-}
-
-.pure-table tr:last-of-type td:last-of-type {
-    border-bottom-right-radius: 8px !important;
-}*/
 
 .small {
     font-size: 1em;
@@ -586,7 +576,7 @@ footer {
 
 .gallery {
     column-count: 2;
-    column-gap: .8em;
+    column-gap: .5em;
     max-width: 980px;
     margin: auto;
     width: 100%;
@@ -595,7 +585,7 @@ footer {
     .gallery img {
         width: 100%;
         margin: 0;
-        margin-bottom: .4em;
+        margin-bottom: .5em;
         height: auto;
         max-width: 100%;
     }
@@ -823,3 +813,64 @@ input {
     input:active {
         background-color: var(--color-card-hover);
     }
+
+
+/* STREAMS */
+
+.stream {
+    clear: both;
+    border-top: 1px solid var(--color-card-border);
+    padding-top: 1.0em;
+    padding-bottom: 1.0em;
+}
+
+.stream:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.stream-meta {
+    float: left;
+    width: 19%;
+    font-size: 0.8rem;
+}
+
+    .stream-meta span {
+        font-size: 0.7rem;
+        opacity: 0.9;
+    }
+
+    .stream-date {
+        margin: 0;
+        color: var(--color-accent);
+        font-weight: 700;
+    }
+
+    .stream-time {
+        margin: 0;
+        color: var(--color-accent);
+        font-weight: 700;
+    }
+
+.stream-main {
+    float:right;
+    width: 79%;
+}
+
+    .stream-title {
+        font-size: 1.3rem;
+    }
+
+@media screen and (max-width: 35.5em) {
+    .stream-meta {
+        float: none;
+        width: auto;
+        margin-bottom: 1em;
+    }
+
+    .stream-main {
+        float: none;
+        width: auto;
+    }
+}

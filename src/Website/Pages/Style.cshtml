@@ -5,9 +5,26 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+<p>A page displaying all the different controls used on my website.</p>
 
 <section>
-    <h2>Heading 2</h2>
+    <h2>Contents</h2>
+    <ul>
+        <li><p><a href="#headings">Headings</a></p></li>
+        <li><p><a href="#cards">Cards</a></p></li>
+        <li><p><a href="#streams">Streams</a></p></li>
+        <li><p><a href="#images">Images</a></p></li>
+        <li><p><a href="#image-gallery">Image Gallery</a></p></li>
+        <li><p><a href="#links">Link Interaction</a></p></li>
+        <li><p><a href="#code">Code</a></p></li>
+        <li><p><a href="#forms">Forms</a></p></li>
+        <li><p><a href="#tables">Tables</a></p></li>
+        <li><p><a href="#paragraphs">Paragraphs</a></p></li>
+    </ul>
+</section>
+
+<section>
+    <h2 id="headings">Headings - Heading 2</h2>
     <p>This section shows the weight of all the headings with text underneath</p>
 
     <h3>Heading 3</h3>
@@ -24,7 +41,7 @@
 </section>
 
 <section>
-    <h2>Cards</h2>
+    <h2 id="cards">Cards</h2>
     <p>Different styled cards that are used on this site</p>
 
     <div class="card">
@@ -68,7 +85,59 @@
 </section>
 
 <section>
-    <h2>Link Interaction</h2>
+    <h2 id="streams">Streams</h2>
+    <p>Streams is kind of like a micro blogging section of this site (think X/Twitter), this section mockups how these will be rendered.</p>
+
+    <div class="stream">
+        <div class="stream-meta">
+            <p class="stream-date">29<span>th</span> December 2023</p>
+            <p class="stream-time">8:36<span>am</span></p>
+        </div>
+        <div class="stream-main">
+            <h3 class="stream-title">Stream with photos</h3>
+            <p>Steams can have multiple paragraphs, like below.<br />Streams can also contain images</p>
+            <div class="gallery">
+                <img class="image pure-img" src="/images/gallery/nature/001.jpg" />
+                <img class="image pure-img" src="/images/gallery/nature/002.jpg" />
+                <img class="image pure-img" src="/images/gallery/nature/003.jpg" />
+                <img class="image pure-img" src="/images/gallery/nature/004.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="stream">
+        <div class="stream-meta">
+            <p class="stream-date">28<span>th</span> December 2023</p>
+            <p class="stream-time">4:32<span>pm</span></p>
+        </div>
+        <div class="stream-main">
+            <h3 class="stream-title">My first mockup stream!</h3>
+            <p>Idk where I'll pull this data through once built, but hey, at least I have a style mocked out!</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 id="images">Images</h2>
+    <p>How images are rendered on this site</p>
+    <img class="image pure-img" src="/images/gallery/nature/001.jpg" />
+</section>
+
+<section>
+    <h2 id="image-gallery">Image Gallery</h2>
+    <p>A gallery control displays images in a staggered column</p>
+    <div class="gallery">
+        <img class="image pure-img" src="/images/gallery/nature/001.jpg" />
+        <img class="image pure-img" src="/images/gallery/nature/002.jpg" />
+        <img class="image pure-img" src="/images/gallery/nature/003.jpg" />
+        <img class="image pure-img" src="/images/gallery/nature/004.jpg" />
+        <img class="image pure-img" src="/images/gallery/astro/001.jpg" />
+        <img class="image pure-img" src="/images/gallery/astro/002.jpg" />
+    </div>
+</section>
+
+<section>
+    <h2 id="links">Link Interaction</h2>
     <p>
         Links must be contains within <a href="#">paragraph</a> tags to have applied styling. Links
         contain a special hover effect that includes the background within the animation.
@@ -77,7 +146,7 @@
 </section>
 
 <section>
-    <h2>Code</h2>
+    <h2 id="code">Code</h2>
     <p>
         Since I'm a developer, displaying inline code snippers (without highlighting) is very helpful! These snippets
         can be used by themselves, in a list or within a paragraph <span class="code">like such</span> without affecting the surrounding content.
@@ -97,7 +166,7 @@ created using the 'pre' element vs a span with a class of 'code'</pre>
 </section>
 
 <section>
-    <h2>Forms</h2>
+    <h2 id="forms">Forms</h2>
     <p>I don't do anything with forms on this website, but I've built out the style guide for when I do. Below is a basic form with two inputs and a submit button.</p>
     <p>This styling is built upon pure-css.</p>
     <form class="pure-form pure-form-stacked">
@@ -112,7 +181,7 @@ created using the 'pre' element vs a span with a class of 'code'</pre>
 </section>
 
 <section>
-    <h1>Tables</h1>
+    <h1 id="tables">Tables</h1>
     <p>This section shows what a table looks like on this website</p>
 
     <table class="pure-table pure-table-horizontal pure-table-striped">
@@ -126,19 +195,51 @@ created using the 'pre' element vs a span with a class of 'code'</pre>
         </thead>
         <tbody>
             <tr>
-                <th scope="row">1</th>
+                <td>1</td>
                 <td>Monday</td>
                 <td>3</td>
                 <td>2019</td>
             </tr>
             <tr>
-                <th scope="row">2</th>
+                <td>2</td>
                 <td>Tuesday</td>
                 <td>3</td>
                 <td>2019</td>
             </tr>
             <tr>
-                <th scope="row">3</th>
+                <td>3</td>
+                <td>Wednesday</td>
+                <td>3</td>
+                <td>2019</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>This is a wide table that takes up the width of the screen</p>
+    <table class="pure-table pure-table-horizontal pure-table-striped stretch">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Day</th>
+                <th scope="col">Week</th>
+                <th scope="col">Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Monday</td>
+                <td>3</td>
+                <td>2019</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Tuesday</td>
+                <td>3</td>
+                <td>2019</td>
+            </tr>
+            <tr>
+                <td>3</td>
                 <td>Wednesday</td>
                 <td>3</td>
                 <td>2019</td>
@@ -148,7 +249,7 @@ created using the 'pre' element vs a span with a class of 'code'</pre>
 </section>
 
 <section>
-    <h1>Paragraphs</h1>
+    <h1 id="paragraphs">Paragraphs</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus velit metus, sit amet ultricies tortor fermentum vitae. Donec nec lacus in dui tempor tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec malesuada urna eget molestie luctus. Sed lacinia leo diam, sed imperdiet lectus cursus malesuada. Maecenas at tristique elit, nec maximus mauris. Maecenas eget mi convallis, pretium ipsum non, convallis nunc. Sed tempus egestas orci, non egestas sem aliquet ut. Praesent in urna ut dui posuere imperdiet vel a turpis. Proin viverra eleifend nulla, non tincidunt velit sagittis sed.</p>
     <p>Etiam porttitor, odio vel ullamcorper egestas, turpis magna imperdiet massa, quis venenatis mi justo eget odio. Pellentesque aliquet sodales metus vel ullamcorper. Aenean eu sagittis lorem. Praesent eget orci eu nunc mollis sodales. Vivamus porta risus in ultricies ultrices. Cras sollicitudin in mi ut eleifend. Curabitur condimentum dui vel pellentesque egestas. Sed pretium tincidunt lacinia. Nulla pellentesque lacinia nisi sit amet placerat. Donec tincidunt commodo lectus dignissim tempor. Nunc commodo, sem tristique feugiat rutrum, nisi dolor congue sapien, eu consectetur nulla lectus id lectus. Aliquam eget odio neque. Etiam aliquam tellus ac velit vehicula gravida.</p>
     <p>Vivamus in purus vel massa fermentum consectetur at a diam. Donec egestas, nulla in hendrerit varius, libero libero feugiat arcu, quis faucibus est nulla at tortor. Fusce vestibulum, diam vel lacinia lacinia, odio nibh blandit quam, a consectetur odio lacus sed massa. Sed eu bibendum sem. Nam sit amet augue eget turpis viverra semper. Etiam egestas purus eget nisl varius rhoncus. Etiam egestas tortor nec lorem condimentum, non consequat elit facilisis. Quisque ullamcorper congue libero, elementum finibus nulla mollis id. Curabitur et ante vitae est venenatis dictum a eget leo. Vivamus turpis lacus, fringilla a justo et, suscipit placerat orci. Cras auctor ullamcorper aliquet. Maecenas pulvinar quis diam vel condimentum. Sed efficitur elit et vestibulum eleifend. Etiam aliquet fermentum leo, quis vehicula lectus molestie et. In eget scelerisque sapien. Nullam at interdum eros, eu tristique erat.</p>
