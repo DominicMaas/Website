@@ -1,0 +1,14 @@
+﻿@page
+@model Website.Pages.Modals.ImageModalModel
+
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+	<div class="modal-underlay" _="on click trigger closeModal"></div>
+	<div class="modal-content">
+		<img class="image-modal pure-img" src="@Model.Source" alt="@Model.Alt" />
+
+		@if (!string.IsNullOrEmpty(Model.Alt))
+		{
+			<p class="image-alt-holder">@Model.Alt</p>
+		}
+	</div>
+</div>

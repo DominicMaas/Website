@@ -49,7 +49,7 @@ services.AddWebOptimizer(pipeline =>
     pipeline.MinifyJsFiles();
 
     pipeline.AddCssBundle("/css/bundle.min.css", "dist/purecss/*.css", "css/site.css");
-    pipeline.AddJavaScriptBundle("/js/bundle.min.js", "js/htmx.min.js");
+    pipeline.AddJavaScriptBundle("/js/bundle.min.js", "dist/*.js");
 });
 
 // Services

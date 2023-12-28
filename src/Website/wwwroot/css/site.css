@@ -560,6 +560,27 @@ footer {
         filter: brightness(0.8);
     }
 
+.image-modal {
+    border-radius: 12px;
+    border: 1px solid var(--color-card-border);
+    box-shadow: var(--color-card-border) 0px 8px 14px 12px;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.image-alt-holder {
+    position: absolute;
+    bottom:1em;
+    left: 1em;
+    background: rgba(0,0,0,0.6);
+    border-radius: 4px;
+    padding: 0.1em 0.4em;
+    color: #FFF;
+    margin:0;
+    font-size: 0.8em;
+}
+
 .pure-g > div {
     box-sizing: border-box;
 }
@@ -872,5 +893,95 @@ input {
     .stream-main {
         float: none;
         width: auto;
+    }
+}
+
+/* MODALs */
+
+#modal {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0,0,0,0.75);
+    backdrop-filter: blur(12px) grayscale(100%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation-name: fadeIn;
+    animation-duration: 150ms;
+    animation-timing-function: ease;
+}
+
+    #modal > .modal-underlay {
+        position: absolute;
+        z-index: -1;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+
+    #modal > .modal-content {
+        margin-top: 10vh;
+        width: 80%;
+        max-width: 600px;
+        animation-name: zoomIn;
+        animation-duration: 150ms;
+        animation-timing-function: ease;
+        position: relative;
+    }
+
+    #modal.closing {
+        animation-name: fadeOut;
+        animation-duration: 150ms;
+        animation-timing-function: ease;
+    }
+
+        #modal.closing > .modal-content {
+            animation-name: zoomOut;
+            animation-duration: 150ms;
+            animation-timing-function: ease;
+        }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.9);
     }
 }

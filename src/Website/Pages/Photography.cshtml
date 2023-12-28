@@ -16,7 +16,7 @@
         <div class="gallery">
             @foreach (var photo in group.Photos)
             {
-                <img class="image pure-img" src="@photo.ImagePath" alt="@photo.Meta" />
+                <w-image src="@photo.ImagePath" alt="@photo.Meta" />
             }
         </div>
     </section>
