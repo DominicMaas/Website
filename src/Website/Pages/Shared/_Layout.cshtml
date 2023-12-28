@@ -22,16 +22,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <!-- Custom Styles -->
-    <environment include="Development">
-        <link rel="stylesheet" href="~/dist/purecss/pure-min.css" />
-        <link rel="stylesheet" href="~/dist/purecss/grids-responsive-min.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-
-    <environment include="Production">
-        <link rel="stylesheet" href="~/css/site.min.css" />
-    </environment>
+    <link rel="stylesheet" href="~/css/bundle.min.css" />
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
@@ -111,7 +102,7 @@
         </footer>
     </div>
 
-    <script src="~/js/htmx.min.js"></script>
+    <script src="~/js/bundle.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

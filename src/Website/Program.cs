@@ -39,7 +39,18 @@ if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))
 services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite(config.GetConnectionString("WebsiteDatabase")));
 
+// Allows us to use controllers alongside razor pages
 services.AddMvc();
+
+// Bundle and minify our JS and CSS
+services.AddWebOptimizer(pipeline =>
+{
+    pipeline.MinifyCssFiles();
+    pipeline.MinifyJsFiles();
+
+    pipeline.AddCssBundle("/css/bundle.min.css", "dist/purecss/*.css", "css/site.css");
+    pipeline.AddJavaScriptBundle("/js/bundle.min.js", "js/htmx.min.js");
+});
 
 // Services
 services.AddSingleton<SoundByteAuthenticationService>();
@@ -82,6 +93,8 @@ else
     app.UseDeveloperExceptionPage();
 }
 
+app.UseWebOptimizer();
+
 app.UseStatusCodePagesWithReExecute("/error/{0}");
 
 app.UseHttpsRedirection();
@@ -92,7 +105,6 @@ app.UseRouting();
 app.MapRazorPages();
 
 app.MapControllers();
-
 
 // Run our migrations on start up
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
