@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Website.Models.Database.Gallery>
+
+
+@{
+    ViewData["Title"] = "Photography";
+}
+
+<h1>Photography</h1>
+
+@foreach (var item in Model)
+{
+    <section>
+        <h3>@item.Title</h3>
+        <p>@item.Description</p>
+
+        <div class="gallery">
+            @foreach (var image in item.Images)
+            {
+                <w-image src="@image.R2Url" alt="@image.Description" />
+            }
+        </div>
+
+        <p>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </p>
+    </section>
+}

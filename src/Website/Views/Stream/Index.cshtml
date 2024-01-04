@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Website.Models.Database.StreamPost>
+
+@{
+    ViewData["Title"] = "Stream";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    This page contains quick thoughts and notes as I write them. Think of this as an alternative to a micro-blogging platform.
+    <br />
+    You can find an RSS Feed <a href="https://dominicmaas.co.nz/feed/stream">here</a>.
+</p>
+
+@foreach (var stream in Model)
+{
+    <div class="stream">
+        <div class="stream-meta">
+            <p class="stream-date">@stream.Posted.ToLocalTime().ToString("dd")<span>th</span> @stream.Posted.ToLocalTime().ToString("MMMM yyyy")</p>
+            <p class="stream-time">@stream.Posted.ToLocalTime().ToString("hh:mm")<span>@stream.Posted.ToLocalTime().ToString("tt")</span> </p>
+
+        </div>
+        <div class="stream-main">
+            <h3 class="stream-title"><a asp-action="Details" asp-route-id="@stream.Id">@stream.Title</a></h3>
+            <p>
+                @stream.Content
+
+                <br /><br /><a asp-action="Edit" asp-route-id="@stream.Id">edit</a> / <a asp-action="Delete" asp-route-id="@stream.Id">delete</a>
+
+                @if (User.Identity?.IsAuthenticated ?? false)
+                {
+
+                }
+            </p>
+        </div>
+    </div>
+}

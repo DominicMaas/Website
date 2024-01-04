@@ -1,9 +1,11 @@
 ﻿using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using idunno.Authentication.Basic;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using Website.Common;
 using Website.Services;
 
@@ -39,6 +41,12 @@ if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))
 services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite(config.GetConnectionString("WebsiteDatabase")));
 
+// Razor pages (most pages on this site)
+services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizePage("/Admin");
+});
+
 // Allows us to use controllers alongside razor pages
 services.AddMvc();
 
@@ -52,8 +60,37 @@ services.AddWebOptimizer(pipeline =>
     pipeline.AddJavaScriptBundle("/js/bundle.min.js", "dist/*.js");
 });
 
+// Basic Authentication
+services
+    .AddAuthentication(BasicAuthenticationDefaults.AuthenticationScheme)
+    .AddBasic(options =>
+    {
+        options.Realm = "Basic Authentication";
+        options.Events = new BasicAuthenticationEvents
+        {
+            OnValidateCredentials = context =>
+            {
+                // TODO: Real validation
+                if (context.Username != context.Password) return Task.CompletedTask;
+
+                var claims = new[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier, context.Username, ClaimValueTypes.String, context.Options.ClaimsIssuer),
+                    new Claim(ClaimTypes.Name, context.Username, ClaimValueTypes.String, context.Options.ClaimsIssuer)
+                };
+
+                context.Principal = new ClaimsPrincipal(new ClaimsIdentity(claims, context.Scheme.Name));
+                context.Success();
+
+                return Task.CompletedTask;
+            },
+        };
+    });
+services.AddAuthorization();
+
 // Services
 services.AddSingleton<SoundByteAuthenticationService>();
+services.AddSingleton<R2>();
 
 var mvcBuilder = services.AddRazorPages(options =>
     options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer())));
@@ -101,6 +138,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapRazorPages();
 

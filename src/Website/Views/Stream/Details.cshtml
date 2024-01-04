@@ -1,0 +1,17 @@
+﻿@model Website.Models.Database.StreamPost
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="stream" style="border:0;">
+    <div class="stream-meta">
+        <p class="stream-date">@Model.Posted.ToLocalTime().ToString("dd")<span>th</span> @Model.Posted.ToLocalTime().ToString("MMMM yyyy")</p>
+        <p class="stream-time">@Model.Posted.ToLocalTime().ToString("hh:mm")<span>@Model.Posted.ToLocalTime().ToString("tt")</span> </p>
+
+    </div>
+    <div class="stream-main">
+        <h3 class="stream-title">@Model.Title</h3>
+        <p>@Model.Content</p>
+    </div>
+</div>
