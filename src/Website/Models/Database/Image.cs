@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Website.Models.Database;
@@ -14,13 +15,15 @@ public class Image
 
     public DateTime DateUploaded { get; set; }
 
+    [DisplayName("Date Taken")]
     public DateTime? DateTaken { get; set; }
-
-    public string R2Url { get; set; } = default!;
 
     public string? Description { get; set; }
 
     public List<StreamPost> Streams { get; set; } = [];
 
     public List<Gallery> Galleries { get; set; } = [];
+
+    [NotMapped]
+    public string Url => $"https://images.dominicmaas.co.nz/i/{Id}.jpg";
 }

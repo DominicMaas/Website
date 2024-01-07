@@ -18,7 +18,7 @@ public class R2
         });
     }
 
-    public async Task UploadImageAsync(Stream image, string imageName, string type)
+    public async Task UploadImageAsync(Stream image, string imageName, string type, CancellationToken cancellationToken = default)
     {
         var request = new PutObjectRequest
         {
@@ -29,11 +29,27 @@ public class R2
             DisablePayloadSigning = true
         };
 
-        var response = await _client.PutObjectAsync(request);
+        var response = await _client.PutObjectAsync(request, cancellationToken);
 
         if (response.HttpStatusCode != System.Net.HttpStatusCode.OK && response.HttpStatusCode != System.Net.HttpStatusCode.Accepted)
         {
             throw new Exception("Upload to Cloudflare R2 failed");
+        }
+    }
+
+    public async Task DeleteImageAsync(string imageName, CancellationToken cancellationToken = default)
+    {
+        var request = new DeleteObjectRequest
+        {
+            BucketName = "dominicmaas-images",
+            Key = imageName
+        };
+
+        var response = await _client.DeleteObjectAsync(request, cancellationToken);
+
+        if (response.HttpStatusCode != System.Net.HttpStatusCode.NoContent)
+        {
+            throw new Exception("Delete from Cloudflare R2 failed");
         }
     }
 }

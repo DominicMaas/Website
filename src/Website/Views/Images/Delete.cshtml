@@ -24,19 +24,13 @@
             @Html.DisplayFor(model => model.DateTaken)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.R2Url)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.R2Url)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

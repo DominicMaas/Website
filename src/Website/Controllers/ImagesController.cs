@@ -1,9 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Website.Common;
-using Website.Models.Database;
 using Website.Services;
+using static Website.Controllers.ImagesController;
+using Image = Website.Models.Database.Image;
 
 namespace Website.Controllers;
 
@@ -13,11 +19,13 @@ public class ImagesController : Controller
 {
     private readonly DatabaseContext _context;
     private readonly R2 _r2;
+    private readonly ILogger<ImagesController> _logger;
 
-    public ImagesController(DatabaseContext context, R2 r2)
+    public ImagesController(DatabaseContext context, R2 r2, ILogger<ImagesController> logger)
     {
         _context = context;
         _r2 = r2;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -34,18 +42,78 @@ public class ImagesController : Controller
 
     [HttpPost("upload")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Upload([Bind("DateTaken,Description")] Image image)
+    public async Task<IActionResult> Upload([Bind("DateTaken,Description,ImageFile")] ImageUpload imageUpload, CancellationToken cancellationToken)
     {
-        if (ModelState.IsValid)
-        {
-            image.Id = Guid.NewGuid();
-            image.DateUploaded = DateTime.UtcNow;
+        // Run basic validation
+        if (!ModelState.IsValid) return View(imageUpload);
 
-            _context.Add(image);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+        // Ensure we have an image file
+        if (imageUpload.ImageFile == null)
+        {
+            ModelState.AddModelError(nameof(imageUpload.ImageFile), "An image file is required");
+            return View(imageUpload);
         }
-        return View(image);
+
+        // TODO: Ensure image was actually uploaded
+
+        using var imageStream = new MemoryStream();
+
+        try
+        {
+            // Start processing the uploaded image. We want to strip meta data, and convert to a jpeg. we also
+            // want to create a thumbnail as well.
+            using var image = SixLabors.ImageSharp.Image.Load(imageUpload.ImageFile.OpenReadStream());
+
+            // Resize to an appropriate max size of 1000px
+            image.Mutate(x => x.Resize(new ResizeOptions { Mode = ResizeMode.Max, Size = new Size(1000) }));
+
+            image.Metadata.ExifProfile = null;
+            image.Metadata.XmpProfile = null;
+
+            // Save the image to a memory stream
+            await image.SaveAsJpegAsync(imageStream, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 80 }, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while processing an image");
+
+            ModelState.AddModelError(nameof(imageUpload.ImageFile), "An error occurred while processing this image. Please try again later.");
+            return View(imageUpload);
+        }
+
+        // Handle cancel during processing
+        if (cancellationToken.IsCancellationRequested)
+        {
+            ModelState.AddModelError(string.Empty, "The upload was canceled!");
+            return View(imageUpload);
+        }
+
+        imageUpload.Id = Guid.NewGuid();
+        imageUpload.DateUploaded = DateTime.UtcNow;
+
+        try
+        {
+            // Attempt to upload the image
+            await _r2.UploadImageAsync(imageStream, $"i/{imageUpload.Id}.jpg", "image/jpeg", cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while uploading an image to R2");
+
+            ModelState.AddModelError(nameof(imageUpload.ImageFile), "An error occurred while uploading this image to R2. Please try again later.");
+            return View(imageUpload);
+        }
+
+        // Handle cancel during R2 upload
+        if (cancellationToken.IsCancellationRequested)
+        {
+            ModelState.AddModelError(string.Empty, "The upload was canceled!");
+            return View(imageUpload);
+        }
+
+        _context.Add(imageUpload);
+        await _context.SaveChangesAsync(cancellationToken);
+        return RedirectToAction(nameof(Index));
     }
 
     [HttpGet("edit/{id}")]
@@ -116,20 +184,42 @@ public class ImagesController : Controller
 
     [HttpPost("delete/{id}"), ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(Guid id)
+    public async Task<IActionResult> DeleteConfirmed(Guid id, CancellationToken cancellationToken)
     {
         var image = await _context.Images.FindAsync(id);
-        if (image != null)
+        if (image == null)
         {
-            _context.Images.Remove(image);
+            return NotFound();
         }
 
-        await _context.SaveChangesAsync();
+        // TODO: Check if used in streams or gallery
+
+        try
+        {
+            await _r2.DeleteImageAsync($"i/{image.Id}.jpg", cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while deleting an image from R2");
+            return NotFound();
+        }
+
+        _context.Images.Remove(image);
+        await _context.SaveChangesAsync(cancellationToken);
+
         return RedirectToAction(nameof(Index));
     }
 
     private bool ImageExists(Guid id)
     {
         return _context.Images.Any(e => e.Id == id);
+    }
+
+    public class ImageUpload : Image
+    {
+        [NotMapped]
+        [DisplayName("Image")]
+        [Required(ErrorMessage = "An image file is required")]
+        public IFormFile? ImageFile { get; set; }
     }
 }
