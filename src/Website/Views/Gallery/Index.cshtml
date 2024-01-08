@@ -20,9 +20,21 @@
             }
         </div>
 
-        <p>
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </p>
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <p>
+                <br />
+                <a asp-action="Edit" asp-route-id="@item.Id">edit</a> /
+                <a asp-action="Delete"
+                   asp-route-id="@item.Id"
+                   hx-post
+                   hx-controller="Gallery"
+                   hx-action="Delete"
+                   hx-route-id="@item.Id"
+                   hx-confirm="Are you sure you wish to delete this gallery?">
+                    delete
+                </a>
+            </p>
+        }
     </section>
 }

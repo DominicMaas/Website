@@ -3,6 +3,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Htmx.TagHelpers;
 using idunno.Authentication.Basic;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
@@ -63,29 +64,22 @@ services.AddWebOptimizer(pipeline =>
 
 // Basic Authentication
 services
-    .AddAuthentication(BasicAuthenticationDefaults.AuthenticationScheme)
-    .AddBasic(options =>
+    .AddAuthentication(options =>
     {
-        options.Realm = "Basic Authentication";
-        options.Events = new BasicAuthenticationEvents
-        {
-            OnValidateCredentials = context =>
-            {
-                // TODO: Real validation
-                if (context.Username != context.Password) return Task.CompletedTask;
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    })
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/signin";
+        options.LogoutPath = "/signout";
+    })
+    .AddMicrosoftAccount(options =>
+    {
+        options.AuthorizationEndpoint = "https://login.microsoftonline.com/a9835ab3-a9f8-4566-8dbe-70562eb068e1/oauth2/v2.0/authorize";
+        options.TokenEndpoint = "https://login.microsoftonline.com/a9835ab3-a9f8-4566-8dbe-70562eb068e1/oauth2/v2.0/token";
 
-                var claims = new[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, context.Username, ClaimValueTypes.String, context.Options.ClaimsIssuer),
-                    new Claim(ClaimTypes.Name, context.Username, ClaimValueTypes.String, context.Options.ClaimsIssuer)
-                };
-
-                context.Principal = new ClaimsPrincipal(new ClaimsIdentity(claims, context.Scheme.Name));
-                context.Success();
-
-                return Task.CompletedTask;
-            },
-        };
+        options.ClientId = config["Authentication:Microsoft:ClientId"] ?? string.Empty;
+        options.ClientSecret = config["Authentication:Microsoft:ClientSecret"] ?? string.Empty;
     });
 services.AddAuthorization();
 

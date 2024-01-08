@@ -26,23 +26,21 @@
                 @stream.Content
             </p>
 
-            <p>
-                <br />
-                <a asp-action="Edit" asp-route-id="@stream.Id">edit</a> /
-                <a href="#"
-                   hx-post
-                   hx-controller="Stream"
-                   hx-action="Delete"
-                   hx-route-id="@stream.Id"
-                   hx-confirm="Are you sure you wish to delete this stream?">
-                    delete
-                </a>
-
-                @if (User.Identity?.IsAuthenticated ?? false)
-                {
-
-                }
-            </p>
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <p>
+                    <br />
+                    <a asp-action="Edit" asp-route-id="@stream.Id">edit</a> /
+                    <a href="#"
+                       hx-post
+                       hx-controller="Stream"
+                       hx-action="Delete"
+                       hx-route-id="@stream.Id"
+                       hx-confirm="Are you sure you wish to delete this stream?">
+                        delete
+                    </a>
+                </p>
+            }
         </div>
     </div>
 }
