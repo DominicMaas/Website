@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Website.Common;
 using Website.Services;
-using static Website.Controllers.ImagesController;
+using Htmx;
 using Image = Website.Models.Database.Image;
 
 namespace Website.Controllers;
@@ -164,29 +164,16 @@ public class ImagesController : Controller
         return View(image);
     }
 
-    [HttpGet("delete/{id}")]
-    public async Task<IActionResult> Delete(Guid? id)
+    [HttpPost("delete/{id}")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(Guid? id, CancellationToken cancellationToken)
     {
         if (id == null)
         {
             return NotFound();
         }
 
-        var image = await _context.Images
-            .FirstOrDefaultAsync(m => m.Id == id);
-        if (image == null)
-        {
-            return NotFound();
-        }
-
-        return View(image);
-    }
-
-    [HttpPost("delete/{id}"), ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(Guid id, CancellationToken cancellationToken)
-    {
-        var image = await _context.Images.FindAsync(id);
+        var image = await _context.Images.FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
         if (image == null)
         {
             return NotFound();
@@ -207,7 +194,12 @@ public class ImagesController : Controller
         _context.Images.Remove(image);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return RedirectToAction(nameof(Index));
+        Response.Htmx(headers =>
+        {
+            headers.Refresh();
+        });
+
+        return Ok();
     }
 
     private bool ImageExists(Guid id)

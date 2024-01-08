@@ -10,11 +10,12 @@
     }
     else
     {
-    <meta name="description" content="@ViewData["Description"]">
+        <meta name="description" content="@ViewData["Description"]">
     }
     <meta name="theme-color" content="#EFEFEF" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#121212">
+    <meta name="htmx-config" includeAspNetAntiforgeryToken="true" />
     @await RenderSectionAsync("Meta", required: false)
 
     <title>@ViewData["Title"]</title>
@@ -23,9 +24,10 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="~/css/bundle.min.css" />
-    <script src="~/js/bundle.min.js"></script>
 
     @await RenderSectionAsync("Styles", required: false)
+
+    <script src="~/js/bundle.min.js" defer></script>
 </head>
 <body>
     <div class="container" hx-boost="true" hx-indicator="#loading-indicator">
@@ -119,5 +121,9 @@
     </div>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        @Html.Raw(HtmxSnippets.AntiforgeryJavaScript)
+    </script>
 </body>
 </html>

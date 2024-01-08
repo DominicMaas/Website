@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Htmx;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Website.Common;
@@ -113,7 +114,8 @@ namespace Website.Controllers
         }
 
         [Authorize]
-        [HttpGet("admin/stream/delete")]
+        [HttpPost("admin/stream/delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -121,29 +123,22 @@ namespace Website.Controllers
                 return NotFound();
             }
 
-            var streamPost = await _context.Streams
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var streamPost = await _context.Streams.FirstOrDefaultAsync(m => m.Id == id);
             if (streamPost == null)
             {
                 return NotFound();
             }
 
-            return View(streamPost);
-        }
 
-        [Authorize]
-        [HttpPost("admin/stream/delete"), ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            var streamPost = await _context.Streams.FindAsync(id);
-            if (streamPost != null)
-            {
-                _context.Streams.Remove(streamPost);
-            }
-
+            _context.Streams.Remove(streamPost);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            Response.Htmx(headers =>
+            {
+                headers.Refresh();
+            });
+
+            return Ok();
         }
 
         private bool StreamPostExists(Guid id)

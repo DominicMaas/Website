@@ -13,8 +13,15 @@
     <w-image src="@item.Url" alt="@item.Description" />
     <br />
     <p>
-        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> /
-        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        <a asp-action="edit" asp-route-id="@item.Id">Edit</a> /
+        <a href="#"
+           hx-post
+           hx-controller="Images"
+           hx-action="Delete"
+           hx-route-id="@item.Id"
+           hx-confirm="Are you sure you wish to delete this image?">
+           delete
+       </a>
     </p>
     <hr />
 }

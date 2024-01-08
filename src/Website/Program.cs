@@ -1,6 +1,7 @@
 ﻿using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Htmx.TagHelpers;
 using idunno.Authentication.Basic;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -141,6 +142,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHtmxAntiforgeryScript();
 
 app.MapRazorPages();
 
