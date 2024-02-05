@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Website.Common;
+using Website.Models.Database;
 
 namespace Website.Pages;
 
@@ -38,6 +39,14 @@ public class FwModel : PageModel
             IsSuccess = false;
             return;
         }
+
+        link.Hits.Add(new ShortLinkHit
+        {
+            Id = Guid.NewGuid(),
+            Created = DateTime.UtcNow,
+        });
+
+        await _databaseContext.SaveChangesAsync();
 
         RequestedUri = link.RedirectLink;
         IsSuccess = true;

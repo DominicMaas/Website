@@ -2,12 +2,10 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Htmx.TagHelpers;
-using idunno.Authentication.Basic;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 using Website.Common;
 using Website.Services;
 
@@ -81,6 +79,7 @@ services
         options.ClientId = config["Authentication:Microsoft:ClientId"] ?? string.Empty;
         options.ClientSecret = config["Authentication:Microsoft:ClientSecret"] ?? string.Empty;
     });
+
 services.AddAuthorization();
 
 // Services
