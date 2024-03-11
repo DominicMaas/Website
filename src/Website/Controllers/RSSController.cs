@@ -17,16 +17,19 @@ public class RSSController : Controller
     }
 
     [ResponseCache(Duration = 1200)]
-    [HttpGet("feed/stream.xml")]
+    [HttpGet("/feed/stream.xml")]
     public async Task<IActionResult> StreamRSSAsync()
     {
-        var feed = BuildBasicFeed("Stream", "Quick thoughts and ideas", new("https://dominicmaas.co.nz/feed/stream.xml"));
+        var latestStream = await _context.Streams.OrderByDescending(x => x.Posted).FirstOrDefaultAsync();
+
+        var feed = BuildBasicFeed("Stream", "Quick thoughts and ideas", new("https://dominicmaas.co.nz/feed/stream.xml"), latestStream?.Posted ?? default);
         var items = new List<SyndicationItem>();
+
 
         var streams = await _context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync();
         foreach (var stream in streams)
         {
-            items.Add(new SyndicationItem(stream.Title, stream.Content, new Uri($"https://dominicmaas.co.nz/stream/{stream.Id}"), stream.Id.ToString(), DateTimeOffset.Now));
+            items.Add(new SyndicationItem(stream.Title, stream.Content, new Uri($"https://dominicmaas.co.nz/stream/{stream.Id}"), stream.Id.ToString(), stream.Posted));
         }
 
         feed.Items = items;
@@ -34,24 +37,25 @@ public class RSSController : Controller
         return BuildSyndicationFeed(feed);
     }
 
-    [ResponseCache(Duration = 1200)]
-    [HttpGet("feed/blog.xml")]
-    public IActionResult BlogRSS()
-    {
-        var feed = BuildBasicFeed("Blog", "Long form posts or structured content", new("https://dominicmaas.co.nz/feed/blog.xml"));
+    //[ResponseCache(Duration = 1200)]
+    //[HttpGet("/feed/blog.xml")]
+    //public IActionResult BlogRSS()
+    //{
+    //    var feed = BuildBasicFeed("Blog", "Long form posts or structured content", new("https://dominicmaas.co.nz/feed/blog.xml"));
 
-        var testStream = new SyndicationItem("This is a test blog", "This is the content", new Uri("https://dominicmaas.co.nz/blog/123"), "123", DateTimeOffset.Now);
-        feed.Items = new[] { testStream };
+    //    var testStream = new SyndicationItem("This is a test blog", "This is the content", new Uri("https://dominicmaas.co.nz/blog/123"), "123", DateTimeOffset.Now);
+    //    feed.Items = new[] { testStream };
 
-        return BuildSyndicationFeed(feed);
-    }
+    //    return BuildSyndicationFeed(feed);
+    //}
 
-    private static SyndicationFeed BuildBasicFeed(string name, string description, Uri url)
+    private static SyndicationFeed BuildBasicFeed(string name, string description, Uri url, DateTime lastUpdated)
     {
         var feed = new SyndicationFeed($"Dominic Maas - {name}", description, url);
         feed.Authors.Add(new SyndicationPerson("contact@dominicmaas.co.nz", "Dominic Maas", "https://dominicmaas.co.nz"));
         feed.Copyright = new TextSyndicationContent($"{DateTime.Now.Year} Dominic Maas");
         feed.ImageUrl = new Uri("https://dominicmaas.co.nz/favicon.ico");
+        feed.LastUpdatedTime = lastUpdated;
 
         return feed;
     }

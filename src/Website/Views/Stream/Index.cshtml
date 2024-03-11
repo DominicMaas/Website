@@ -9,7 +9,7 @@
 <p>
     This page contains quick thoughts and notes as I write them. Think of this as an alternative to a micro-blogging platform.
     <br />
-    You can find an RSS Feed <a href="https://dominicmaas.co.nz/feed/stream">here</a>.
+    You can find an RSS Feed <a href="/feed/stream.xml">here</a>.
 </p>
 
 @foreach (var stream in Model)
@@ -22,9 +22,7 @@
         </div>
         <div class="stream-main">
             <h3 class="stream-title"><a asp-action="Details" asp-route-id="@stream.Id">@stream.Title</a></h3>
-            <p>
-                @stream.Content
-            </p>
+            <p>@stream.Content</p>
 
             @if (User.Identity?.IsAuthenticated ?? false)
             {
