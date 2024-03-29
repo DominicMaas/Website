@@ -3,6 +3,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Htmx.TagHelpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,10 @@ if (!string.IsNullOrEmpty(config["AzureKeyVault:Endpoint"]))
         Console.WriteLine(ex.Message);
     }
 }
+
+// Data Protection
+services.AddDataProtection()
+    .PersistKeysToAzureBlobStorage(config["Storage:ConnectionString"], config["Storage:DataProtection:Container"], config["Storage:DataProtection:Blob"]);
 
 // Application Insights
 if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))
@@ -109,10 +114,15 @@ app.Use(async (context, next) =>
     await next();
 });
 
-app.UseForwardedHeaders(new ForwardedHeadersOptions
+var forwardOptions = new ForwardedHeadersOptions
 {
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-});
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+};
+
+forwardOptions.KnownNetworks.Clear();
+forwardOptions.KnownProxies.Clear();
+
+app.UseForwardedHeaders(forwardOptions);
 
 if (!environment.IsDevelopment())
 {
