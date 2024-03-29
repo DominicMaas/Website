@@ -1,6 +1,8 @@
 ﻿using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Htmx.TagHelpers;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +41,12 @@ if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))
 services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite(config.GetConnectionString("WebsiteDatabase")));
 
+// Razor pages (most pages on this site)
+services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizePage("/Admin");
+});
+
 // Allows us to use controllers alongside razor pages
 services.AddMvc();
 
@@ -52,8 +60,31 @@ services.AddWebOptimizer(pipeline =>
     pipeline.AddJavaScriptBundle("/js/bundle.min.js", "dist/*.js");
 });
 
+// Basic Authentication
+services
+    .AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    })
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/signin";
+        options.LogoutPath = "/signout";
+    })
+    .AddMicrosoftAccount(options =>
+    {
+        options.AuthorizationEndpoint = "https://login.microsoftonline.com/a9835ab3-a9f8-4566-8dbe-70562eb068e1/oauth2/v2.0/authorize";
+        options.TokenEndpoint = "https://login.microsoftonline.com/a9835ab3-a9f8-4566-8dbe-70562eb068e1/oauth2/v2.0/token";
+
+        options.ClientId = config["Authentication:Microsoft:ClientId"] ?? string.Empty;
+        options.ClientSecret = config["Authentication:Microsoft:ClientSecret"] ?? string.Empty;
+    });
+
+services.AddAuthorization();
+
 // Services
 services.AddSingleton<SoundByteAuthenticationService>();
+services.AddSingleton<R2>();
 
 var mvcBuilder = services.AddRazorPages(options =>
     options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer())));
@@ -70,7 +101,7 @@ var app = builder.Build();
 app.Use(async (context, next) =>
 {
     // Security Headers
-    context.Response.Headers.Append("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' ajax.cloudflare.com static.cloudflareinsights.com gist.github.com; style-src 'self' 'unsafe-inline' github.githubassets.com; frame-src 'self' www.youtube-nocookie.com; img-src 'self' i.ytimg.com;");
+    context.Response.Headers.Append("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' ajax.cloudflare.com static.cloudflareinsights.com gist.github.com; style-src 'self' 'unsafe-inline' github.githubassets.com; frame-src 'self' www.youtube-nocookie.com; img-src 'self' i.ytimg.com images.dominicmaas.co.nz;");
     context.Response.Headers.Append("X-Frame-Options", "DENY");
     context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
     context.Response.Headers.Append("Referrer-Policy", "strict-origin-when-cross-origin");
@@ -101,6 +132,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapHtmxAntiforgeryScript();
 
 app.MapRazorPages();
 

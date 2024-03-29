@@ -1,0 +1,31 @@
+﻿@model Website.Controllers.ImagesController.ImageUpload
+
+@{
+    ViewData["Title"] = "Upload Image";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form class="pure-form pure-form-aligned" enctype="multipart/form-data" asp-action="Create">
+    <fieldset>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="pure-control-group">
+            <label asp-for="ImageFile"></label>
+            <input asp-for="ImageFile" type="file" accept=".png, .jpg, .jpeg" />
+            <span asp-validation-for="ImageFile" class="pure-form-message-inline"></span>
+        </div>
+        <div class="pure-control-group">
+            <label asp-for="DateTaken"></label>
+            <input asp-for="DateTaken" />
+            <span asp-validation-for="DateTaken" class="pure-form-message-inline"></span>
+        </div>
+        <div class="pure-control-group">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" />
+            <span asp-validation-for="Description" class="pure-form-message-inline"></span>
+        </div>
+        <div class="pure-controls">
+            <input type="submit" value="Upload" class="pure-button pure-button-primary" />
+        </div>
+    </fieldset>
+</form>

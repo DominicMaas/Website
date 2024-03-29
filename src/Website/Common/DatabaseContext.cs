@@ -7,6 +7,12 @@ public class DatabaseContext : DbContext
 {
     public DbSet<ShortLink> ShortLinks { get; set; }
 
+    public DbSet<ShortLinkHit> ShortLinkHits { get; set; }
+
+    public DbSet<StreamPost> Streams { get; set; }
+
+    public DbSet<Image> Images { get; set; }
+
     public DatabaseContext()
     { }
 

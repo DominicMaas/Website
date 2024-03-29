@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Website.Models.Database.StreamPost>
+
+@{
+    ViewData["Title"] = "Stream";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    This page contains quick thoughts and notes as I write them. Think of this as an alternative to a micro-blogging platform.
+    <br />
+    You can find an RSS Feed <a href="/feed/stream.xml">here</a>.
+</p>
+
+@foreach (var stream in Model)
+{
+    <div class="stream">
+        <div class="stream-meta">
+            <p class="stream-date">@stream.Posted.ToLocalTime().ToString("dd")<span>th</span> @stream.Posted.ToLocalTime().ToString("MMMM yyyy")</p>
+            <p class="stream-time">@stream.Posted.ToLocalTime().ToString("hh:mm")<span>@stream.Posted.ToLocalTime().ToString("tt")</span> </p>
+
+        </div>
+        <div class="stream-main">
+            <h3 class="stream-title"><a asp-action="Details" asp-route-id="@stream.Id">@stream.Title</a></h3>
+            <p>@stream.Content</p>
+
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <p>
+                    <br />
+                    <a asp-action="Edit" asp-route-id="@stream.Id">edit</a> /
+                    <a href="#"
+                       hx-post
+                       hx-controller="Stream"
+                       hx-action="Delete"
+                       hx-route-id="@stream.Id"
+                       hx-confirm="Are you sure you wish to delete this stream?">
+                        delete
+                    </a>
+                </p>
+            }
+        </div>
+    </div>
+}

@@ -1,0 +1,21 @@
+﻿@page
+@model Website.Pages.AdminModel
+@{
+    ViewData["Title"] = "Administration";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Welcome back @User.Identity?.Name!</p>
+
+<h4>Streams</h4>
+
+<p><a href="/admin/stream/create">New Stream</a></p>
+
+
+<h4>Images</h4>
+
+<p>
+    <a asp-controller="Images" asp-action="Upload">Upload Image</a>
+    <br />
+    <a asp-controller="Images" asp-action="Index">Manage Images</a>
+</p>

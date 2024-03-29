@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Website.Models.Database.Image>
+
+@{
+    ViewData["Title"] = "Image Database";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>A collection of all images uploaded to this site.</p>
+
+@foreach (var item in Model) {
+
+    <w-image src="@item.Url" alt="@item.Description" />
+    <br />
+    <p>
+        <a asp-action="edit" asp-route-id="@item.Id">edit</a> /
+        <a href="#"
+           hx-post
+           hx-controller="Images"
+           hx-action="Delete"
+           hx-route-id="@item.Id"
+           hx-confirm="Are you sure you wish to delete this image?">
+           delete
+       </a>
+    </p>
+    <hr />
+}
