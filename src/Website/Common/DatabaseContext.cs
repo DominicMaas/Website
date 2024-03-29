@@ -13,8 +13,6 @@ public class DatabaseContext : DbContext
 
     public DbSet<Image> Images { get; set; }
 
-    public DbSet<Gallery> Galleries { get; set; }
-
     public DatabaseContext()
     { }
 

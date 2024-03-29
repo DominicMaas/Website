@@ -11,29 +11,14 @@ using Website.Common;
 namespace Website.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240103205652_AddImages")]
-    partial class AddImages
+    [Migration("20240329020617_Dynamic")]
+    partial class Dynamic
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
-
-            modelBuilder.Entity("GalleryImage", b =>
-                {
-                    b.Property<Guid>("GalleriesId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("ImagesId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("GalleriesId", "ImagesId");
-
-                    b.HasIndex("ImagesId");
-
-                    b.ToTable("GalleryImage");
-                });
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
             modelBuilder.Entity("ImageStreamPost", b =>
                 {
@@ -50,25 +35,6 @@ namespace Website.Migrations
                     b.ToTable("ImageStreamPost");
                 });
 
-            modelBuilder.Entity("Website.Models.Database.Gallery", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Galleries");
-                });
-
             modelBuilder.Entity("Website.Models.Database.Image", b =>
                 {
                     b.Property<Guid>("Id")
@@ -82,10 +48,6 @@ namespace Website.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("R2Url")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -104,6 +66,25 @@ namespace Website.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ShortLinks");
+                });
+
+            modelBuilder.Entity("Website.Models.Database.ShortLinkHit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ShortLinkId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShortLinkId");
+
+                    b.ToTable("ShortLinkHits");
                 });
 
             modelBuilder.Entity("Website.Models.Database.StreamPost", b =>
@@ -128,21 +109,6 @@ namespace Website.Migrations
                     b.ToTable("Streams");
                 });
 
-            modelBuilder.Entity("GalleryImage", b =>
-                {
-                    b.HasOne("Website.Models.Database.Gallery", null)
-                        .WithMany()
-                        .HasForeignKey("GalleriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Website.Models.Database.Image", null)
-                        .WithMany()
-                        .HasForeignKey("ImagesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ImageStreamPost", b =>
                 {
                     b.HasOne("Website.Models.Database.Image", null)
@@ -156,6 +122,20 @@ namespace Website.Migrations
                         .HasForeignKey("StreamsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Website.Models.Database.ShortLinkHit", b =>
+                {
+                    b.HasOne("Website.Models.Database.ShortLink", "ShortLink")
+                        .WithMany("Hits")
+                        .HasForeignKey("ShortLinkId");
+
+                    b.Navigation("ShortLink");
+                });
+
+            modelBuilder.Entity("Website.Models.Database.ShortLink", b =>
+                {
+                    b.Navigation("Hits");
                 });
 #pragma warning restore 612, 618
         }

@@ -22,8 +22,6 @@ public class Image
 
     public List<StreamPost> Streams { get; set; } = [];
 
-    public List<Gallery> Galleries { get; set; } = [];
-
     [NotMapped]
     public string Url => $"https://images.dominicmaas.co.nz/i/{Id}.jpg";
 }
