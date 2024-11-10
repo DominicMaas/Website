@@ -19,4 +19,10 @@ public class AuthenticationController : Controller
     {
         return SignOut(new AuthenticationProperties { RedirectUri = "/" }, CookieAuthenticationDefaults.AuthenticationScheme);
     }
+
+    [HttpGet("~/.well-known/microsoft-identity-association")]
+    public IActionResult MicrosoftIdentityAssociation()
+    {
+        return File("~/.well-known/microsoft-identity-association.json", "application/json");
+    }
 }
