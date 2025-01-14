@@ -7,26 +7,19 @@ using Website.Common;
 
 namespace Website.Controllers;
 
-public class RSSController : Controller
+public class RSSController(DatabaseContext context) : Controller
 {
-    private readonly DatabaseContext _context;
-
-    public RSSController(DatabaseContext context)
-    {
-        _context = context;
-    }
-
     [ResponseCache(Duration = 1200)]
     [HttpGet("/feed/stream.xml")]
     public async Task<IActionResult> StreamRSSAsync()
     {
-        var latestStream = await _context.Streams.OrderByDescending(x => x.Posted).FirstOrDefaultAsync();
+        var latestStream = await context.Streams.OrderByDescending(x => x.Posted).FirstOrDefaultAsync();
 
         var feed = BuildBasicFeed("Stream", "Quick thoughts and ideas", new("https://dominicmaas.co.nz/feed/stream.xml"), latestStream?.Posted ?? default);
         var items = new List<SyndicationItem>();
 
 
-        var streams = await _context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync();
+        var streams = await context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync();
         foreach (var stream in streams)
         {
             items.Add(new SyndicationItem(stream.Title, stream.Content, new Uri($"https://dominicmaas.co.nz/stream/{stream.Id}"), stream.Id.ToString(), stream.Posted));

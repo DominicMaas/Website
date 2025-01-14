@@ -40,10 +40,12 @@ public class FwModel : PageModel
             return;
         }
 
-        link.Hits.Add(new ShortLinkHit
+        // Add hit to database
+        _databaseContext.ShortLinkHits.Add(entity: new ShortLinkHit
         {
             Id = Guid.NewGuid(),
             Created = DateTime.UtcNow,
+            ShortLink = link
         });
 
         await _databaseContext.SaveChangesAsync();

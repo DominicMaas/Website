@@ -15,23 +15,12 @@ namespace Website.Controllers;
 
 [Authorize]
 [Route("admin/images")]
-public class ImagesController : Controller
+public class ImagesController(DatabaseContext context, R2 r2, ILogger<ImagesController> logger) : Controller
 {
-    private readonly DatabaseContext _context;
-    private readonly R2 _r2;
-    private readonly ILogger<ImagesController> _logger;
-
-    public ImagesController(DatabaseContext context, R2 r2, ILogger<ImagesController> logger)
-    {
-        _context = context;
-        _r2 = r2;
-        _logger = logger;
-    }
-
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Images.ToListAsync());
+        return View(await context.Images.ToListAsync());
     }
 
     [HttpGet("upload")]
@@ -75,7 +64,7 @@ public class ImagesController : Controller
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while processing an image");
+            logger.LogError(ex, "An error occurred while processing an image");
 
             ModelState.AddModelError(nameof(imageUpload.ImageFile), "An error occurred while processing this image. Please try again later.");
             return View(imageUpload);
@@ -94,11 +83,11 @@ public class ImagesController : Controller
         try
         {
             // Attempt to upload the image
-            await _r2.UploadImageAsync(imageStream, $"i/{imageUpload.Id}.jpg", "image/jpeg", cancellationToken);
+            await r2.UploadImageAsync(imageStream, $"i/{imageUpload.Id}.jpg", "image/jpeg", cancellationToken);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while uploading an image to R2");
+            logger.LogError(ex, "An error occurred while uploading an image to R2");
 
             ModelState.AddModelError(nameof(imageUpload.ImageFile), "An error occurred while uploading this image to R2. Please try again later.");
             return View(imageUpload);
@@ -111,8 +100,8 @@ public class ImagesController : Controller
             return View(imageUpload);
         }
 
-        _context.Add(imageUpload);
-        await _context.SaveChangesAsync(cancellationToken);
+        context.Add(imageUpload);
+        await context.SaveChangesAsync(cancellationToken);
         return RedirectToAction(nameof(Index));
     }
 
@@ -124,7 +113,7 @@ public class ImagesController : Controller
             return NotFound();
         }
 
-        var image = await _context.Images.FindAsync(id);
+        var image = await context.Images.FindAsync(id);
         if (image == null)
         {
             return NotFound();
@@ -145,8 +134,8 @@ public class ImagesController : Controller
         {
             try
             {
-                _context.Update(image);
-                await _context.SaveChangesAsync();
+                context.Update(image);
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -173,7 +162,7 @@ public class ImagesController : Controller
             return NotFound();
         }
 
-        var image = await _context.Images.FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
+        var image = await context.Images.FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
         if (image == null)
         {
             return NotFound();
@@ -183,16 +172,16 @@ public class ImagesController : Controller
 
         try
         {
-            await _r2.DeleteImageAsync($"i/{image.Id}.jpg", cancellationToken);
+            await r2.DeleteImageAsync($"i/{image.Id}.jpg", cancellationToken);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while deleting an image from R2");
+            logger.LogError(ex, "An error occurred while deleting an image from R2");
             return NotFound();
         }
 
-        _context.Images.Remove(image);
-        await _context.SaveChangesAsync(cancellationToken);
+        context.Images.Remove(image);
+        await context.SaveChangesAsync(cancellationToken);
 
         Response.Htmx(headers =>
         {
@@ -204,7 +193,7 @@ public class ImagesController : Controller
 
     private bool ImageExists(Guid id)
     {
-        return _context.Images.Any(e => e.Id == id);
+        return context.Images.Any(e => e.Id == id);
     }
 
     public class ImageUpload : Image

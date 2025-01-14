@@ -7,19 +7,12 @@ using Website.Models.Database;
 
 namespace Website.Controllers;
 
-public class StreamController : Controller
+public class StreamController(DatabaseContext context) : Controller
 {
-    private readonly DatabaseContext _context;
-
-    public StreamController(DatabaseContext context)
-    {
-        _context = context;
-    }
-
     [HttpGet("stream")]
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync());
+        return View(await context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync());
     }
 
     [HttpGet("stream/{id}")]
@@ -30,7 +23,7 @@ public class StreamController : Controller
             return NotFound();
         }
 
-        var streamPost = await _context.Streams.FirstOrDefaultAsync(m => m.Id == id);
+        var streamPost = await context.Streams.FirstOrDefaultAsync(m => m.Id == id);
         if (streamPost == null)
         {
             return NotFound();
@@ -56,8 +49,8 @@ public class StreamController : Controller
             streamPost.Id = Guid.NewGuid();
             streamPost.Posted = DateTime.UtcNow;
 
-            _context.Add(streamPost);
-            await _context.SaveChangesAsync();
+            context.Add(streamPost);
+            await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
         return View(streamPost);
@@ -72,7 +65,7 @@ public class StreamController : Controller
             return NotFound();
         }
 
-        var streamPost = await _context.Streams.FindAsync(id);
+        var streamPost = await context.Streams.FindAsync(id);
         if (streamPost == null)
         {
             return NotFound();
@@ -94,8 +87,8 @@ public class StreamController : Controller
         {
             try
             {
-                _context.Update(streamPost);
-                await _context.SaveChangesAsync();
+                context.Update(streamPost);
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -123,15 +116,15 @@ public class StreamController : Controller
             return NotFound();
         }
 
-        var streamPost = await _context.Streams.FirstOrDefaultAsync(m => m.Id == id);
+        var streamPost = await context.Streams.FirstOrDefaultAsync(m => m.Id == id);
         if (streamPost == null)
         {
             return NotFound();
         }
 
 
-        _context.Streams.Remove(streamPost);
-        await _context.SaveChangesAsync();
+        context.Streams.Remove(streamPost);
+        await context.SaveChangesAsync();
 
         Response.Htmx(headers =>
         {
@@ -143,6 +136,6 @@ public class StreamController : Controller
 
     private bool StreamPostExists(Guid id)
     {
-        return _context.Streams.Any(e => e.Id == id);
+        return context.Streams.Any(e => e.Id == id);
     }
 }

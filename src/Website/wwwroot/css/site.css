@@ -257,7 +257,18 @@ section {
 
 a {
     text-decoration: none;
-    color: var(--color-body-text);
+    font-weight: 700;
+    color: var(--color-link);
+    transition: color ease-in-out 150ms;
+    cursor: pointer;
+}
+
+a:hover {
+    color: var(--color-link-2);
+}
+
+a:focus {
+    color: var(--color-link-2);
 }
 
 p {
@@ -534,6 +545,7 @@ footer {
             footer ul li a {
                 color: var(--color-nav-link);
                 transition: color ease-in-out 150ms;
+                font-weight: 400;
             }
 
                 footer ul li a:hover {

@@ -1,5 +1,7 @@
 ﻿#nullable disable
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Website.Models.Database;
 
 public class ShortLink
@@ -8,5 +10,7 @@ public class ShortLink
 
     public string RedirectLink { get; set; }
 
-    public List<ShortLinkHit> Hits { get; set; }
+    public ICollection<ShortLinkHit> Hits { get; set; } = new List<ShortLinkHit>();
+
+    [NotMapped] public int HitsCount { get; set; }
 }

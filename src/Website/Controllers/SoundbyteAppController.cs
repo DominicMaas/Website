@@ -9,7 +9,7 @@ namespace Website.Controllers;
 [Produces("application/json")]
 [Route("api/soundbyte")]
 [ApiController]
-public class SoundbyteAppController : Controller
+public class SoundbyteAppController(IConfiguration config, SoundByteAuthenticationService soundByteAuthenticationService) : Controller
 {
     // These fields are already public within the soundbyte app and code (the client secret is extracted)
 
@@ -20,16 +20,6 @@ public class SoundbyteAppController : Controller
     public const string YouTubeClientId = "82331099881-4sf24bfns9f7p8b9o5ovvi8lveolru8i.apps.googleusercontent.com";
     public const string YouTubeConnectUrl = "https://accounts.google.com/o/oauth2/token";
     public const string YouTubeRedirecturl = "http://localhost/soundbyte";
-
-    private readonly IConfiguration _config;
-    private readonly SoundByteAuthenticationService _soundByteAuthenticationService;
-
-
-    public SoundbyteAppController(IConfiguration config, SoundByteAuthenticationService soundByteAuthenticationService)
-    {
-        _config = config;
-        _soundByteAuthenticationService = soundByteAuthenticationService;
-    }
 
     [HttpPost("auth/youtube")]
     public async Task<IActionResult> AuthYouTube([FromForm] string code, CancellationToken cancellationToken)
@@ -44,7 +34,7 @@ public class SoundbyteAppController : Controller
             });
         }
 
-        var secret = _config["SoundByteAuth:YouTubeClientSecret"];
+        var secret = config["SoundByteAuth:YouTubeClientSecret"];
         if (string.IsNullOrEmpty(secret))
         {
             return new JsonResult(new
@@ -55,7 +45,7 @@ public class SoundbyteAppController : Controller
         }
 
         // Perform the actual request
-        var result = await _soundByteAuthenticationService.GetTokenAsync(YouTubeClientId, secret, YouTubeRedirecturl,
+        var result = await soundByteAuthenticationService.GetTokenAsync(YouTubeClientId, secret, YouTubeRedirecturl,
             code, YouTubeConnectUrl, "authorization_code", cancellationToken);
 
         return new JsonResult(new
@@ -83,7 +73,7 @@ public class SoundbyteAppController : Controller
             });
         }
 
-        var secret = _config["SoundByteAuth:SoundCloudClientSecret"];
+        var secret = config["SoundByteAuth:SoundCloudClientSecret"];
         if (string.IsNullOrEmpty(secret))
         {
             return new JsonResult(new
@@ -94,7 +84,7 @@ public class SoundbyteAppController : Controller
         }
 
         // Perform the actual request
-        var result = await _soundByteAuthenticationService.GetTokenAsync(SoundCloudClientId, secret, SoundCloudRedirecturl,
+        var result = await soundByteAuthenticationService.GetTokenAsync(SoundCloudClientId, secret, SoundCloudRedirecturl,
            code, SoundCloudConnectUrl, "authorization_code", cancellationToken);
 
         return new JsonResult(new
@@ -122,7 +112,7 @@ public class SoundbyteAppController : Controller
             });
         }
 
-        var secret = _config["SoundByteAuth:YouTubeClientSecret"];
+        var secret = config["SoundByteAuth:YouTubeClientSecret"];
         if (string.IsNullOrEmpty(secret))
         {
             return new JsonResult(new
@@ -133,7 +123,7 @@ public class SoundbyteAppController : Controller
         }
 
         // Perform the actual request
-        var result = await _soundByteAuthenticationService.GetTokenAsync(YouTubeClientId, secret, YouTubeRedirecturl,
+        var result = await soundByteAuthenticationService.GetTokenAsync(YouTubeClientId, secret, YouTubeRedirecturl,
             refreshToken, YouTubeConnectUrl, "refresh_token", cancellationToken);
 
         return new JsonResult(new
@@ -161,7 +151,7 @@ public class SoundbyteAppController : Controller
             });
         }
 
-        var secret = _config["SoundByteAuth:SoundCloudClientSecret"];
+        var secret = config["SoundByteAuth:SoundCloudClientSecret"];
         if (string.IsNullOrEmpty(secret))
         {
             return new JsonResult(new
@@ -172,7 +162,7 @@ public class SoundbyteAppController : Controller
         }
 
         // Perform the actual request
-        var result = await _soundByteAuthenticationService.GetTokenAsync(SoundCloudClientId, secret, SoundCloudRedirecturl,
+        var result = await soundByteAuthenticationService.GetTokenAsync(SoundCloudClientId, secret, SoundCloudRedirecturl,
            refreshToken, SoundCloudConnectUrl, "refresh_token", cancellationToken);
 
         return new JsonResult(new
