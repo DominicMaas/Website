@@ -7,15 +7,15 @@ using Website.Models.Database;
 
 namespace Website.Controllers;
 
-public class StreamController(DatabaseContext context) : Controller
+public class BlogController(DatabaseContext context) : Controller
 {
-    [HttpGet("stream")]
+    [HttpGet("blog")]
     public async Task<IActionResult> Index()
     {
         return View(await context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync());
     }
 
-    [HttpGet("stream/{id}")]
+    [HttpGet("blog/{id}")]
     public async Task<IActionResult> Details(Guid? id)
     {
         if (id == null)
@@ -33,14 +33,14 @@ public class StreamController(DatabaseContext context) : Controller
     }
 
     [Authorize]
-    [HttpGet("admin/stream/create")]
+    [HttpGet("admin/blog/create")]
     public IActionResult Create()
     {
         return View();
     }
 
     [Authorize]
-    [HttpPost("admin/stream/create")]
+    [HttpPost("admin/blog/create")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Title,Content")] StreamPost streamPost)
     {
@@ -57,7 +57,7 @@ public class StreamController(DatabaseContext context) : Controller
     }
 
     [Authorize]
-    [HttpGet("admin/stream/edit")]
+    [HttpGet("admin/blog/edit")]
     public async Task<IActionResult> Edit(Guid? id)
     {
         if (id == null)
@@ -74,7 +74,7 @@ public class StreamController(DatabaseContext context) : Controller
     }
 
     [Authorize]
-    [HttpPost("admin/stream/edit")]
+    [HttpPost("admin/blog/edit")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Guid id, [Bind("Title,Content")] StreamPost streamPost)
     {
@@ -107,7 +107,7 @@ public class StreamController(DatabaseContext context) : Controller
     }
 
     [Authorize]
-    [HttpPost("admin/stream/delete")]
+    [HttpPost("admin/blog/delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(Guid? id)
     {

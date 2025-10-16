@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<Website.Models.Database.StreamPost>
 
 @{
-    ViewData["Title"] = "Stream";
+    ViewData["Title"] = "Blog";
 }
 
 <h1>@ViewData["Title"]</h1>
 
 <p>
-    This page contains quick thoughts and notes as I write them. Think of this as an alternative to a micro-blogging platform.
-    <br />
-    You can find an RSS Feed <a href="/feed/stream.xml">here</a>.
+    You can find an RSS Feed <a href="/feed/blog.xml">here</a>.
 </p>
 
 @foreach (var stream in Model)
@@ -34,7 +32,7 @@
                        hx-controller="Stream"
                        hx-action="Delete"
                        hx-route-id="@stream.Id"
-                       hx-confirm="Are you sure you wish to delete this stream?">
+                       hx-confirm="Are you sure you wish to delete this post?">
                         delete
                     </a>
                 </p>

@@ -10,37 +10,25 @@ namespace Website.Controllers;
 public class RSSController(DatabaseContext context) : Controller
 {
     [ResponseCache(Duration = 1200)]
-    [HttpGet("/feed/stream.xml")]
-    public async Task<IActionResult> StreamRSSAsync()
+    [HttpGet("/feed/blog.xml")]
+    public async Task<IActionResult> BlogRSSAsync()
     {
-        var latestStream = await context.Streams.OrderByDescending(x => x.Posted).FirstOrDefaultAsync();
+        var latestPost = await context.Streams.OrderByDescending(x => x.Posted).FirstOrDefaultAsync();
 
-        var feed = BuildBasicFeed("Stream", "Quick thoughts and ideas", new("https://dominicmaas.co.nz/feed/stream.xml"), latestStream?.Posted ?? default);
+        var feed = BuildBasicFeed("Stream", "Quick thoughts and ideas", new("https://dominicmaas.co.nz/feed/stream.xml"), latestPost?.Posted ?? default);
         var items = new List<SyndicationItem>();
 
 
-        var streams = await context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync();
-        foreach (var stream in streams)
+        var posts = await context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync();
+        foreach (var post in posts)
         {
-            items.Add(new SyndicationItem(stream.Title, stream.Content, new Uri($"https://dominicmaas.co.nz/stream/{stream.Id}"), stream.Id.ToString(), stream.Posted));
+            items.Add(new SyndicationItem(post.Title, post.Content, new Uri($"https://dominicmaas.co.nz/stream/{post.Id}"), post.Id.ToString(), post.Posted));
         }
 
         feed.Items = items;
 
         return BuildSyndicationFeed(feed);
     }
-
-    //[ResponseCache(Duration = 1200)]
-    //[HttpGet("/feed/blog.xml")]
-    //public IActionResult BlogRSS()
-    //{
-    //    var feed = BuildBasicFeed("Blog", "Long form posts or structured content", new("https://dominicmaas.co.nz/feed/blog.xml"));
-
-    //    var testStream = new SyndicationItem("This is a test blog", "This is the content", new Uri("https://dominicmaas.co.nz/blog/123"), "123", DateTimeOffset.Now);
-    //    feed.Items = new[] { testStream };
-
-    //    return BuildSyndicationFeed(feed);
-    //}
 
     private static SyndicationFeed BuildBasicFeed(string name, string description, Uri url, DateTime lastUpdated)
     {
