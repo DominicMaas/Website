@@ -119,7 +119,7 @@ var forwardOptions = new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
 };
 
-forwardOptions.KnownNetworks.Clear();
+forwardOptions.KnownIPNetworks.Clear();
 forwardOptions.KnownProxies.Clear();
 
 app.UseForwardedHeaders(forwardOptions);
