@@ -24,7 +24,7 @@ jobs:
         - name: Docker Login
           uses: docker/login-action@v4.1.0
           with:
-            registry: https://registry.dominicmaas.co.nz
+            registry: https://registry2.dominicmaas.co.nz
             username: ${{ secrets.NESO_USERNAME }}
             password: ${{ secrets.NESO_PASSWORD }}
 
@@ -36,4 +36,4 @@ jobs:
           with:
             context: src/Website/
             push: true
-            tags: registry.dominicmaas.co.nz/personal-website:latest
+            tags: registry2.dominicmaas.co.nz/personal-website:latest
