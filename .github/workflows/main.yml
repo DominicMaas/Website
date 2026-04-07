@@ -20,6 +20,10 @@ jobs:
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@main
 
+        - name: Debug Connection
+          run: |
+            curl -v https://registry.dominicmaas.co.nz/v2/
+
         # Login to the NESO registry
         - name: Docker Login
           uses: docker/login-action@v4.1.0
