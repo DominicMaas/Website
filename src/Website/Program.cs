@@ -13,8 +13,7 @@ var services = builder.Services;
 var config = builder.Configuration;
 
 // Data Protection
-services.AddDataProtection()
-    .PersistKeysToAzureBlobStorage(config["Storage:ConnectionString"], config["Storage:DataProtection:Container"], config["Storage:DataProtection:Blob"]);
+services.AddDataProtection().PersistKeysToDbContext<DatabaseContext>();
 
 // Application Insights
 if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))

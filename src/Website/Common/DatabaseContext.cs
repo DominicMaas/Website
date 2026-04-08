@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Website.Models.Database;
 
 namespace Website.Common;
 
-public class DatabaseContext : DbContext
+public class DatabaseContext : DbContext, IDataProtectionKeyContext
 {
     public DbSet<ShortLink> ShortLinks { get; set; }
 
@@ -12,6 +13,9 @@ public class DatabaseContext : DbContext
     public DbSet<StreamPost> Streams { get; set; }
 
     public DbSet<Image> Images { get; set; }
+
+    public DbSet<DataProtectionKey> DataProtectionKeys { get; set; } = null!;
+
 
     public DatabaseContext()
     { }
