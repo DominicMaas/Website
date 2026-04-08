@@ -1,7 +1,4 @@
-﻿using Azure.Extensions.AspNetCore.Configuration.Secrets;
-using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
-using Htmx.TagHelpers;
+﻿using Htmx.TagHelpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -14,20 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
 var services = builder.Services;
 var config = builder.Configuration;
-
-// Azure Key Vault
-if (!string.IsNullOrEmpty(config["AzureKeyVault:Endpoint"]))
-{
-    try
-    {
-        var secretClient = new SecretClient(new Uri(config["AzureKeyVault:Endpoint"]!), new DefaultAzureCredential());
-        config.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-}
 
 // Data Protection
 services.AddDataProtection()
