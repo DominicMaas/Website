@@ -1,31 +1,57 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Dominic Maas";
+    ViewData["Title"] = "Dominic Maas - .NET & WinUI Developer";
+
 }
 
 <section>
+    <h2>.NET & WinUI Developer</h2>
+
     <p>
-        Hi, I'm a software developer specializing with the Windows GUI platform (technologies such as WinUI 3, UWP, WPF, really anything XAML related).
-        I'm currently building Muse Hub at <a href="https://mu.se/">Muse Group</a>.
-        Previously I've built software for <a href="https://www.staffpad.net/">StaffPad</a> and <a href="https://www.inex.co.nz/">Independent Extrusions</a>.
+        Hi, I’m Dominic, a software developer based in Hamilton, New Zealand. I specialize in the Windows GUI platform, where I’ve spent many years building applications using C# and XAML (<abbr title="Universal Windows Platform">UWP</abbr>, <abbr title="Windows App SDK">WinUI</abbr>,
+        <abbr title="Windows Presentation Foundation">WPF</abbr> and <abbr title="Windows Phone 8.1">WP8.1</abbr>). I have a keen eye on translating complex design concepts to their XAML counterparts.
+    </p>
+
+    <p>
+        I’m no stranger to working outside my specialization. I frequently collaborate on cross-platform C++ and React/TypeScript projects, and I spend my spare time exploring the ‘lower levels’ — specifically low-level graphics and embedded programming. Check out my <a href="/projects">project portfolio</a> to see what I’ve been building.
     </p>
     <p>
-        I studied at
-        <a href="https://www.waikato.ac.nz/">The University of Waikato</a> from 2018 to 2021 (where I had a great time meeting new people and working on amazing projects), and was certified with a Bachelor of Science (major in Computer Science) in 2022.
+        Currently, I lead the development of the Windows and Linux clients for <a href="https://www.musehub.com/">MuseHub</a> at <a href="https://mu.se/">Muse Group</a>. In addition to platform ownership, I contribute to the shared C++ core and TypeScript backend to support our cross-functional team.
     </p>
+    <p style="color: var(--color-small)">
+        Previously, I worked on the Windows client for <a href="https://www.staffpad.net/">StaffPad</a> and built industrial solutions for <a href="https://www.inex.co.nz/">Independent Extrusions</a>. I hold a Bachelor of Science in Computer Science from <a href="https://www.waikato.ac.nz/">The University of Waikato</a> (2018 to 2021).
+    </p>
+
+    <w-image src="/images/gallery/nature/kingfisher.jpg" />
+
+    <br />
+
     <p>
-        In my own time I like to expand my skills by building things I don't usually work with, such as game mods, graphics, embedded software etc. You can take a look at the projects section of my website to see <a href="/projects">what I've worked on</a>.
-        While not programming, I enjoy running, biking, <a href="/photography">photography</a>, astronomy and rocketry.
+        While not programming, I enjoy keeping fit by running, swimming and taking part in the occasional triathlon. I have also always been interested in astronomy and rocketry, including capturing some of that interest via <a href="/photography">photography</a>.
     </p>
 </section>
 
 <section>
-    <h2>Software Stack</h2>
-     <p>
-        This website is built using <a href="https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core">ASP.NET Razor Pages</a> and <a href="https://htmx.org">HTMX</a>. HTMX is used to provide an extra layer of interactivity, but is not required for the website to work.
-    </p>
+    <h2>Behind the Scenes</h2>
     <p>
-        I've tried to keep things simple and light-weight! Numerous design changes and tweaks, but I'm pretty happy where things are at the moment.
+        This website is built using <a href="https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core">ASP.NET Razor Pages</a> and <a href="https://htmx.org">HTMX</a> allowing for a modern feeling website using server-side logic without the overhead of a heavy JS frontend.
     </p>
+
+    <p>
+        Hosted on a simple VPS, running within a Docker container behind Cloudflare.
+    </p>
+</section>
+
+<section>
+    <h2>Contact</h2>
+
+    <p>
+        I'm always open to discussing interesting projects or technical challenges. Feel free to reach out at <a href="mailto:dominic.maas@@live.com">dominic.maas@live.com</a>, send a message via <a href="https://www.linkedin.com/in/dominicjmaas">LinkedIn</a> or open an issue on one of my <a href="https://github.com/DominicMaas">GitHub</a> projects.
+    </p>
+
+    <w-image src="/images/profile2.jpg"
+             alt="Dominic Maas - .NET Developer in Hamilton"
+             style="width: 120px; height: 120px;" />
+
 </section>

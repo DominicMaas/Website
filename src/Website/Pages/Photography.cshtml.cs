@@ -13,6 +13,7 @@ public class PhotographyModel : PageModel
             new Photo("/images/gallery/nature/002.jpg", null),
             new Photo("/images/gallery/nature/003.jpg", null),
             new Photo("/images/gallery/nature/004.jpg", null),
+            new Photo("/images/gallery/nature/kingfisher.jpg", null),
         }),
         new PhotoGroup("Astrophotography", "Photographs of celestial objects and the sky.", new()
         {
