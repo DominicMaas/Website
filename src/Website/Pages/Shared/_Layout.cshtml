@@ -23,11 +23,11 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="~/css/bundle.min.css" />
+    <link rel="stylesheet" href="~/css/bundle.min.css" asp-append-version="true" />
 
     @await RenderSectionAsync("Styles", required: false)
 
-    <script src="~/js/bundle.min.js" defer></script>
+    <script src="~/js/bundle.min.js" asp-append-version="true" defer></script>
 </head>
 <body>
     <div class="container" hx-boost="true" hx-indicator="#loading-indicator">

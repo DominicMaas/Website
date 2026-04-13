@@ -129,6 +129,8 @@ else
     app.UseDeveloperExceptionPage();
 }
 
+app.UseResponseCompression();
+
 app.UseWebOptimizer();
 
 app.UseStatusCodePagesWithReExecute("/error/{0}");
@@ -140,8 +142,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseResponseCompression();
 
 app.MapHtmxAntiforgeryScript();
 
