@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Website.Common;
 using Website.Services;
@@ -28,14 +30,30 @@ if (!string.IsNullOrEmpty(config["ApplicationInsights:ConnectionString"]))
 services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite(config.GetConnectionString("WebsiteDatabase")));
 
-// Razor pages (most pages on this site)
-services.AddRazorPages(options =>
+// Compression
+services.AddResponseCompression(options =>
 {
+    options.Providers.Add<BrotliCompressionProvider>();
+    options.Providers.Add<GzipCompressionProvider>();
+});
+
+// Razor pages (most pages on this site)
+var razorBuilder = services.AddRazorPages(options =>
+{
+    options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer()));
+
     options.Conventions.AuthorizePage("/Admin");
 });
 
 // Allows us to use controllers alongside razor pages
-services.AddMvc();
+var mvcBuilder = services.AddMvc();
+
+// Allows compiling within development environment
+if (environment.IsDevelopment())
+{
+    razorBuilder.AddRazorRuntimeCompilation();
+    mvcBuilder.AddRazorRuntimeCompilation();
+}
 
 // Bundle and minify our JS and CSS
 services.AddWebOptimizer(pipeline =>
@@ -72,14 +90,6 @@ services.AddAuthorization();
 // Services
 services.AddSingleton<SoundByteAuthenticationService>();
 services.AddSingleton<R2>();
-
-var mvcBuilder = services.AddRazorPages(options =>
-    options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer())));
-
-if (environment.IsDevelopment())
-{
-    mvcBuilder.AddRazorRuntimeCompilation();
-}
 
 // ----- App ----- //
 
@@ -127,6 +137,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseResponseCompression();
 
 app.MapHtmxAntiforgeryScript();
 
