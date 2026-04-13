@@ -31,12 +31,9 @@
 </head>
 <body>
     <div class="container" hx-boost="true" hx-indicator="#loading-indicator">
-        <!-- Page header -->
-        <div class="header">
-            <!-- Page title -->
+        <header class="header" role="banner">
             <p class="page-title">Dominic Maas</p>
 
-            <!-- Navigation Links -->
             <nav>
                 <ul>
                     <li>
@@ -79,12 +76,13 @@
                     }
                 </ul>
             </nav>
-        </div>
+        </header>
 
-        <!-- Page content -->
-        @RenderBody()
+        <main role="main">
+            @RenderBody()
+        </main>
 
-        <footer>
+        <footer role="contentinfo">
             <ul id="footer_links">
                 <li><a class="@(Context.Request.Path == "/style" ? "active" : "")" href="/style"><strong>style guide</strong></a></li>
                 <li><a class="@(Context.Request.Path == "/cv" ? "active" : "")" href="/cv"><strong>curriculum vitae</strong></a></li>
