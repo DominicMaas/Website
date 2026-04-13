@@ -61,7 +61,7 @@
     --color-bold: #FFFFFF;
     --color-profile-border: var(--color-bold);
     --color-nav-link: #888;
-    --color-small: #666666;
+    --color-small: #A1A1A1;
     --color-link: var(--color-accent);
     --color-link-2: #9DBAD5;
     --color-table-border: var(--color-card-border);
@@ -94,11 +94,11 @@
         --color-text: #131313;
         --color-heading-lg-text: #222222;
         --color-heading-sm-text: #333333;
-        --color-accent: #4376b0;
+        --color-accent: #3F6FA6;
         --color-bold: #000000;
         --color-nav-link: #444;
         --color-small: #333;
-        --color-link-2: #4c80bb;
+        --color-link-2: #356090;
         --color-table-border: #DDD;
         --color-table-header-background: #EFEFEF;
         --color-table-alt-background: #F9F9F9;
@@ -171,7 +171,6 @@ nav ul {
             font-weight: 700;
             font-family: var(--font-body);
             font-size: 1.35em;
-            transition: color ease-in-out 150ms;
         }
 
             nav ul li a:hover {
@@ -213,7 +212,7 @@ section {
     padding: 1.2em;
     border-radius: 0;
     border: 1px solid transparent;
-    transition: background-color ease-in-out 150ms, border-color ease-in-out 150ms, box-shadow ease-in-out 150ms;
+    transition: background-color ease-in-out 200ms, border-color ease-in-out 200ms, box-shadow ease-in-out 200ms;
 }
 
 .card-background {
@@ -259,7 +258,6 @@ a {
     text-decoration: none;
     font-weight: 700;
     color: var(--color-link);
-    transition: color ease-in-out 150ms;
     cursor: pointer;
 }
 
@@ -290,7 +288,6 @@ p {
         padding: 0.1em 0.2em;
         margin: -0.1em -0.2em;
         border-radius: 0;
-        transition: color ease-in-out 150ms, background-color ease-in-out 150ms;
     }
 
         p a:hover {
@@ -544,7 +541,6 @@ footer {
 
             footer ul li a {
                 color: var(--color-nav-link);
-                transition: color ease-in-out 150ms;
                 font-weight: 400;
             }
 
@@ -563,7 +559,7 @@ footer {
 .image {
     border-radius: 0;
     border: 1px solid var(--color-card-border);
-    transition: border ease-in-out 150ms, box-shadow ease-in-out 150ms, filter 150ms ease-in-out;
+    transition: border ease-in-out 200ms, box-shadow ease-in-out 200ms, filter 200ms ease-in-out;
 }
 
     .image:hover {
