@@ -65,7 +65,7 @@ services.AddWebOptimizer(pipeline =>
     pipeline.MinifyJsFiles();
 
     pipeline.AddCssBundle("/css/bundle.min.css", "dist/purecss/*.css", "css/site.css");
-    pipeline.AddJavaScriptBundle("/js/bundle.min.js", "dist/*.js");
+    pipeline.AddJavaScriptBundle("/js/bundle.min.js", "dist/htmx.min.js", "dist/htmx.head-support.min.js", "dist/hyperscript.min.js");
 });
 
 // Basic Authentication

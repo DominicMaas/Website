@@ -20,6 +20,18 @@
 
     <title>@ViewData["Title"]</title>
 
+    @{
+        var currentPath = Context.Request.Path.ToString().ToLower();
+        if (currentPath.EndsWith("/") && currentPath.Length > 1)
+        {
+            currentPath = currentPath.TrimEnd('/');
+        }
+
+        var canonicalUrl = $"https://dominicmaas.co.nz{currentPath}";
+    }
+
+    <link rel="canonical" href="@canonicalUrl" />
+
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
@@ -29,7 +41,7 @@
 
     <script src="~/js/bundle.min.js" asp-append-version="true" defer></script>
 </head>
-<body>
+<body hx-ext="head-support">
     <div class="container" hx-boost="true" hx-indicator="#loading-indicator">
         <header class="header" role="banner">
             <p class="page-title">Dominic Maas</p>
