@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Htmx;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
+using SkiaSharp;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Website.Common;
 using Website.Services;
-using Htmx;
 using Image = Website.Models.Database.Image;
 
 namespace Website.Controllers;
@@ -51,16 +50,22 @@ public class ImagesController(DatabaseContext context, R2 r2, ILogger<ImagesCont
         {
             // Start processing the uploaded image. We want to strip meta data, and convert to a jpeg. we also
             // want to create a thumbnail as well.
-            using var image = SixLabors.ImageSharp.Image.Load(imageUpload.ImageFile.OpenReadStream());
+            using var codec = SKCodec.Create(imageUpload.ImageFile.OpenReadStream());
+            using var original = SKBitmap.Decode(codec);
 
-            // Resize to an appropriate max size of 1000px
-            image.Mutate(x => x.Resize(new ResizeOptions { Mode = ResizeMode.Max, Size = new Size(1000) }));
+            // Calculate max-1000 size while keeping aspect ratio
+            int maxSize = 1000;
+            float scale = Math.Min(1f, Math.Min((float)maxSize / original.Width, (float)maxSize / original.Height));
+            int newWidth = (int)(original.Width * scale);
+            int newHeight = (int)(original.Height * scale);
 
-            image.Metadata.ExifProfile = null;
-            image.Metadata.XmpProfile = null;
+            using var resized = original.Resize(new SKImageInfo(newWidth, newHeight),
+                                                new SKSamplingOptions(SKCubicResampler.Mitchell));
 
-            // Save the image to a memory stream
-            await image.SaveAsJpegAsync(imageStream, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 80 }, cancellationToken);
+            using var image = SKImage.FromBitmap(resized);
+            using var data = image.Encode(SKEncodedImageFormat.Jpeg, 80); // quality 80
+
+            data.SaveTo(imageStream);
         }
         catch (Exception ex)
         {
