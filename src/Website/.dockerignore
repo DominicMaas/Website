@@ -1,0 +1,16 @@
+# The build context is src/Website, so the repo-root .dockerignore never applies
+# here. Without this file the context is ~1.5GB of stale build output.
+**/bin
+**/obj
+**/.vs
+**/.vscode
+**/.git
+**/.gitignore
+**/*.*proj.user
+**/Dockerfile*
+**/docker-compose*.yml
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/secrets.dev.yaml
+**/values.dev.yaml

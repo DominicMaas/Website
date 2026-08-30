@@ -41,3 +41,11 @@ jobs:
             context: src/Website/
             push: true
             tags: registry.dominicmaas.co.nz/personal-website:latest
+            # The Dockerfile publishes for linux-x64 specifically, so pin the
+            # platform rather than letting buildx infer it.
+            platforms: linux/amd64
+            # Skip the provenance attestation - it pushes an extra manifest and
+            # index for no benefit here.
+            provenance: false
+            cache-from: type=gha
+            cache-to: type=gha,mode=max
