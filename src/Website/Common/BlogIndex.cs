@@ -22,7 +22,7 @@ public record BlogPost(string Slug, string Title, string Summary, DateOnly Publi
 ///     The single source of truth for what lives in the blog. Add a new post here after
 ///     creating its Razor page and it will appear on /blog, in /feed/blog.xml and in /sitemap.xml.
 ///
-///     This is for technical writing only — dated posts someone might search for. Living
+///     This is for technical writing only. Dated posts someone might search for. Living
 ///     pages such as /pc, /running and /photography are standalone and linked from the footer.
 /// </summary>
 public static class BlogIndex

@@ -2,8 +2,8 @@
 @model Website.Pages.WindowsAppDevelopmentModel
 
 @{
-    ViewData["Title"] = "Windows App Developer — WinUI, WPF & XAML Contractor | Dominic Maas";
-    ViewData["Description"] = "Contract Windows app development in C# and XAML. WinUI 3 and Windows App SDK work, WPF to WinUI migrations, XAML implementation from design, and MSIX packaging and installers.";
+    ViewData["Title"] = "Windows App Developer: WinUI, WPF, Avalonia & C++ | Dominic Maas";
+    ViewData["Description"] = "Contract Windows app development. Desktop apps in C# and XAML (WinUI, WPF, UWP, Avalonia), native C++ Windows work, migrations, XAML from design, and MSIX packaging.";
 }
 
 @section Scripts {
@@ -12,8 +12,8 @@
         "@@context": "https://schema.org",
         "@@type": "ProfessionalService",
         "@@id": "https://dominicmaas.co.nz/windows-app-development#service",
-        "name": "Windows App Development — Dominic Maas",
-        "description": "Contract Windows desktop application development in C# and XAML, specialising in WinUI 3 (Windows App SDK), WPF and MSIX packaging.",
+        "name": "Windows App Development by Dominic Maas",
+        "description": "Contract Windows desktop application development in C# and XAML (WinUI, WPF, UWP, Avalonia) and native C++, including migrations, packaging and distribution.",
         "url": "https://dominicmaas.co.nz/windows-app-development",
         "provider": {
             "@@id": "https://dominicmaas.co.nz/#person"
@@ -21,12 +21,16 @@
         "areaServed": "Worldwide",
         "availableLanguage": "en",
         "serviceType": [
+            "Windows desktop application development",
             "WinUI 3 development",
             "Windows App SDK development",
+            "WPF development",
+            "UWP development",
+            "Avalonia development",
+            "C++ Windows development",
             "WPF to WinUI migration",
             "XAML implementation",
-            "MSIX packaging and code signing",
-            "Windows desktop application development"
+            "MSIX packaging and code signing"
         ]
     }
     </script>
@@ -36,73 +40,74 @@
 <h1>Windows App Development</h1>
 
 <p>
-    I&rsquo;m a Windows app developer with close to a decade of experience building desktop
-    applications in C# and XAML. I take on contract work in that niche &mdash; the kind of
-    Windows-specific problem that is hard to hire for because the pool of people who have
-    actually shipped it is small.
+    I&rsquo;m a Windows developer based in New Zealand. I&rsquo;ve spent many years building
+    desktop apps in C# and XAML, and I take on contract work alongside my day job.
 </p>
 
 </section>
 <section>
 <h2>Availability</h2>
 <p>
-    I currently take on a limited amount of contract work alongside my role at
-    <a href="https://mu.se/">Muse Group</a>, where I lead the Windows and Linux clients for
-    <a href="https://www.musehub.com/">MuseHub</a>. I work with clients worldwide and am
-    comfortable with distributed teams across time zones &mdash; I&rsquo;m based in
-    New Zealand (UTC+12/+13).
+    I take on a small amount of contract work alongside my role at <a href="https://mu.se/">Muse Group</a>,
+    where I lead the Windows and Linux clients for <a href="https://www.musehub.com/">MuseHub</a>.
+    I&rsquo;ve worked remotely for years, so timezones generally aren&rsquo;t a problem.
+    I&rsquo;m in New Zealand (UTC+12/+13).
 </p>
 <p>
-    If you have a Windows desktop problem that fits the work below, <a href="/contact">get in touch</a>.
+    If you&rsquo;ve got something that fits the work below, <a href="/contact">get in touch</a>.
 </p>
-
 
 </section>
 <section>
-    <h2>What I take on</h2>
+    <h2>What I work on</h2>
 
-        <h3>WinUI 3 and Windows App SDK development</h3>
+        <h3>Desktop apps in C# and XAML</h3>
         <p>
-            Building new WinUI 3 applications, or adding to existing ones. This includes the parts
-            of the Windows App SDK that are poorly documented and tend to eat weeks: window
-            management and custom title bars, the unpackaged and self-contained deployment modes,
-            app lifecycle and single-instancing, and the WinRT interop needed when the managed API
-            surface does not go far enough.
+            <abbr title="Windows App SDK">WinUI</abbr>, <abbr title="Windows Presentation Foundation">WPF</abbr>,
+            <abbr title="Universal Windows Platform">UWP</abbr> and Avalonia. New apps, or features
+            and fixes on existing ones. I&rsquo;m comfortable in the parts of the Windows App SDK
+            that aren&rsquo;t documented well: custom title bars and window management, unpackaged
+            and self contained deployment, app lifecycle and single instancing, and dropping down to
+            WinRT interop when the C# API doesn&rsquo;t go far enough.
         </p>
 
-        <h3>WPF and UWP to WinUI migration</h3>
+        <h3>Migrations and upgrades</h3>
         <p>
-            Moving an existing WPF or UWP codebase onto WinUI 3 without a rewrite. In practice this
-            is mapping controls that have no direct equivalent, replacing the parts of the
-            dispatcher, imaging and resource systems that changed shape, and untangling
-            <code>DynamicResource</code> theming into <code>ThemeResource</code>. I can do the
-            migration itself, or assess the codebase first and tell you what it would take.
+            Moving WPF or UWP apps onto WinUI, or onto Avalonia if you need Linux and macOS as well.
+            Mostly this is mapping controls that have no direct equivalent, sorting out the bits of
+            the dispatcher, imaging and resource systems that changed, and untangling
+            <code>DynamicResource</code> theming. Happy to do the migration itself, or just look
+            over the codebase and tell you what it&rsquo;d take.
         </p>
 
-
-        <h3>XAML implementation from design</h3>
+        <h3>XAML from design</h3>
         <p>
-            Turning a Figma or design-tool spec into XAML that actually matches it &mdash; correct
-            spacing and typography, working Light, Dark and High Contrast themes, sensible
-            behaviour at every window size, and keyboard and screen reader support that holds up.
-            This is the work I have done most of, and the part most teams underestimate.
+            Turning a design into XAML that actually matches it. That means spacing, typography,
+            Light, Dark and High Contrast themes, sensible behaviour at different window sizes, and
+            keyboard and screen reader support. This is most of what I did at StaffPad and Muse.
+            It&rsquo;s usually more work than people expect.
         </p>
 
-
-        <h3>Packaging, signing and distribution</h3>
+        <h3>Native C++ on Windows</h3>
         <p>
-            Getting the application onto users&rsquo; machines. MSIX packaging, self-contained
-            Windows App SDK deployment, code signing, installer work, auto-update, and the
-            Microsoft Store submission process. Also the smaller distribution problems that only
-            show up in production, like mark-of-the-web on downloaded installers.
+            I work in the shared C++ core at Muse alongside the C# front end, and have written a
+            voxel engine and a few graphics experiments in my own time. Happy to take on native
+            Windows work, or the C++ side of an app that has both.
         </p>
 
-
-        <h3>Performance and diagnostics</h3>
+        <h3>Packaging and distribution</h3>
         <p>
-            Diagnosing WinUI applications that are slow, leaking, or crashing only on customer
-            machines &mdash; XAML layout and virtualisation cost, startup time, memory growth, and
-            crash reporting that produces something you can act on.
+            <abbr title="MSIX packaging format">MSIX</abbr>, self contained Windows App SDK
+            deployment, code signing, installers, auto update and Store submission. Also the odd
+            problems that only turn up in production, mark of the web on downloaded installers
+            being the usual one.
+        </p>
+
+        <h3>Performance and debugging</h3>
+        <p>
+            Apps that are slow, leaking, or only crashing on someone else&rsquo;s machine. XAML
+            layout and virtualisation, startup time, memory, and getting crash reports that
+            actually tell you something.
         </p>
 
 </section>
@@ -111,23 +116,21 @@
 
     <p>
         I lead the Windows and Linux clients for <a href="https://www.musehub.com/">MuseHub</a> at
-        <a href="https://mu.se/">Muse Group</a>, an application shipping to a large install base,
-        where I also contribute to the shared C++ core and the TypeScript backend. Before that I
-        worked on the Windows client for <a href="https://www.staffpad.net/">StaffPad</a> and built
-        industrial line-of-business systems for
-        <a href="https://www.inex.co.nz/">Independent Extrusions</a>.
+        <a href="https://mu.se/">Muse Group</a>, and also contribute to the shared C++ core and the
+        TypeScript backend. Before that I spent four years on the Windows client for
+        <a href="https://www.staffpad.net/">StaffPad</a>, and built industrial line of business
+        systems for <a href="https://www.inex.co.nz/">Independent Extrusions</a>.
     </p>
 
     <p>
-        Outside of the XAML stack I work in C++, TypeScript and Rust, and spend spare time on
-        low-level graphics and embedded programming &mdash; which tends to help when a Windows
-        problem turns out to be a native one.
+        Outside of XAML I work in C++, TypeScript and Rust, and spend spare time on low level
+        graphics and embedded programming. That tends to help when a Windows problem turns out to
+        be a native one.
     </p>
 
     <p>
-        You can see the work on my <a href="/projects">projects page</a>, read the technical
-        write-ups on my <a href="/blog">blog</a>, or look through my
-        <a href="/cv">curriculum vitae</a>.
+        There&rsquo;s more on my <a href="/projects">projects page</a> and my
+        <a href="/cv">curriculum vitae</a>, and the occasional write up on my <a href="/blog">blog</a>.
     </p>
 </section>
     <section>
@@ -136,9 +139,9 @@
     <h2>Getting in touch</h2>
 
     <p>
-        The most useful first message tells me what the application is, what state it&rsquo;s in
-        today, and what you want to be true at the end. I&rsquo;ll tell you honestly whether
-        it&rsquo;s work I can help with.
+        Easiest thing is to email me and say what the app is, what state it&rsquo;s in, and what you
+        want at the end. I&rsquo;ll let you know if it&rsquo;s something I can help with, and say so
+        if it isn&rsquo;t.
     </p>
 
     <p><a href="/contact">Contact me</a></p>
