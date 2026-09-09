@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Website.Models.Database;
 
 /// <summary>
-///     Represents an image on the website. These images can be embedded within streams, or
-///     on the gallery section. Eventually we will support images in posts as well.
+///     Represents an image on the website. These images can be embedded within blog posts,
+///     or on the gallery section.
 /// </summary>
 public class Image
 {
@@ -19,8 +19,6 @@ public class Image
     public DateTime? DateTaken { get; set; }
 
     public string? Description { get; set; }
-
-    public List<StreamPost> Streams { get; set; } = [];
 
     [NotMapped]
     public string Url => $"https://images.dominicmaas.co.nz/i/{Id}.jpg";

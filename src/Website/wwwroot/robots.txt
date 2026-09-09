@@ -2,3 +2,7 @@
 Disallow: /fw/
 Disallow: /api/
 Disallow: /admin/
+Disallow: /signin
+Disallow: /signout
+
+Sitemap: https://dominicmaas.co.nz/sitemap.xml

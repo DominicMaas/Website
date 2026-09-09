@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Website.Pages.Pages;
+namespace Website.Pages.Blog;
 
-public class RunningModel : PageModel
+public class PasswordManagerModel : PageModel
 {
     public void OnGet()
     {

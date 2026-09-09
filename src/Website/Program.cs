@@ -121,6 +121,18 @@ forwardOptions.KnownProxies.Clear();
 
 app.UseForwardedHeaders(forwardOptions);
 
+// Permanently redirect URLs that have moved, so old inbound links keep working
+app.Use(async (context, next) =>
+{
+    if (LegacyRedirects.TryResolve(context.Request.Path, out var destination))
+    {
+        context.Response.Redirect(destination + context.Request.QueryString, permanent: true);
+        return;
+    }
+
+    await next();
+});
+
 if (!environment.IsDevelopment())
 {
     app.UseExceptionHandler("/error/500");

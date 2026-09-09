@@ -10,8 +10,6 @@ public class DatabaseContext : DbContext, IDataProtectionKeyContext
 
     public DbSet<ShortLinkHit> ShortLinkHits { get; set; }
 
-    public DbSet<StreamPost> Streams { get; set; }
-
     public DbSet<Image> Images { get; set; }
 
     public DbSet<DataProtectionKey> DataProtectionKeys { get; set; } = null!;

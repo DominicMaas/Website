@@ -1,0 +1,30 @@
+﻿@page
+@using Website.Common
+@model Website.Pages.Blog.IndexModel
+
+@{
+    ViewData["Title"] = "Blog | Dominic Maas";
+    ViewData["Description"] = "Technical write-ups by Dominic Maas on Windows desktop development — WinUI 3, the Windows App SDK, XAML and C# — alongside notes on embedded programming and other things worth documenting.";
+}
+
+<h1>Blog</h1>
+
+<p>
+    Notes and write-ups on the things I build. Mostly Windows desktop development, sometimes
+    embedded and graphics work.
+</p>
+
+<p hx-boost="false">
+    There is an RSS feed <a href="/feed/blog.xml">here</a>.
+</p>
+
+<section>
+    @foreach (var post in BlogIndex.Recent)
+    {
+        <div class="card card-background">
+            <small><time datetime="@post.Published.ToString("yyyy-MM-dd")">@post.Published.ToString("d MMMM yyyy")</time></small>
+            <p class="card-title"><a href="/blog/@post.Slug">@post.Title</a></p>
+            <p>@post.Summary</p>
+        </div>
+    }
+</section>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     @if (ViewData["Description"] == null)
     {
-        <meta name="description" content="Dominic Maas is a software developer in Hamilton, New Zealand. Specializing in C#, XAML, and Windows GUI applications.">
+        <meta name="description" content="Dominic Maas is a Windows app developer specialising in WinUI 3, the Windows App SDK, WPF and XAML. Available for contract work.">
     }
     else
     {
@@ -55,6 +55,12 @@
                     </li>
 
                     <li>
+                        <a class="@(Context.Request.Path == "/windows-app-development" ? "active" : "")" href="/windows-app-development">
+                            services
+                        </a>
+                    </li>
+
+                    <li>
                         <a class="@(Context.Request.Path.StartsWithSegments("/projects") ? "active" : "")" href="/projects">
                             projects
                         </a>
@@ -63,12 +69,6 @@
                     <li>
                         <a class="@(Context.Request.Path.StartsWithSegments("/blog") ? "active" : "")" href="/blog">
                             blog
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="@(Context.Request.Path.StartsWithSegments("/pages") ? "active" : "")" href="/pages">
-                            pages
                         </a>
                     </li>
 

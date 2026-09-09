@@ -1,0 +1,148 @@
+﻿@page "/windows-app-development"
+@model Website.Pages.WindowsAppDevelopmentModel
+
+@{
+    ViewData["Title"] = "Windows App Developer — WinUI, WPF & XAML Contractor | Dominic Maas";
+    ViewData["Description"] = "Contract Windows app development in C# and XAML. WinUI 3 and Windows App SDK work, WPF to WinUI migrations, XAML implementation from design, and MSIX packaging and installers.";
+}
+
+@section Scripts {
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "ProfessionalService",
+        "@@id": "https://dominicmaas.co.nz/windows-app-development#service",
+        "name": "Windows App Development — Dominic Maas",
+        "description": "Contract Windows desktop application development in C# and XAML, specialising in WinUI 3 (Windows App SDK), WPF and MSIX packaging.",
+        "url": "https://dominicmaas.co.nz/windows-app-development",
+        "provider": {
+            "@@id": "https://dominicmaas.co.nz/#person"
+        },
+        "areaServed": "Worldwide",
+        "availableLanguage": "en",
+        "serviceType": [
+            "WinUI 3 development",
+            "Windows App SDK development",
+            "WPF to WinUI migration",
+            "XAML implementation",
+            "MSIX packaging and code signing",
+            "Windows desktop application development"
+        ]
+    }
+    </script>
+}
+
+<h1>Windows App Development</h1>
+
+<p>
+    I&rsquo;m a Windows app developer with close to a decade of experience building desktop
+    applications in C# and XAML. I take on contract work in that niche &mdash; the kind of
+    Windows-specific problem that is hard to hire for because the pool of people who have
+    actually shipped it is small.
+</p>
+
+<div class="card card-background">
+    <p class="card-title">Availability</p>
+    <p>
+        I currently take on a limited amount of contract work alongside my role at
+        <a href="https://mu.se/">Muse Group</a>, where I lead the Windows and Linux clients for
+        <a href="https://www.musehub.com/">MuseHub</a>. I work with clients worldwide and am
+        comfortable with distributed teams across time zones &mdash; I&rsquo;m based in
+        New Zealand (UTC+12/+13).
+    </p>
+    <p>
+        If you have a Windows desktop problem that fits the work below, <a href="/contact">get in touch</a>.
+    </p>
+</div>
+
+<section>
+    <h2>What I take on</h2>
+
+    <div class="card card-background">
+        <p class="card-title">WinUI 3 and Windows App SDK development</p>
+        <p>
+            Building new WinUI 3 applications, or adding to existing ones. This includes the parts
+            of the Windows App SDK that are poorly documented and tend to eat weeks: window
+            management and custom title bars, the unpackaged and self-contained deployment modes,
+            app lifecycle and single-instancing, and the WinRT interop needed when the managed API
+            surface does not go far enough.
+        </p>
+    </div>
+
+    <div class="card card-background">
+        <p class="card-title">WPF and UWP to WinUI migration</p>
+        <p>
+            Moving an existing WPF or UWP codebase onto WinUI 3 without a rewrite. In practice this
+            is mapping controls that have no direct equivalent, replacing the parts of the
+            dispatcher, imaging and resource systems that changed shape, and untangling
+            <code>DynamicResource</code> theming into <code>ThemeResource</code>. I can do the
+            migration itself, or assess the codebase first and tell you what it would take.
+        </p>
+    </div>
+
+    <div class="card card-background">
+        <p class="card-title">XAML implementation from design</p>
+        <p>
+            Turning a Figma or design-tool spec into XAML that actually matches it &mdash; correct
+            spacing and typography, working Light, Dark and High Contrast themes, sensible
+            behaviour at every window size, and keyboard and screen reader support that holds up.
+            This is the work I have done most of, and the part most teams underestimate.
+        </p>
+    </div>
+
+    <div class="card card-background">
+        <p class="card-title">Packaging, signing and distribution</p>
+        <p>
+            Getting the application onto users&rsquo; machines. MSIX packaging, self-contained
+            Windows App SDK deployment, code signing, installer work, auto-update, and the
+            Microsoft Store submission process. Also the smaller distribution problems that only
+            show up in production, like mark-of-the-web on downloaded installers.
+        </p>
+    </div>
+
+    <div class="card card-background">
+        <p class="card-title">Performance and diagnostics</p>
+        <p>
+            Diagnosing WinUI applications that are slow, leaking, or crashing only on customer
+            machines &mdash; XAML layout and virtualisation cost, startup time, memory growth, and
+            crash reporting that produces something you can act on.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>Background</h2>
+
+    <p>
+        I lead the Windows and Linux clients for <a href="https://www.musehub.com/">MuseHub</a> at
+        <a href="https://mu.se/">Muse Group</a>, an application shipping to a large install base,
+        where I also contribute to the shared C++ core and the TypeScript backend. Before that I
+        worked on the Windows client for <a href="https://www.staffpad.net/">StaffPad</a> and built
+        industrial line-of-business systems for
+        <a href="https://www.inex.co.nz/">Independent Extrusions</a>.
+    </p>
+
+    <p>
+        Outside of the XAML stack I work in C++, TypeScript and Rust, and spend spare time on
+        low-level graphics and embedded programming &mdash; which tends to help when a Windows
+        problem turns out to be a native one.
+    </p>
+
+    <p>
+        You can see the work on my <a href="/projects">projects page</a>, read the technical
+        write-ups on my <a href="/blog">blog</a>, or look through my
+        <a href="/cv">curriculum vitae</a>.
+    </p>
+</section>
+
+<section>
+    <h2>Getting in touch</h2>
+
+    <p>
+        The most useful first message tells me what the application is, what state it&rsquo;s in
+        today, and what you want to be true at the end. I&rsquo;ll tell you honestly whether
+        it&rsquo;s work I can help with.
+    </p>
+
+    <p><a href="/contact">Contact me</a></p>
+</section>

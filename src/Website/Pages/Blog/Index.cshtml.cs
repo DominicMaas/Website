@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Website.Pages.Pages;
+namespace Website.Pages.Blog;
 
-public class PicoFilesystemLittlefsModel : PageModel
+public class IndexModel : PageModel
 {
     public void OnGet()
     {

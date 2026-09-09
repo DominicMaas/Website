@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Xml;
@@ -7,30 +6,34 @@ using Website.Common;
 
 namespace Website.Controllers;
 
-public class RSSController(DatabaseContext context) : Controller
+public class RSSController : Controller
 {
     [ResponseCache(Duration = 1200)]
     [HttpGet("/feed/blog.xml")]
-    public async Task<IActionResult> BlogRSSAsync()
+    public IActionResult BlogRSS()
     {
-        var latestPost = await context.Streams.OrderByDescending(x => x.Posted).FirstOrDefaultAsync();
+        var posts = BlogIndex.Recent.ToList();
 
-        var feed = BuildBasicFeed("Stream", "Quick thoughts and ideas", new("https://dominicmaas.co.nz/feed/stream.xml"), latestPost?.Posted ?? default);
-        var items = new List<SyndicationItem>();
+        var feed = BuildBasicFeed(
+            "Blog",
+            "Technical write-ups on Windows desktop development, embedded programming and graphics.",
+            new Uri("https://dominicmaas.co.nz/feed/blog.xml"),
+            posts.Count > 0 ? posts.Max(x => x.UpdatedAt) : DateTimeOffset.MinValue);
 
-
-        var posts = await context.Streams.OrderByDescending(x => x.Posted).Take(20).ToListAsync();
-        foreach (var post in posts)
+        feed.Items = posts.Select(post => new SyndicationItem(
+            post.Title,
+            post.Summary,
+            new Uri(post.Url),
+            post.Url,
+            post.UpdatedAt)
         {
-            items.Add(new SyndicationItem(post.Title, post.Content, new Uri($"https://dominicmaas.co.nz/stream/{post.Id}"), post.Id.ToString(), post.Posted));
-        }
-
-        feed.Items = items;
+            PublishDate = post.PublishedAt
+        });
 
         return BuildSyndicationFeed(feed);
     }
 
-    private static SyndicationFeed BuildBasicFeed(string name, string description, Uri url, DateTime lastUpdated)
+    private static SyndicationFeed BuildBasicFeed(string name, string description, Uri url, DateTimeOffset lastUpdated)
     {
         var feed = new SyndicationFeed($"Dominic Maas - {name}", description, url);
         feed.Authors.Add(new SyndicationPerson("contact@dominicmaas.co.nz", "Dominic Maas", "https://dominicmaas.co.nz"));
@@ -45,7 +48,7 @@ public class RSSController(DatabaseContext context) : Controller
     {
         var settings = new XmlWriterSettings
         {
-            Encoding = Encoding.UTF8,
+            Encoding = new UTF8Encoding(false),
             NewLineHandling = NewLineHandling.Entitize,
             NewLineOnAttributes = true,
             Indent = true

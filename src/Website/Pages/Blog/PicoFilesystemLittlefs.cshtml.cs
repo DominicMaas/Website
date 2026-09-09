@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Website.Pages.Pages;
+namespace Website.Pages.Blog;
 
-public class PasswordManagerModel : PageModel
+public class PicoFilesystemLittlefsModel : PageModel
 {
     public void OnGet()
     {
