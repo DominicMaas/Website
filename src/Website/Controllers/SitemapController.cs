@@ -25,6 +25,8 @@ public class SitemapController : Controller
         ("/cv", "0.90"),
         ("/blog", "0.90"),
         ("/photography", "0.60"),
+        ("/running", "0.40"),
+        ("/pc", "0.40"),
         ("/media", "0.60"),
         ("/style", "0.30"),
         ("/privacy", "0.30"),

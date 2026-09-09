@@ -11,10 +11,10 @@ public static class LegacyRedirects
     {
         // The "pages" section became the blog in 2026.
         ["/pages"] = "/blog",
-        ["/pages/pc"] = "/blog/pc",
+        ["/pages/pc"] = "/pc",
         ["/pages/password-manager"] = "/blog/password-manager",
         ["/pages/pico-filesystem-littlefs"] = "/blog/pico-filesystem-littlefs",
-        ["/pages/running"] = "/blog/running",
+        ["/pages/running"] = "/running",
 
         // This page only ever said "the content moved", so send visitors straight there.
         ["/soundbyte-postmortem"] = "/projects/soundbyte",

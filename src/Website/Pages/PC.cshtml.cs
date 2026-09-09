@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Website.Pages.Blog;
+namespace Website.Pages;
 
 public class PCModel : PageModel
 {
