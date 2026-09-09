@@ -58,14 +58,22 @@
         background: none !important;
         border: 0 !important;
         border-radius: 0 !important;
-        margin: 0 0 0.9em 0 !important;
+        margin: 0 0 0.75em 0 !important;
         padding: 0 !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
+    }
+
+    /* The <br /> tags between paragraphs are page furniture on screen; on paper
+       ordinary paragraph spacing is enough. */
+    .card br {
+        display: none;
+    }
+
+    .card p {
+        margin-top: 0.35em !important;
     }
 
     section {
-        margin-bottom: 1.5em;
+        margin-bottom: 1.1em;
     }
 
     hr {
@@ -74,6 +82,7 @@
 
     /* Never leave a heading stranded at the foot of a page. */
     h1, h2, h3, h4, h5, h6,
+    .card > small,
     .card > .card-title {
         break-after: avoid;
         page-break-after: avoid;
@@ -100,13 +109,24 @@
         color: #444 !important;
     }
 
+    p {
+        line-height: 1.4;
+        margin-bottom: 0.45em;
+    }
+
     p, li {
         orphans: 3;
         widows: 3;
     }
 
     ul, ol {
+        margin-bottom: 0.35em;
         break-inside: auto;
+    }
+
+    ul > li p,
+    ol > li p {
+        margin-bottom: 0.1em;
     }
 
     /* Links stay clickable in the PDF, but read as plain text on paper. */
@@ -130,8 +150,8 @@
     /* The site header carries the name on screen, but it is hidden here, so the
        CV supplies its own. Without it the PDF has no name on it at all. */
     .cv-print-header {
-        margin-bottom: 1.4em;
-        padding-bottom: 0.8em;
+        margin-bottom: 1.1em;
+        padding-bottom: 0.6em;
         border-bottom: 1px solid #999 !important;
     }
 
