@@ -66,7 +66,7 @@ services.AddWebOptimizer(pipeline =>
     pipeline.MinifyCssFiles();
     pipeline.MinifyJsFiles();
 
-    pipeline.AddCssBundle("/css/bundle.min.css", "dist/purecss/*.css", "css/site.css");
+    pipeline.AddCssBundle("/css/bundle.min.css", "dist/purecss/*.css", "css/site.css", "css/print.css");
     pipeline.AddJavaScriptBundle("/js/bundle.min.js", "dist/htmx.min.js", "dist/htmx.head-support.min.js", "dist/hyperscript.min.js");
 });
 

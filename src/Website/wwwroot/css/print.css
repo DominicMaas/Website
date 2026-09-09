@@ -1,0 +1,154 @@
+/* ---------- Print ---------- */
+
+/* Blocks that only exist on paper, such as the CV letterhead. */
+.print-only {
+    display: none;
+}
+
+@media print {
+    @page {
+        margin: 14mm 13mm;
+    }
+
+    /* Force everything back to black on white. Without this a visitor printing
+       while their OS is in dark mode gets light text on an unpainted page. */
+    *,
+    *::before,
+    *::after {
+        color: #000 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        transition: none !important;
+    }
+
+    html {
+        overflow-y: visible;
+    }
+
+    html, body {
+        background: #fff !important;
+        font-size: 10.5pt;
+    }
+
+    .container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Site chrome has no place on paper. */
+    .header,
+    footer,
+    #loading-indicator,
+    .no-print {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+
+    /* Flatten the cards: no fill, no border, no negative gutters. */
+    .card,
+    .card-background,
+    .card-alert,
+    .card-hoverable {
+        background: none !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        margin: 0 0 0.9em 0 !important;
+        padding: 0 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    section {
+        margin-bottom: 1.5em;
+    }
+
+    hr {
+        display: none;
+    }
+
+    /* Never leave a heading stranded at the foot of a page. */
+    h1, h2, h3, h4, h5, h6,
+    .card > .card-title {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    h1 {
+        font-size: 1.9em;
+        margin-bottom: 0.2em;
+    }
+
+    h2 {
+        font-size: 1.25em;
+        margin-bottom: 0.3em;
+    }
+
+    .card > .card-title {
+        font-size: 1.15em;
+    }
+
+    /* Dates and locations: still secondary, but solid enough to photocopy. */
+    .card > small,
+    small {
+        opacity: 1 !important;
+        color: #444 !important;
+    }
+
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+
+    ul, ol {
+        break-inside: auto;
+    }
+
+    /* Links stay clickable in the PDF, but read as plain text on paper. */
+    a {
+        color: #000 !important;
+        text-decoration: none;
+    }
+
+    /* Keep code blocks legible now that the fill is gone. */
+    code, pre {
+        border: 1px solid #bbb !important;
+    }
+
+    img {
+        break-inside: avoid;
+        max-width: 100% !important;
+    }
+
+    /* ---------- CV letterhead ---------- */
+
+    /* The site header carries the name on screen, but it is hidden here, so the
+       CV supplies its own. Without it the PDF has no name on it at all. */
+    .cv-print-header {
+        margin-bottom: 1.4em;
+        padding-bottom: 0.8em;
+        border-bottom: 1px solid #999 !important;
+    }
+
+    .cv-print-name {
+        font-family: var(--font-headings);
+        font-size: 2.1em;
+        font-weight: 800;
+        margin: 0 0 0.15em 0;
+    }
+
+    .cv-print-role {
+        font-weight: 700;
+        margin: 0 0 0.35em 0;
+    }
+
+    .cv-print-contact {
+        margin: 0;
+        color: #333 !important;
+    }
+}
