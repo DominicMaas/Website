@@ -4,9 +4,9 @@ using Amazon.S3.Model;
 
 namespace Website.Services;
 
-public class R2
+public class R2 : IDisposable
 {
-    private readonly IAmazonS3 _client;
+    private readonly AmazonS3Client _client;
 
     public R2(IConfiguration configuration)
     {
@@ -51,5 +51,11 @@ public class R2
         {
             throw new Exception("Delete from Cloudflare R2 failed");
         }
+    }
+
+    public void Dispose()
+    {
+        _client.Dispose();
+        GC.SuppressFinalize(this);
     }
 }

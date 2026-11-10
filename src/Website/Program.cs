@@ -51,15 +51,6 @@ var razorBuilder = services.AddRazorPages(options =>
 // Allows us to use controllers alongside razor pages
 var mvcBuilder = services.AddMvc();
 
-// Allows compiling within development environment
-#if DEBUG
-if (environment.IsDevelopment())
-{
-    razorBuilder.AddRazorRuntimeCompilation();
-    mvcBuilder.AddRazorRuntimeCompilation();
-}
-#endif
-
 // Bundle and minify our JS and CSS
 services.AddWebOptimizer(pipeline =>
 {
